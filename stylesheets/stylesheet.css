@@ -1,76 +1,64 @@
-/* reset */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font: inherit;
-  vertical-align: baseline;
+/* override */
+a{
+    color: #000022;
+    text-decoration: none;
+}
+
+a:link{
+    color: #000022;
+    text-decoration: none;
+}
+
+a:visited{
+    color: #000022;
+    text-decoration: none;
+}
+
+a:hover{
+    color: #000022;
+    text-decoration: underline;
 }
 
 body{
-    color: #433;
+    background-color: #FEFEFF;
+    color: #000022;
+    font-family:'Letter Gothic','Letter Gothic Std','Andale Mono','Letter Gothic Bold','LetterGothic Bold','LetterGothicStd-Bold','Letter Gothic Std Bold','Courier New', Courier, monospace;
 }
 
+/* sticky footer */
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+    word-break: break-all;
+}
+.wrap{
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -2.3em;
+}
+.footer{
+    width: 100%;
+    text-align: center;
+    clear: both;
+}
 
-.title{
+/* -- */
+
+.row .title{
+    border-bottom: solid 2px #777;
     font-size: 1.2em;
     font-weight: bold;
 }
 
-.wrapper{
-    padding: 20px;
-    width: 100%;
+.row .links{
+    margin-bottom: 50px;
 }
 
-.link-header{
-    width: 95%;
-    float: left;
-    padding: 10px;
-}
-.link-header .title{
-    text-align: center;
-    clear: both;
-}
-
-
-.link-group{
-    float: left;
-    width: 30%;
-    padding: 10px;
-}
-
-.link-group .title{
-    border-bottom: solid 2px #777;
-    clear: both;
-}
-
-.link-group .links{
-    padding-left: 1.5em;
-
-}
-
-.link-group .link{
+.row .link{
     list-style-type: circle;
     color: #522;
 }
 
-.clear{
-    clear: both;
-}
-
-.footer{
-    margin-top: 200px;
-    text-align: center;
-}
