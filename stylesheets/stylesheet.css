@@ -1,0 +1,64 @@
+/* override */
+a{
+    color: #000022;
+    text-decoration: none;
+}
+
+a:link{
+    color: #000022;
+    text-decoration: none;
+}
+
+a:visited{
+    color: #000022;
+    text-decoration: none;
+}
+
+a:hover{
+    color: #000022;
+    text-decoration: underline;
+}
+
+body{
+    background-color: #FEFEFF;
+    color: #000022;
+    font-family:'Letter Gothic','Letter Gothic Std','Andale Mono','Letter Gothic Bold','LetterGothic Bold','LetterGothicStd-Bold','Letter Gothic Std Bold','Courier New', Courier, monospace;
+}
+
+/* sticky footer */
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+    word-break: break-all;
+}
+.wrap{
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -2.3em;
+}
+.footer{
+    width: 100%;
+    text-align: center;
+    clear: both;
+}
+
+/* -- */
+
+.row .title{
+    border-bottom: solid 2px #777;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.row .links{
+    margin-bottom: 50px;
+}
+
+.row .link{
+    list-style-type: circle;
+    color: #522;
+}
+
