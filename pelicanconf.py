@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 
+import datetime
+
 AUTHOR = 'sonkmr'
 SITENAME = 'nkm3'
 SITEURL = 'https://nkm3.org'
@@ -19,7 +21,7 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 DEFAULT_DATE_FORMAT = ('%Y-%m-%d')
-# CURRENT_YEAR = datetime.datetime.now().year
+CURRENT_YEAR = datetime.datetime.now().year
 
 
 # Blogroll

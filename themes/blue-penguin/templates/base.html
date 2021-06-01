@@ -81,9 +81,11 @@
             <div class="center">
             {%- block content -%}{%- endblock %}
             </div>
+            {% if SIDEBAR_RIGHT %}
             <div class="sidebar_right">
                 {% include "sidebar_right.html" %}
             </div>
+            {% endif %}
         </div>
         {% if DISPLAY_FOOTER or DISPLAY_FOOTER is not defined %}
         <div class="clear"></div>
