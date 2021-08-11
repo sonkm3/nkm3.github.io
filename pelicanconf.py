@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 
+import datetime
+
 AUTHOR = 'sonkmr'
 SITENAME = 'nkm3'
-SITEURL = ''
+SITEURL = 'https://nkm3.org'
 
 PATH = 'content'
 
@@ -19,6 +21,8 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 DEFAULT_DATE_FORMAT = ('%Y-%m-%d')
+CURRENT_YEAR = datetime.datetime.now().year
+
 
 # Blogroll
 LINKS = (('Pelican', 'https://getpelican.com/'),
@@ -35,11 +39,11 @@ DEFAULT_PAGINATION = 10
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
 
-# THEME = 'themes/blue-penguin'
+THEME = 'themes/blue-penguin'
 
 MENUITEMS = (
-    ('About', 'pages/about.html'),
-    ('Archives', 'archives.html'),
+    ('About', '/pages/about.html'),
+    ('Archives', '/archives.html'),
 )
 
 DISPLAY_PAGES_ON_MENU = False
