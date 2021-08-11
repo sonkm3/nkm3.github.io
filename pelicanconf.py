@@ -50,3 +50,13 @@ DISPLAY_PAGES_ON_MENU = False
 
 STATIC_PATHS = ['images', 'extra/CNAME']
 EXTRA_PATH_METADATA = {'extra/CNAME': {'path': 'CNAME'},}
+
+MARKDOWN = {
+    'extension_configs': {
+        'markdown.extensions.codehilite': {'css_class': 'highlight'},
+        'markdown.extensions.extra': {},
+        'markdown.extensions.meta': {},
+        'mdx_linkify.mdx_linkify': {},
+    },
+    'output_format': 'html5',
+}
