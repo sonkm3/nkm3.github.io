@@ -71,7 +71,7 @@ header, #wrapper {
 #wrapper {
     padding: 0 10px;
     max-width: 1200px;
-    margin: auto;
+    margin: 100px;
     flex-wrap: wrap;  
 }
 
@@ -95,7 +95,7 @@ h1, h2, h3, h4, h5, h6 {
 h1, h2, h3 {
     font-size: 1.5em;
     line-height: 1em;
-    margin: 1em 0;
+    margin: 0 0 1em;
 }
 
 img, p, .post > .highlight, .highlighttable, h4, h5, h6 {
@@ -124,7 +124,8 @@ thead {
     float: left;
     clear: both;
     width: 130px;
-    font-size: 1.5em;
+    /* font-size: 1.5em; */
+    font-size: 1.2em;
     line-height: 1em;
     margin: 0 20px 1em 0;
 }
@@ -427,8 +428,8 @@ footer p { margin: 0; }
   }
 @media (min-width: 1200px) {
     .center {
-        width: 800px;
-        margin: 0 20px;
+        width: 1000px;
+        margin: 0;
         float: left;
     }
 }
@@ -438,8 +439,8 @@ footer p { margin: 0; }
 }
 @media (min-width: 1200px) {
     .sidebar_right {
-        width: 300px;
+        width: 200px;
         float: right;
-    
+        margin:0 ;
     }
 }
