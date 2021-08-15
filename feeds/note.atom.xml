@@ -13647,9 +13647,11 @@ z
 &lt;/script&gt;</content><category term="note"></category><category term="note"></category><category term="software"></category></entry><entry><title>calculate effective reproduction number</title><link href="https://nkm3.org/calculate-effective-reproduction-number.html" rel="alternate"></link><published>2021-08-15T00:00:00+09:00</published><updated>2021-08-15T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-08-15:/calculate-effective-reproduction-number.html</id><summary type="html">&lt;p&gt;東京都のコロナウイルス実行再生算数を簡易計算してみた&lt;/p&gt;</summary><content type="html">&lt;h2&gt;東京都のコロナウイルス実行再生算数を簡易計算してみた&lt;/h2&gt;
 &lt;p&gt;今回もふと思い立って書いてみたプログラムです  &lt;/p&gt;
 &lt;p&gt;国立感染症研究所のサイトに簡易的な実行再生算数の計算方法が載っていたので公開されている東京都のデータと合わせて&lt;a href="https://jupyter.org" rel="nofollow"&gt;Jupyter Notebook&lt;/a&gt;と&lt;a href="https://pandas.pydata.org" rel="nofollow"&gt;pandas&lt;/a&gt;の練習がてら手元で計算してみました  &lt;/p&gt;
-&lt;p&gt;ポイントは&lt;br&gt;
-&lt;code&gt;daily['ern'] = daily['count'].rolling(window='19D').apply(calc_ern)&lt;/code&gt;&lt;br&gt;
-19日単位のウインドウで実行再生算数を計算している&lt;br&gt;
+&lt;p&gt;ポイントは  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;daily[&amp;#39;ern&amp;#39;] = daily[&amp;#39;count&amp;#39;].rolling(window=&amp;#39;19D&amp;#39;).apply(calc_ern)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;19日単位のウインドウで実行再生算数を計算している&lt;br&gt;
 「絶対できるはずだけどこの世界の言葉でどう呼ばれているのか」で手間取った  &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;簡易的な実行再生算数の計算方法&lt;a href="https://www.niid.go.jp/niid/ja/diseases/ka/corona-virus/2019-ncov/2502-idsc/iasr-in/10465-496d04.html" rel="nofollow"&gt;COVID-19感染報告者数に基づく簡易実効再生産数推定方法&lt;/a&gt;  &lt;/li&gt;
