@@ -3,7 +3,7 @@
 <head>
         <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>nkm3 | Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part1</title>
+    <title>nkm3 | Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part2</title>
     <link rel="shortcut icon" type="image/png" href="https://nkm3.org/favicon.png">
     <link rel="shortcut icon" type="image/x-icon" href="https://nkm3.org/favicon.ico">
     <link href="https://nkm3.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="nkm3 Full Atom Feed" />
@@ -32,11 +32,11 @@
     </header>
     <div id="wrapper">
         <div id="content">
-            <div class="center">            <h4 class="date">2021/08/10</h4>
+            <div class="center">            <h4 class="date">2021/08/12</h4>
 
             <article class="post">
                 <h2 class="title">
-                    <a href="https://nkm3.org/flashcard-with-django-nuxtjs-vuetify-pt1.html" rel="bookmark" title="Permanent Link to &quot;Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part1&quot;">Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part1</a>
+                    <a href="https://nkm3.org/flashcard-with-django-nuxtjs-vuetify-pt3.html" rel="bookmark" title="Permanent Link to &quot;Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part2&quot;">Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part2</a>
                 </h2>
 
                 
@@ -90,11 +90,48 @@
 </ul>
 </li>
 </ul>
-<h2>画面紹介とか</h2>
+<h2>フロントエンドの概要</h2>
+<ul>
+<li>手が入っているのは主にpages以下のvueファイル</li>
+<li>サインイン、トークン取得、サインアウトはnuxt/authを使っている <a href="https://auth.nuxtjs.org" rel="nofollow">https://auth.nuxtjs.org</a></li>
+<li>httpクライアントはnuxt/axios <a href="https://axios.nuxtjs.org" rel="nofollow">https://axios.nuxtjs.org</a></li>
+<li>ルーティングはnuxtjsのもの</li>
+<li>リスト表示はData tablesのCRUDのサンプルをもとにして作った <a href="https://vuetifyjs.com/ja/components/data-tables/" rel="nofollow">https://vuetifyjs.com/ja/components/data-tables/</a></li>
+</ul>
+<h2>認証について</h2>
+<h2>httpクライアント</h2>
+<h2>ルーティングの設定</h2>
+<ul>
+<li>pagesのcourse以下はディレクトリ構造でルーティングを実現</li>
+<li>バックエンドと同じく<code>/courses/1/words/</code>のようなパスを使いたい</li>
+<li>
+<p><code>dynamic nested routes</code>と呼ばれる仕組みを使って実装</p>
+<p><a href="https://nuxtjs.org/docs/2.x/features/file-system-routing#dynamic-nested-routes" rel="nofollow">https://nuxtjs.org/docs/2.x/features/file-system-routing#dynamic-nested-routes</a></p>
+</li>
+</ul>
+<p>ドキュメント上ではidのプレースホルダになっている箇所は<code>_id.vue</code>とファイルになっているがディレクトリ＋index.vueファイルの組み合わせでも期待通りのルーティングがされる<br>
+上記<code>/courses/1/words/</code>は<code>/courses/1/words/index.vue</code>にルーティングされる</p>
+<pre>
+pages/
+├── courses
+│   ├── _course_id
+│   │   └── words
+│   │       ├── index.vue
+│   │       └── practice.vue
+│   └── index.vue
+├── index.vue
+├── inspire.vue
+├── signin.vue
+├── signout.vue
+└── signup.vue
+</pre>
+
+<h2>リスト表示とCRUD処理</h2>
+<h2>単語カード表示</h2>
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="https://nkm3.org/flashcard-with-django-nuxtjs-vuetify-pt1.html">posted at 00:00</a>
+                    <a href="https://nkm3.org/flashcard-with-django-nuxtjs-vuetify-pt3.html">posted at 00:00</a>
                     &nbsp;&middot;&nbsp;<a href="https://nkm3.org/category/note.html" rel="tag">note</a>
                     &nbsp;&middot;
                     &nbsp;<a href="https://nkm3.org/tag/note.html" class="tags">note</a>

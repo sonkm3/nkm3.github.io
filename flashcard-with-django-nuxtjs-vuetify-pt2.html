@@ -3,7 +3,7 @@
 <head>
         <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>nkm3 | Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part2</title>
+    <title>nkm3 | Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part1</title>
     <link rel="shortcut icon" type="image/png" href="https://nkm3.org/favicon.png">
     <link rel="shortcut icon" type="image/x-icon" href="https://nkm3.org/favicon.ico">
     <link href="https://nkm3.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="nkm3 Full Atom Feed" />
@@ -32,17 +32,18 @@
     </header>
     <div id="wrapper">
         <div id="content">
-            <div class="center">            <h4 class="date">2021/08/12</h4>
+            <div class="center">            <h4 class="date">2021/08/11</h4>
 
             <article class="post">
                 <h2 class="title">
-                    <a href="https://nkm3.org/flashcard-with-django-nuxtjs-vuetify-pt2.html" rel="bookmark" title="Permanent Link to &quot;Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part2&quot;">Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part2</a>
+                    <a href="https://nkm3.org/flashcard-with-django-nuxtjs-vuetify-pt2.html" rel="bookmark" title="Permanent Link to &quot;Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part1&quot;">Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part1</a>
                 </h2>
 
                 
                 
 
-                <h2>これはなに</h2>
+                <h2>まだ書いてる途中だけどなんとなく公開</h2>
+<h2>これはなに</h2>
 <ul>
 <li>Django REST frameworkとnuxtjs、Vuetifyで作った単語カード風アプリ</li>
 <li>nuxtjsとVuetifyを使ってみたくて作りはじめた</li>
@@ -89,44 +90,64 @@
 </ul>
 </li>
 </ul>
-<h2>フロントエンドの概要</h2>
+<h2>バックエンドの実装</h2>
+<h3>modelの実装</h3>
+<p><a href="https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/models.py" rel="nofollow">https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/models.py</a></p>
 <ul>
-<li>手が入っているのは主にpages以下のvueファイル</li>
-<li>サインイン、トークン取得、サインアウトはnuxt/authを使っている <a href="https://auth.nuxtjs.org" rel="nofollow">https://auth.nuxtjs.org</a></li>
-<li>httpクライアントはnuxt/axios <a href="https://axios.nuxtjs.org" rel="nofollow">https://axios.nuxtjs.org</a></li>
-<li>ルーティングはnuxtjsのもの</li>
-<li>リスト表示はData tablesのCRUDのサンプルをもとにして作った <a href="https://vuetifyjs.com/ja/components/data-tables/" rel="nofollow">https://vuetifyjs.com/ja/components/data-tables/</a></li>
+<li><code>django REST framework</code>の<code>ModelViewSet</code>と<code>ModelSerializer</code>から使うためデフォルトのクエリセット以外に処理を書く必要がない</li>
+<li><code>models.Manager</code>クラスを使うことでクエリに関わる実装を少なくする<ul>
+<li>単語帳に紐づいた単語を取得するクエリセットを返すメソッドを<code>WordManager</code>クラスに用意し</li>
+<li><code>viewWordViewSet</code>の<code>get_queryset</code>から<code>Word.objects.course()</code>と呼び出すとフィルタされたクエリセットが返ってくる</li>
+<li>このクエリセットにページネーションやソートのクエリが加わっていく</li>
 </ul>
-<h2>認証について</h2>
-<h2>httpクライアント</h2>
-<h2>ルーティングの設定</h2>
-<ul>
-<li>pagesのcourse以下はディレクトリ構造でルーティングを実現</li>
-<li>バックエンドと同じく<code>/courses/1/words/</code>のようなパスを使いたい</li>
-<li>
-<p><code>dynamic nested routes</code>と呼ばれる仕組みを使って実装</p>
-<p><a href="https://nuxtjs.org/docs/2.x/features/file-system-routing#dynamic-nested-routes" rel="nofollow">https://nuxtjs.org/docs/2.x/features/file-system-routing#dynamic-nested-routes</a></p>
 </li>
 </ul>
-<p>ドキュメント上ではidのプレースホルダになっている箇所は<code>_id.vue</code>とファイルになっているがディレクトリ＋index.vueファイルの組み合わせでも期待通りのルーティングがされる<br>
-上記<code>/courses/1/words/</code>は<code>/courses/1/words/index.vue</code>にルーティングされる</p>
-<pre>
-pages/
-├── courses
-│   ├── _course_id
-│   │   └── words
-│   │       ├── index.vue
-│   │       └── practice.vue
-│   └── index.vue
-├── index.vue
-├── inspire.vue
-├── signin.vue
-├── signout.vue
-└── signup.vue
-</pre>
-
-<h2>リスト表示とCRUD処理</h2>
-<h2>単語カード表示</h2>
+<h3>serializerの実装</h3>
+<p><a href="https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/serializers.py" rel="nofollow">https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/serializers.py</a></p>
+<ul>
+<li><code>django REST framework</code>の<code>ModelViewSet</code>から使う想定</li>
+<li><code>serializers.ModelSerializer</code>を使うので書き足した箇所はバリデーションぐらい</li>
+<li>単語帳の持ち主とユーザーが一致するかのバリデーションはSerializerのバリデーションでおこなっている<ul>
+<li>例えば<code>validate_courseメソッド</code>でおこなえ、<code>course</code>フィールドは<code>_course</code>のようにすることで指定できる</li>
+</ul>
+</li>
+</ul>
+<h3>viewの実装</h3>
+<p><a href="https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/views.py" rel="nofollow">https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/views.py</a></p>
+<ul>
+<li><code>django REST framework</code>の<code>ModelViewSet</code>を使っているのであまり書かなくてよいが<code>drf-nested-routers</code>に関わる実装は必要</li>
+<li><code>drf-nested-routers</code>に関わる実装について<ul>
+<li><code>courses/{course_id}/words/</code>というパスにしたかったので<code>drf-nested-routers</code>を導入した</li>
+<li>この場合<code>course_id</code>は<code>self.kwargs["course_pk"]</code>としてviewにわたってくる</li>
+<li><code>request.data</code>には入っていないので<code>create</code>メソッドをオーバーライドして<code>request.data</code>に<code>course_pk</code>を追加している</li>
+</ul>
+</li>
+<li><code>pagination</code>について<ul>
+<li>フロントエンドの作りに合わせて<code>PageNumberPagination</code>をもとにした<code>CustomPagination</code>を作った</li>
+</ul>
+</li>
+</ul>
+<h3>ルーティング</h3>
+<p><a href="https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/wordbook/urls.py" rel="nofollow">https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/wordbook/urls.py</a></p>
+<ul>
+<li><code>NestedSimpleRouter</code>を使って<code>courses/{course_id}/words/</code>を実現している</li>
+</ul>
+<h3>emailでのログインについて</h3>
+<p><a href="https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/models.py#L9-L51" rel="nofollow">https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/models.py#L9-L51</a></p>
+<ul>
+<li><code>CustomUser</code>と<code>CustomUserManager</code>を作って対応</li>
+<li><code>create_user</code>に関わる処理の変更を<code>CustomUserManager</code>でオーバーライドする</li>
+<li><code>AbstractUser</code>を継承しているので<code>username</code>の条件は<code>CustomUser</code>でオーバーライドできる</li>
+<li>CustomUserはAbstractModelを継承しているのでfirst/last_nameなどの使わないフィールドは<code>Null</code>を代入することで削除できる</li>
+</ul>
+<p><a href="https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/wordbook/settings.py" rel="nofollow">https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/wordbook/settings.py</a></p>
+<ul>
+<li>CustomUserクラスとemailフィールドをログイン時に使うようにする変更は<code>settings.py</code>でおこなう<ul>
+<li><code>AUTH_USER_MODEL</code>を上で定義した<code>CustomUser</code>に設定(Djangoが使うユーザーモデルを変更する設定)</li>
+<li><code>DJOSER</code>の<code>LOGIN_FIELD</code>を<code>email</code>に設定(djoserのユーザー名フィールドを変更する設定)</li>
+</ul>
+</li>
+</ul>
                 <div class="clear"></div>
 
                 <div class="info">
