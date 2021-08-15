@@ -39,12 +39,14 @@ DEFAULT_PAGINATION = 10
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
 
-THEME = 'themes/blue-penguin'
+THEME = 'themes/pelican-cait'
 
-MENUITEMS = (
+USE_CUSTOM_MENU = True
+CUSTOM_MENUITEMS = (
     ('About', '/pages/about.html'),
-    ('Archives', '/archives.html'),
 )
+
+
 
 DISPLAY_PAGES_ON_MENU = False
 

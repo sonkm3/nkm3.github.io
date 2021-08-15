@@ -1,13 +1,13 @@
 Title: Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part1
-Date: 2021-08-11 00:00
-Modified: 2021-08-11 00:00
+Date: 2021-08-10 00:00
+Modified: 2021-08-10 00:00
 Category: note
 Tags: note, software
 Slug: flashcard-with-django-nuxtjs-vuetify-pt1
 Authors: sonkmr
-Summary: Making Flashcard app with Django REST framework, nuxtjs and Vuetify.
+Summary: Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part1
 
-
+## まだ書いてる途中だけどなんとなく公開
 ## これはなに
 
 - Django REST frameworkとnuxtjs、Vuetifyで作った単語カード風アプリ
@@ -47,53 +47,4 @@ Summary: Making Flashcard app with Django REST framework, nuxtjs and Vuetify.
     - NuxtJS https://nuxtjs.org
     - Vuetify https://vuetifyjs.com/en/
 
-## バックエンドの実装
-### modelの実装
-https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/models.py
-
-- `django REST framework`の`ModelViewSet`と`ModelSerializer`から使うためデフォルトのクエリセット以外に処理を書く必要がない
-- `models.Manager`クラスを使うことでクエリに関わる実装を少なくする
-    - 単語帳に紐づいた単語を取得するクエリセットを返すメソッドを`WordManager`クラスに用意し
-    - `viewWordViewSet`の`get_queryset`から`Word.objects.course()`と呼び出すとフィルタされたクエリセットが返ってくる
-    - このクエリセットにページネーションやソートのクエリが加わっていく
-
-### serializerの実装
-https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/serializers.py
-
-- `django REST framework`の`ModelViewSet`から使う想定
-- `serializers.ModelSerializer`を使うので書き足した箇所はバリデーションぐらい
-- 単語帳の持ち主とユーザーが一致するかのバリデーションはSerializerのバリデーションでおこなっている
-    - 例えば`validate_courseメソッド`でおこなえ、`course`フィールドは`_course`のようにすることで指定できる
-
-
-### viewの実装
-https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/views.py
-
-- `django REST framework`の`ModelViewSet`を使っているのであまり書かなくてよいが`drf-nested-routers`に関わる実装は必要
-- `drf-nested-routers`に関わる実装について
-    - `courses/{course_id}/words/`というパスにしたかったので`drf-nested-routers`を導入した
-    - この場合`course_id`は`self.kwargs["course_pk"]`としてviewにわたってくる
-    - `request.data`には入っていないので`create`メソッドをオーバーライドして`request.data`に`course_pk`を追加している
-- `pagination`について
-    - フロントエンドの作りに合わせて`PageNumberPagination`をもとにした`CustomPagination`を作った
-
-### ルーティング
-https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/wordbook/urls.py
-
-- `NestedSimpleRouter`を使って`courses/{course_id}/words/`を実現している
-
-
-### emailでのログインについて
-https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/models.py#L9-L51
-
-- `CustomUser`と`CustomUserManager`を作って対応
-- `create_user`に関わる処理の変更を`CustomUserManager`でオーバーライドする
-- `AbstractUser`を継承しているので`username`の条件は`CustomUser`でオーバーライドできる
-- CustomUserはAbstractModelを継承しているのでfirst/last_nameなどの使わないフィールドは`Null`を代入することで削除できる
-
-
-https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/wordbook/settings.py
-
-- CustomUserクラスとemailフィールドをログイン時に使うようにする変更は`settings.py`でおこなう
-    - `AUTH_USER_MODEL`を上で定義した`CustomUser`に設定(Djangoが使うユーザーモデルを変更する設定)
-    - `DJOSER`の`LOGIN_FIELD`を`email`に設定(djoserのユーザー名フィールドを変更する設定)
+## 画面紹介とか
