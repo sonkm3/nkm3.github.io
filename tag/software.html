@@ -30,7 +30,3021 @@
     </header>
     <div id="wrapper">
         <div id="content">
-            <div class="center">            <h4 class="date">2021/08/12</h4>
+            <div class="center">            <h4 class="date">2021/08/15</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://nkm3.org/calculate-effective-reproduction-number.html" rel="bookmark" title="Permanent Link to &quot;calculate effective reproduction number&quot;">calculate effective reproduction number</a>
+                </h2>
+
+                
+                
+
+                <h2>東京都のコロナウイルス実行再生算数の簡易計算</h2>
+<p>今回もふと思い立って書いてみたプログラムです  </p>
+<p>国立感染症研究所のサイトに簡易的な実行再生算数の計算方法が載っていたので公開されている東京都のデータと合わせて<a href="https://jupyter.org" rel="nofollow">Jupyter Notebook</a>と<a href="https://pandas.pydata.org" rel="nofollow">pandas</a>の練習がてら手元で計算してみました  </p>
+<ul>
+<li>簡易的な実行再生算数の計算方法<a href="https://www.niid.go.jp/niid/ja/diseases/ka/corona-virus/2019-ncov/2502-idsc/iasr-in/10465-496d04.html" rel="nofollow">COVID-19感染報告者数に基づく簡易実効再生産数推定方法</a>  </li>
+<li>東京都福祉保健局のオープンデータ<a href="https://catalog.data.metro.tokyo.lg.jp/dataset/t000010d0000000068" rel="nofollow">東京都 新型コロナウイルス陽性患者発表詳細</a></li>
+</ul>
+<style type="text/css">/*!
+*
+* IPython notebook
+*
+*/
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-default-inverse-fg {
+  color: #FFFFFF;
+}
+.ansi-default-inverse-bg {
+  background-color: #000000;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+/* The following styles are deprecated an will be removed in a future version */
+.ansibold {
+  font-weight: bold;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
+}
+/* use dark versions for foreground, to improve visibility */
+.ansiblack {
+  color: black;
+}
+.ansired {
+  color: darkred;
+}
+.ansigreen {
+  color: darkgreen;
+}
+.ansiyellow {
+  color: #c4a000;
+}
+.ansiblue {
+  color: darkblue;
+}
+.ansipurple {
+  color: darkviolet;
+}
+.ansicyan {
+  color: steelblue;
+}
+.ansigray {
+  color: gray;
+}
+/* and light for background, for the same reason */
+.ansibgblack {
+  background-color: black;
+}
+.ansibgred {
+  background-color: red;
+}
+.ansibggreen {
+  background-color: green;
+}
+.ansibgyellow {
+  background-color: yellow;
+}
+.ansibgblue {
+  background-color: blue;
+}
+.ansibgpurple {
+  background-color: magenta;
+}
+.ansibgcyan {
+  background-color: cyan;
+}
+.ansibggray {
+  background-color: gray;
+}
+div.cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  width: 100%;
+  padding: 5px;
+  /* This acts as a spacer between cells, that is outside the border */
+  margin: 0px;
+  outline: none;
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
+}
+div.cell.jupyter-soft-selected {
+  border-left-color: #E3F2FD;
+  border-left-width: 1px;
+  padding-left: 5px;
+  border-right-color: #E3F2FD;
+  border-right-width: 1px;
+  background: #E3F2FD;
+}
+@media print {
+  div.cell.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
+  border-color: #ababab;
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
+}
+@media print {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+.edit_mode div.cell.selected {
+  border-color: #66BB6A;
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
+}
+@media print {
+  .edit_mode div.cell.selected {
+    border-color: transparent;
+  }
+}
+.prompt {
+  /* This needs to be wide enough for 3 digit prompt numbers: In[100]: */
+  min-width: 14ex;
+  /* This padding is tuned to match the padding on the CodeMirror editor. */
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace;
+  text-align: right;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+  /* Don't highlight prompt number selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Use default cursor */
+  cursor: default;
+}
+@media (max-width: 540px) {
+  .prompt {
+    text-align: left;
+  }
+}
+div.inner_cell {
+  min-width: 0;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_area {
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+  background: #f7f7f7;
+  line-height: 1.21429em;
+}
+/* This is needed so that empty prompt areas can collapse to zero height when there
+   is no content in the output_subarea and the prompt. The main purpose of this is
+   to make sure that empty JavaScript output_subareas have no height. */
+div.prompt:empty {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+div.unrecognized_cell {
+  padding: 5px 5px 5px 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.unrecognized_cell .inner_cell {
+  border-radius: 2px;
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+  border: 1px solid #cfcfcf;
+  background: #eaeaea;
+}
+div.unrecognized_cell .inner_cell a {
+  color: inherit;
+  text-decoration: none;
+}
+div.unrecognized_cell .inner_cell a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+@media (max-width: 540px) {
+  div.unrecognized_cell > div.prompt {
+    display: none;
+  }
+}
+div.code_cell {
+  /* avoid page breaking on code cells when printing */
+}
+@media print {
+  div.code_cell {
+    page-break-inside: avoid;
+  }
+}
+/* any special styling for code cells that are currently running goes here */
+div.input {
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.input {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_prompt {
+  color: #303F9F;
+  border-top: 1px solid transparent;
+}
+div.input_area > div.highlight {
+  margin: 0.4em;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+div.input_area > div.highlight > pre {
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+/* The following gets added to the <head> if it is detected that the user has a
+ * monospace font with inconsistent normal/bold/italic height.  See
+ * notebookmain.js.  Such fonts will have keywords vertically offset with
+ * respect to the rest of the text.  The user should select a better font.
+ * See: https://github.com/ipython/ipython/issues/1503
+ *
+ * .CodeMirror span {
+ *      vertical-align: bottom;
+ * }
+ */
+.CodeMirror {
+  line-height: 1.21429em;
+  /* Changed from 1em to our global default */
+  font-size: 14px;
+  height: auto;
+  /* Changed to auto to autogrow */
+  background: none;
+  /* Changed from white to allow our bg to show through */
+}
+.CodeMirror-scroll {
+  /*  The CodeMirror docs are a bit fuzzy on if overflow-y should be hidden or visible.*/
+  /*  We have found that if it is visible, vertical scrollbars appear with font size changes.*/
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.CodeMirror-lines {
+  /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
+  /* we have set a different line-height and want this to scale with that. */
+  /* Note that this should set vertical padding only, since CodeMirror assumes
+       that horizontal padding will be set on CodeMirror pre */
+  padding: 0.4em 0;
+}
+.CodeMirror-linenumber {
+  padding: 0 8px 0 4px;
+}
+.CodeMirror-gutters {
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+}
+.CodeMirror pre {
+  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
+    use .CodeMirror-lines for vertical */
+  padding: 0 0.4em;
+  border: 0;
+  border-radius: 0;
+}
+.CodeMirror-cursor {
+  border-left: 1.4px solid black;
+}
+@media screen and (min-width: 2138px) and (max-width: 4319px) {
+  .CodeMirror-cursor {
+    border-left: 2px solid black;
+  }
+}
+@media screen and (min-width: 4320px) {
+  .CodeMirror-cursor {
+    border-left: 4px solid black;
+  }
+}
+/*
+
+Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
+Adapted from GitHub theme
+
+*/
+.highlight-base {
+  color: #000;
+}
+.highlight-variable {
+  color: #000;
+}
+.highlight-variable-2 {
+  color: #1a1a1a;
+}
+.highlight-variable-3 {
+  color: #333333;
+}
+.highlight-string {
+  color: #BA2121;
+}
+.highlight-comment {
+  color: #408080;
+  font-style: italic;
+}
+.highlight-number {
+  color: #080;
+}
+.highlight-atom {
+  color: #88F;
+}
+.highlight-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.highlight-builtin {
+  color: #008000;
+}
+.highlight-error {
+  color: #f00;
+}
+.highlight-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.highlight-meta {
+  color: #AA22FF;
+}
+/* previously not defined, copying from default codemirror */
+.highlight-def {
+  color: #00f;
+}
+.highlight-string-2 {
+  color: #f50;
+}
+.highlight-qualifier {
+  color: #555;
+}
+.highlight-bracket {
+  color: #997;
+}
+.highlight-tag {
+  color: #170;
+}
+.highlight-attribute {
+  color: #00c;
+}
+.highlight-header {
+  color: blue;
+}
+.highlight-quote {
+  color: #090;
+}
+.highlight-link {
+  color: #00c;
+}
+/* apply the same style to codemirror */
+.cm-s-ipython span.cm-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-atom {
+  color: #88F;
+}
+.cm-s-ipython span.cm-number {
+  color: #080;
+}
+.cm-s-ipython span.cm-def {
+  color: #00f;
+}
+.cm-s-ipython span.cm-variable {
+  color: #000;
+}
+.cm-s-ipython span.cm-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-variable-2 {
+  color: #1a1a1a;
+}
+.cm-s-ipython span.cm-variable-3 {
+  color: #333333;
+}
+.cm-s-ipython span.cm-comment {
+  color: #408080;
+  font-style: italic;
+}
+.cm-s-ipython span.cm-string {
+  color: #BA2121;
+}
+.cm-s-ipython span.cm-string-2 {
+  color: #f50;
+}
+.cm-s-ipython span.cm-meta {
+  color: #AA22FF;
+}
+.cm-s-ipython span.cm-qualifier {
+  color: #555;
+}
+.cm-s-ipython span.cm-builtin {
+  color: #008000;
+}
+.cm-s-ipython span.cm-bracket {
+  color: #997;
+}
+.cm-s-ipython span.cm-tag {
+  color: #170;
+}
+.cm-s-ipython span.cm-attribute {
+  color: #00c;
+}
+.cm-s-ipython span.cm-header {
+  color: blue;
+}
+.cm-s-ipython span.cm-quote {
+  color: #090;
+}
+.cm-s-ipython span.cm-link {
+  color: #00c;
+}
+.cm-s-ipython span.cm-error {
+  color: #f00;
+}
+.cm-s-ipython span.cm-tab {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+  background-position: right;
+  background-repeat: no-repeat;
+}
+div.output_wrapper {
+  /* this position must be relative to enable descendents to be absolute within it */
+  position: relative;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  z-index: 1;
+}
+/* class for the output area when it should be height-limited */
+div.output_scroll {
+  /* ideally, this would be max-height, but FF barfs all over that */
+  height: 24em;
+  /* FF needs this *and the wrapper* to specify full width, or it will shrinkwrap */
+  width: 100%;
+  overflow: auto;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  display: block;
+}
+/* output div while it is collapsed */
+div.output_collapsed {
+  margin: 0px;
+  padding: 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+div.out_prompt_overlay {
+  height: 100%;
+  padding: 0px 0.4em;
+  position: absolute;
+  border-radius: 2px;
+}
+div.out_prompt_overlay:hover {
+  /* use inner shadow to get border that is computed the same on WebKit/FF */
+  -webkit-box-shadow: inset 0 0 1px #000;
+  box-shadow: inset 0 0 1px #000;
+  background: rgba(240, 240, 240, 0.5);
+}
+div.output_prompt {
+  color: #D84315;
+}
+/* This class is the outer container of all output sections. */
+div.output_area {
+  padding: 0px;
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.output_area .MathJax_Display {
+  text-align: left !important;
+}
+div.output_area 
+div.output_area 
+div.output_area img,
+div.output_area svg {
+  max-width: 100%;
+  height: auto;
+}
+div.output_area img.unconfined,
+div.output_area svg.unconfined {
+  max-width: none;
+}
+div.output_area .mglyph > img {
+  max-width: none;
+}
+/* This is needed to protect the pre formating from global settings such
+   as that of bootstrap */
+.output {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.output_area {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+div.output_area pre {
+  margin: 0;
+  padding: 1px 0 1px 0;
+  border: 0;
+  vertical-align: baseline;
+  color: black;
+  background-color: transparent;
+  border-radius: 0;
+}
+/* This class is for the output subarea inside the output_area and after
+   the prompt div. */
+div.output_subarea {
+  overflow-x: auto;
+  padding: 0.4em;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+  max-width: calc(100% - 14ex);
+}
+div.output_scroll div.output_subarea {
+  overflow-x: visible;
+}
+/* The rest of the output_* classes are for special styling of the different
+   output types */
+/* all text output has this class: */
+div.output_text {
+  text-align: left;
+  color: #000;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+}
+/* stdout/stderr are 'text' as well as 'stream', but execute_result/error are *not* streams */
+div.output_stderr {
+  background: #fdd;
+  /* very light red background for stderr */
+}
+div.output_latex {
+  text-align: left;
+}
+/* Empty output_javascript divs should have no height */
+div.output_javascript:empty {
+  padding: 0;
+}
+.js-error {
+  color: darkred;
+}
+/* raw_input styles */
+div.raw_input_container {
+  line-height: 1.21429em;
+  padding-top: 5px;
+}
+pre.raw_input_prompt {
+  /* nothing needed here. */
+}
+input.raw_input {
+  font-family: monospace;
+  font-size: inherit;
+  color: inherit;
+  width: auto;
+  /* make sure input baseline aligns with prompt */
+  vertical-align: baseline;
+  /* padding + margin = 0.5em between prompt and cursor */
+  padding: 0em 0.25em;
+  margin: 0em 0.25em;
+}
+input.raw_input:focus {
+  box-shadow: none;
+}
+p.p-space {
+  margin-bottom: 10px;
+}
+div.output_unrecognized {
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+}
+div.output_unrecognized a {
+  color: inherit;
+  text-decoration: none;
+}
+div.output_unrecognized a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.rendered_html {
+  color: #000;
+  /* any extras will just be numbers: */
+}
+
+
+
+.rendered_html :link {
+  text-decoration: underline;
+}
+.rendered_html :visited {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+.rendered_html h1:first-child {
+  margin-top: 0.538em;
+}
+.rendered_html h2:first-child {
+  margin-top: 0.636em;
+}
+.rendered_html h3:first-child {
+  margin-top: 0.777em;
+}
+.rendered_html h4:first-child {
+  margin-top: 1em;
+}
+.rendered_html h5:first-child {
+  margin-top: 1em;
+}
+.rendered_html h6:first-child {
+  margin-top: 1em;
+}
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
+
+
+
+
+
+
+
+
+.rendered_html * + ul {
+  margin-top: 1em;
+}
+.rendered_html * + ol {
+  margin-top: 1em;
+}
+
+
+
+
+
+.rendered_html pre,
+
+
+
+
+.rendered_html tr,
+.rendered_html th,
+
+
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+.rendered_html * + table {
+  margin-top: 1em;
+}
+
+.rendered_html * + p {
+  margin-top: 1em;
+}
+
+.rendered_html * + img {
+  margin-top: 1em;
+}
+.rendered_html img,
+
+.rendered_html img.unconfined,
+
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+[dir="rtl"] 
+div.text_cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.text_cell > div.prompt {
+    display: none;
+  }
+}
+div.text_cell_render {
+  /*font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;*/
+  outline: none;
+  resize: none;
+  width: inherit;
+  border-style: none;
+  padding: 0.5em 0.5em 0.5em 0.4em;
+  color: #000;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+a.anchor-link:link {
+  text-decoration: none;
+  padding: 0px 20px;
+  visibility: hidden;
+}
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h4:hover .anchor-link,
+h5:hover .anchor-link,
+h6:hover .anchor-link {
+  visibility: visible;
+}
+.text_cell.rendered .input_area {
+  display: none;
+}
+.text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
+.text_cell.unrendered .text_cell_render {
+  display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
+}
+.cm-header-1,
+.cm-header-2,
+.cm-header-3,
+.cm-header-4,
+.cm-header-5,
+.cm-header-6 {
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.cm-header-1 {
+  font-size: 185.7%;
+}
+.cm-header-2 {
+  font-size: 157.1%;
+}
+.cm-header-3 {
+  font-size: 128.6%;
+}
+.cm-header-4 {
+  font-size: 110%;
+}
+.cm-header-5 {
+  font-size: 100%;
+  font-style: italic;
+}
+.cm-header-6 {
+  font-size: 100%;
+  font-style: italic;
+}
+</style>
+<style type="text/css">pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+ .highlight pre  .hll { background-color: #ffffcc }
+ .highlight pre  { background: #f8f8f8; }
+ .highlight pre  .c { color: #408080; font-style: italic } /* Comment */
+ .highlight pre  .err { border: 1px solid #FF0000 } /* Error */
+ .highlight pre  .k { color: #008000; font-weight: bold } /* Keyword */
+ .highlight pre  .o { color: #666666 } /* Operator */
+ .highlight pre  .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+ .highlight pre  .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+ .highlight pre  .cp { color: #BC7A00 } /* Comment.Preproc */
+ .highlight pre  .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+ .highlight pre  .c1 { color: #408080; font-style: italic } /* Comment.Single */
+ .highlight pre  .cs { color: #408080; font-style: italic } /* Comment.Special */
+ .highlight pre  .gd { color: #A00000 } /* Generic.Deleted */
+ .highlight pre  .ge { font-style: italic } /* Generic.Emph */
+ .highlight pre  .gr { color: #FF0000 } /* Generic.Error */
+ .highlight pre  .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+ .highlight pre  .gi { color: #00A000 } /* Generic.Inserted */
+ .highlight pre  .go { color: #888888 } /* Generic.Output */
+ .highlight pre  .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+ .highlight pre  .gs { font-weight: bold } /* Generic.Strong */
+ .highlight pre  .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+ .highlight pre  .gt { color: #0044DD } /* Generic.Traceback */
+ .highlight pre  .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+ .highlight pre  .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+ .highlight pre  .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+ .highlight pre  .kp { color: #008000 } /* Keyword.Pseudo */
+ .highlight pre  .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+ .highlight pre  .kt { color: #B00040 } /* Keyword.Type */
+ .highlight pre  .m { color: #666666 } /* Literal.Number */
+ .highlight pre  .s { color: #BA2121 } /* Literal.String */
+ .highlight pre  .na { color: #7D9029 } /* Name.Attribute */
+ .highlight pre  .nb { color: #008000 } /* Name.Builtin */
+ .highlight pre  .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+ .highlight pre  .no { color: #880000 } /* Name.Constant */
+ .highlight pre  .nd { color: #AA22FF } /* Name.Decorator */
+ .highlight pre  .ni { color: #999999; font-weight: bold } /* Name.Entity */
+ .highlight pre  .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+ .highlight pre  .nf { color: #0000FF } /* Name.Function */
+ .highlight pre  .nl { color: #A0A000 } /* Name.Label */
+ .highlight pre  .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+ .highlight pre  .nt { color: #008000; font-weight: bold } /* Name.Tag */
+ .highlight pre  .nv { color: #19177C } /* Name.Variable */
+ .highlight pre  .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+ .highlight pre  .w { color: #bbbbbb } /* Text.Whitespace */
+ .highlight pre  .mb { color: #666666 } /* Literal.Number.Bin */
+ .highlight pre  .mf { color: #666666 } /* Literal.Number.Float */
+ .highlight pre  .mh { color: #666666 } /* Literal.Number.Hex */
+ .highlight pre  .mi { color: #666666 } /* Literal.Number.Integer */
+ .highlight pre  .mo { color: #666666 } /* Literal.Number.Oct */
+ .highlight pre  .sa { color: #BA2121 } /* Literal.String.Affix */
+ .highlight pre  .sb { color: #BA2121 } /* Literal.String.Backtick */
+ .highlight pre  .sc { color: #BA2121 } /* Literal.String.Char */
+ .highlight pre  .dl { color: #BA2121 } /* Literal.String.Delimiter */
+ .highlight pre  .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+ .highlight pre  .s2 { color: #BA2121 } /* Literal.String.Double */
+ .highlight pre  .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+ .highlight pre  .sh { color: #BA2121 } /* Literal.String.Heredoc */
+ .highlight pre  .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+ .highlight pre  .sx { color: #008000 } /* Literal.String.Other */
+ .highlight pre  .sr { color: #BB6688 } /* Literal.String.Regex */
+ .highlight pre  .s1 { color: #BA2121 } /* Literal.String.Single */
+ .highlight pre  .ss { color: #19177C } /* Literal.String.Symbol */
+ .highlight pre  .bp { color: #008000 } /* Name.Builtin.Pseudo */
+ .highlight pre  .fm { color: #0000FF } /* Name.Function.Magic */
+ .highlight pre  .vc { color: #19177C } /* Name.Variable.Class */
+ .highlight pre  .vg { color: #19177C } /* Name.Variable.Global */
+ .highlight pre  .vi { color: #19177C } /* Name.Variable.Instance */
+ .highlight pre  .vm { color: #19177C } /* Name.Variable.Magic */
+ .highlight pre  .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># download csv from https://stopcovid19.metro.tokyo.lg.jp/data/130001_tokyo_covid19_patients.csv</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/130001_tokyo_covid19_patients.csv&#39;</span><span class="p">,</span> <span class="n">parse_dates</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;公表_年月日&#39;</span><span class="p">,</span> <span class="s1">&#39;発症_年月日&#39;</span><span class="p">,</span> <span class="s1">&#39;確定_年月日&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/Users/sousuke/.virtualenvs/data/lib/python3.8/site-packages/IPython/core/interactiveshell.py:3441: DtypeWarning: Columns (10) have mixed types.Specify dtype option on import or set low_memory=False.
+  exec(code_obj, self.user_global_ns, self.user_ns)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;公表_年月日&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="s1">&#39;2021-04-01&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;公表_年月日&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="s1">&#39;2021-09-01&#39;</span><span class="p">)]</span>
+
+<span class="n">daily</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;公表_年月日&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">daily</span><span class="p">[</span><span class="s1">&#39;7dmean&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">daily</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="s1">&#39;7D&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="c1"># ref. COVID-19感染報告者数に基づく簡易実効再生産数推定方法</span>
+<span class="c1"># https://www.niid.go.jp/niid/ja/diseases/ka/corona-virus/2019-ncov/2502-idsc/iasr-in/10465-496d04.html</span>
+<span class="k">def</span> <span class="nf">calc_ern</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">7</span><span class="p">:])</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">7</span><span class="p">])</span>
+
+<span class="n">daily</span><span class="p">[</span><span class="s1">&#39;ern&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">daily</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="s1">&#39;19D&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">calc_ern</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">daily</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;daily count&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">daily</span><span class="p">[</span><span class="s1">&#39;7dmean&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;7days mean&#39;</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;daily count&#39;</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">daily</span><span class="p">[</span><span class="s1">&#39;ern&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;effective reproduction number&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;effective reproduction number&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.legend.Legend at 0x12b8826d0&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_svg output_subarea ">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg height="530.159375pt" version="1.1" viewBox="0 0 1065.148438 530.159375" width="1065.148438pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <metadata>
+  <rdf:RDF xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2021-08-15T09:09:34.913949</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.4.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linecap:butt;stroke-linejoin:round;}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 530.159375 
+L 1065.148438 530.159375 
+L 1065.148438 0 
+L 0 0 
+z
+" style="fill:none;"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 54.948438 506.2 
+L 947.748438 506.2 
+L 947.748438 71.32 
+L 54.948438 71.32 
+z
+" style="fill:#ffffff;"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path d="M 0 0 
+L 0 3.5 
+" id="m0c693a0ac3" style="stroke:#000000;stroke-width:0.8;"/>
+      </defs>
+      <g>
+       <use style="stroke:#000000;stroke-width:0.8;" x="95.530256" xlink:href="#m0c693a0ac3" y="506.2"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <!-- 2021-04-01 -->
+      <g transform="translate(64.871662 520.909375)scale(0.1 -0.1)">
+       <defs>
+        <path d="M 3078 0 
+C 3424 0 3642 -6 3917 -32 
+L 3917 589 
+C 3693 557 3430 544 3091 544 
+L 1114 544 
+C 1280 1114 1606 1478 2451 2042 
+C 3181 2528 3341 2656 3546 2912 
+C 3738 3142 3846 3443 3846 3744 
+C 3846 4525 3200 5030 2202 5030 
+C 1613 5030 1158 4858 858 4518 
+C 640 4269 531 4026 442 3565 
+L 1088 3469 
+C 1139 3782 1190 3936 1306 4102 
+C 1491 4371 1792 4506 2208 4506 
+C 2816 4506 3206 4211 3206 3744 
+C 3206 3360 2995 3085 2387 2675 
+C 1754 2246 1600 2138 1389 1952 
+C 979 1594 710 1229 544 806 
+C 448 563 429 461 365 -26 
+C 576 -6 678 0 1107 0 
+L 3078 0 
+z
+" id="HiraginoSans-W4-32" transform="scale(0.015625)"/>
+        <path d="M 2144 -90 
+C 2758 -90 3232 141 3565 602 
+C 3846 998 4019 1696 4019 2464 
+C 4019 3002 3936 3501 3770 3949 
+C 3693 4160 3558 4371 3379 4550 
+C 3078 4858 2650 5024 2157 5024 
+C 1498 5024 986 4742 666 4205 
+C 435 3834 288 3142 288 2458 
+C 288 1939 371 1434 538 986 
+C 614 768 749 563 928 384 
+C 1242 70 1651 -90 2144 -90 
+z
+M 2144 4499 
+C 2592 4499 2918 4307 3123 3923 
+C 3283 3629 3398 3014 3398 2470 
+C 3398 2022 3341 1619 3213 1235 
+C 3155 1043 3046 870 2912 730 
+C 2726 538 2458 435 2150 435 
+C 1734 435 1414 614 1197 973 
+C 1024 1261 902 1875 902 2451 
+C 902 2906 966 3328 1088 3699 
+C 1139 3866 1235 4026 1370 4173 
+C 1568 4397 1818 4499 2144 4499 
+z
+" id="HiraginoSans-W4-30" transform="scale(0.015625)"/>
+        <path d="M 1018 4371 
+C 1222 4397 1389 4410 1606 4410 
+L 1939 4410 
+L 1939 755 
+C 1939 454 1926 237 1888 0 
+L 2598 0 
+C 2560 250 2547 448 2547 755 
+L 2547 3904 
+C 2547 4256 2566 4582 2605 4966 
+C 2387 4941 2278 4934 2035 4934 
+L 1581 4934 
+C 1325 4934 1197 4941 1018 4966 
+L 1018 4371 
+z
+" id="HiraginoSans-W4-31" transform="scale(0.015625)"/>
+        <path d="M 192 1581 
+C 384 1606 525 1613 781 1613 
+L 1606 1613 
+C 1875 1613 2010 1606 2202 1581 
+L 2202 2202 
+C 2022 2176 1882 2170 1606 2170 
+L 781 2170 
+C 512 2170 371 2176 192 2202 
+L 192 1581 
+z
+" id="HiraginoSans-W4-2d" transform="scale(0.015625)"/>
+        <path d="M 179 1210 
+C 403 1229 589 1235 954 1235 
+L 2688 1235 
+L 2688 710 
+C 2688 410 2675 218 2630 0 
+L 3309 0 
+C 3270 230 3258 390 3258 704 
+L 3258 1235 
+L 3494 1235 
+C 3763 1235 3910 1222 4154 1190 
+L 4154 1798 
+C 3917 1766 3750 1754 3494 1754 
+L 3258 1754 
+L 3258 3853 
+C 3258 4358 3264 4544 3296 4934 
+L 2701 4934 
+C 2560 4704 2445 4550 2214 4269 
+L 621 2298 
+C 467 2099 326 1939 179 1773 
+L 179 1210 
+z
+M 2688 1747 
+L 858 1747 
+L 2259 3514 
+C 2464 3763 2592 3936 2720 4128 
+C 2694 3814 2688 3622 2688 3283 
+L 2688 1747 
+z
+" id="HiraginoSans-W4-34" transform="scale(0.015625)"/>
+       </defs>
+       <use xlink:href="#HiraginoSans-W4-32"/>
+       <use x="67.299988" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="134.599976" xlink:href="#HiraginoSans-W4-32"/>
+       <use x="201.899963" xlink:href="#HiraginoSans-W4-31"/>
+       <use x="269.199951" xlink:href="#HiraginoSans-W4-2d"/>
+       <use x="306.499939" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="373.799927" xlink:href="#HiraginoSans-W4-34"/>
+       <use x="441.299911" xlink:href="#HiraginoSans-W4-2d"/>
+       <use x="478.599899" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="545.899887" xlink:href="#HiraginoSans-W4-31"/>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.8;" x="179.699953" xlink:href="#m0c693a0ac3" y="506.2"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <!-- 2021-04-15 -->
+      <g transform="translate(149.041359 520.909375)scale(0.1 -0.1)">
+       <defs>
+        <path d="M 1331 4416 
+L 2835 4416 
+C 3155 4416 3366 4403 3622 4365 
+L 3622 4986 
+C 3360 4947 3206 4934 2829 4934 
+L 1446 4934 
+C 1082 4934 954 4941 762 4966 
+C 774 4768 774 4762 774 4742 
+C 774 4563 774 4518 749 4307 
+L 608 2822 
+C 589 2566 570 2445 518 2157 
+L 1088 2106 
+C 1146 2240 1178 2291 1261 2374 
+C 1485 2605 1811 2739 2131 2739 
+C 2842 2739 3264 2317 3264 1613 
+C 3264 902 2803 435 2106 435 
+C 1747 435 1440 563 1235 794 
+C 1146 902 1101 986 1037 1171 
+L 410 1005 
+C 557 685 646 544 813 378 
+C 1133 64 1562 -96 2099 -96 
+C 3194 -96 3885 576 3885 1638 
+C 3885 2605 3245 3238 2272 3238 
+C 1830 3238 1472 3098 1158 2803 
+C 1197 2982 1197 2982 1203 3091 
+L 1331 4416 
+z
+" id="HiraginoSans-W4-35" transform="scale(0.015625)"/>
+       </defs>
+       <use xlink:href="#HiraginoSans-W4-32"/>
+       <use x="67.299988" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="134.599976" xlink:href="#HiraginoSans-W4-32"/>
+       <use x="201.899963" xlink:href="#HiraginoSans-W4-31"/>
+       <use x="269.199951" xlink:href="#HiraginoSans-W4-2d"/>
+       <use x="306.499939" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="373.799927" xlink:href="#HiraginoSans-W4-34"/>
+       <use x="441.299911" xlink:href="#HiraginoSans-W4-2d"/>
+       <use x="478.599899" xlink:href="#HiraginoSans-W4-31"/>
+       <use x="545.899887" xlink:href="#HiraginoSans-W4-35"/>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.8;" x="275.893892" xlink:href="#m0c693a0ac3" y="506.2"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <!-- 2021-05-01 -->
+      <g transform="translate(245.245455 520.909375)scale(0.1 -0.1)">
+       <use xlink:href="#HiraginoSans-W4-32"/>
+       <use x="67.299988" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="134.599976" xlink:href="#HiraginoSans-W4-32"/>
+       <use x="201.899963" xlink:href="#HiraginoSans-W4-31"/>
+       <use x="269.199951" xlink:href="#HiraginoSans-W4-2d"/>
+       <use x="306.499939" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="373.799927" xlink:href="#HiraginoSans-W4-35"/>
+       <use x="441.099915" xlink:href="#HiraginoSans-W4-2d"/>
+       <use x="478.399902" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="545.69989" xlink:href="#HiraginoSans-W4-31"/>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.8;" x="360.063589" xlink:href="#m0c693a0ac3" y="506.2"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <!-- 2021-05-15 -->
+      <g transform="translate(329.415152 520.909375)scale(0.1 -0.1)">
+       <use xlink:href="#HiraginoSans-W4-32"/>
+       <use x="67.299988" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="134.599976" xlink:href="#HiraginoSans-W4-32"/>
+       <use x="201.899963" xlink:href="#HiraginoSans-W4-31"/>
+       <use x="269.199951" xlink:href="#HiraginoSans-W4-2d"/>
+       <use x="306.499939" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="373.799927" xlink:href="#HiraginoSans-W4-35"/>
+       <use x="441.099915" xlink:href="#HiraginoSans-W4-2d"/>
+       <use x="478.399902" xlink:href="#HiraginoSans-W4-31"/>
+       <use x="545.69989" xlink:href="#HiraginoSans-W4-35"/>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_5">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.8;" x="462.26965" xlink:href="#m0c693a0ac3" y="506.2"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <!-- 2021-06-01 -->
+      <g transform="translate(431.621212 520.909375)scale(0.1 -0.1)">
+       <defs>
+        <path d="M 3846 3994 
+C 3706 4301 3616 4442 3462 4602 
+C 3187 4877 2784 5024 2304 5024 
+C 1683 5024 1222 4794 864 4307 
+C 557 3891 371 3162 371 2355 
+C 371 1446 614 704 1043 320 
+C 1331 58 1773 -90 2253 -90 
+C 3277 -90 3968 589 3968 1587 
+C 3968 2586 3334 3213 2323 3213 
+C 1894 3213 1568 3104 1274 2854 
+C 1133 2739 1062 2656 941 2458 
+C 979 3085 1043 3392 1210 3763 
+C 1434 4262 1798 4518 2285 4518 
+C 2765 4518 3040 4314 3238 3821 
+L 3846 3994 
+z
+M 2266 2714 
+C 2950 2714 3366 2285 3366 1574 
+C 3366 1325 3309 1088 3206 922 
+C 3008 614 2643 422 2234 422 
+C 1568 422 1069 915 1069 1574 
+C 1069 2234 1574 2714 2266 2714 
+z
+" id="HiraginoSans-W4-36" transform="scale(0.015625)"/>
+       </defs>
+       <use xlink:href="#HiraginoSans-W4-32"/>
+       <use x="67.299988" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="134.599976" xlink:href="#HiraginoSans-W4-32"/>
+       <use x="201.899963" xlink:href="#HiraginoSans-W4-31"/>
+       <use x="269.199951" xlink:href="#HiraginoSans-W4-2d"/>
+       <use x="306.499939" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="373.799927" xlink:href="#HiraginoSans-W4-36"/>
+       <use x="441.099915" xlink:href="#HiraginoSans-W4-2d"/>
+       <use x="478.399902" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="545.69989" xlink:href="#HiraginoSans-W4-31"/>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_6">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.8;" x="546.439347" xlink:href="#m0c693a0ac3" y="506.2"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <!-- 2021-06-15 -->
+      <g transform="translate(515.790909 520.909375)scale(0.1 -0.1)">
+       <use xlink:href="#HiraginoSans-W4-32"/>
+       <use x="67.299988" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="134.599976" xlink:href="#HiraginoSans-W4-32"/>
+       <use x="201.899963" xlink:href="#HiraginoSans-W4-31"/>
+       <use x="269.199951" xlink:href="#HiraginoSans-W4-2d"/>
+       <use x="306.499939" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="373.799927" xlink:href="#HiraginoSans-W4-36"/>
+       <use x="441.099915" xlink:href="#HiraginoSans-W4-2d"/>
+       <use x="478.399902" xlink:href="#HiraginoSans-W4-31"/>
+       <use x="545.69989" xlink:href="#HiraginoSans-W4-35"/>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_7">
+     <g id="line2d_7">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.8;" x="642.633286" xlink:href="#m0c693a0ac3" y="506.2"/>
+      </g>
+     </g>
+     <g id="text_7">
+      <!-- 2021-07-01 -->
+      <g transform="translate(611.984848 520.909375)scale(0.1 -0.1)">
+       <defs>
+        <path d="M 3898 4966 
+C 3661 4941 3526 4934 3117 4934 
+L 1165 4934 
+C 838 4934 646 4947 390 4979 
+L 390 4346 
+C 634 4378 819 4390 1146 4390 
+L 3200 4390 
+C 2643 3635 2368 3187 2054 2541 
+C 1664 1741 1491 1171 1280 0 
+L 2003 0 
+C 2099 685 2163 992 2317 1491 
+C 2554 2291 2829 2861 3373 3718 
+C 3642 4141 3763 4301 3898 4422 
+L 3898 4966 
+z
+" id="HiraginoSans-W4-37" transform="scale(0.015625)"/>
+       </defs>
+       <use xlink:href="#HiraginoSans-W4-32"/>
+       <use x="67.299988" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="134.599976" xlink:href="#HiraginoSans-W4-32"/>
+       <use x="201.899963" xlink:href="#HiraginoSans-W4-31"/>
+       <use x="269.199951" xlink:href="#HiraginoSans-W4-2d"/>
+       <use x="306.499939" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="373.799927" xlink:href="#HiraginoSans-W4-37"/>
+       <use x="441.099915" xlink:href="#HiraginoSans-W4-2d"/>
+       <use x="478.399902" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="545.69989" xlink:href="#HiraginoSans-W4-31"/>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_8">
+     <g id="line2d_8">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.8;" x="726.802983" xlink:href="#m0c693a0ac3" y="506.2"/>
+      </g>
+     </g>
+     <g id="text_8">
+      <!-- 2021-07-15 -->
+      <g transform="translate(696.154545 520.909375)scale(0.1 -0.1)">
+       <use xlink:href="#HiraginoSans-W4-32"/>
+       <use x="67.299988" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="134.599976" xlink:href="#HiraginoSans-W4-32"/>
+       <use x="201.899963" xlink:href="#HiraginoSans-W4-31"/>
+       <use x="269.199951" xlink:href="#HiraginoSans-W4-2d"/>
+       <use x="306.499939" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="373.799927" xlink:href="#HiraginoSans-W4-37"/>
+       <use x="441.099915" xlink:href="#HiraginoSans-W4-2d"/>
+       <use x="478.399902" xlink:href="#HiraginoSans-W4-31"/>
+       <use x="545.69989" xlink:href="#HiraginoSans-W4-35"/>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_9">
+     <g id="line2d_9">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.8;" x="829.009044" xlink:href="#m0c693a0ac3" y="506.2"/>
+      </g>
+     </g>
+     <g id="text_9">
+      <!-- 2021-08-01 -->
+      <g transform="translate(798.360606 520.909375)scale(0.1 -0.1)">
+       <defs>
+        <path d="M 1446 2586 
+C 1203 2547 1056 2490 851 2355 
+C 480 2106 294 1754 294 1299 
+C 294 397 966 -102 2163 -102 
+C 3347 -102 4006 397 4006 1299 
+C 4006 1728 3853 2061 3539 2304 
+C 3322 2470 3136 2547 2867 2586 
+C 3437 2714 3789 3162 3789 3757 
+C 3789 4550 3162 5043 2150 5043 
+C 1146 5043 512 4544 512 3750 
+C 512 3162 877 2701 1446 2586 
+z
+M 2150 4538 
+C 2784 4538 3187 4211 3187 3699 
+C 3187 3155 2797 2829 2157 2829 
+C 1510 2829 1114 3162 1114 3699 
+C 1114 4211 1523 4538 2150 4538 
+z
+M 2157 2304 
+C 2912 2304 3373 1939 3373 1344 
+C 3373 749 2925 410 2144 410 
+C 1376 410 928 749 928 1338 
+C 928 1939 1389 2304 2157 2304 
+z
+" id="HiraginoSans-W4-38" transform="scale(0.015625)"/>
+       </defs>
+       <use xlink:href="#HiraginoSans-W4-32"/>
+       <use x="67.299988" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="134.599976" xlink:href="#HiraginoSans-W4-32"/>
+       <use x="201.899963" xlink:href="#HiraginoSans-W4-31"/>
+       <use x="269.199951" xlink:href="#HiraginoSans-W4-2d"/>
+       <use x="306.499939" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="373.799927" xlink:href="#HiraginoSans-W4-38"/>
+       <use x="441.099915" xlink:href="#HiraginoSans-W4-2d"/>
+       <use x="478.399902" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="545.69989" xlink:href="#HiraginoSans-W4-31"/>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_10">
+     <g id="line2d_10">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.8;" x="913.178741" xlink:href="#m0c693a0ac3" y="506.2"/>
+      </g>
+     </g>
+     <g id="text_10">
+      <!-- 2021-08-15 -->
+      <g transform="translate(882.530303 520.909375)scale(0.1 -0.1)">
+       <use xlink:href="#HiraginoSans-W4-32"/>
+       <use x="67.299988" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="134.599976" xlink:href="#HiraginoSans-W4-32"/>
+       <use x="201.899963" xlink:href="#HiraginoSans-W4-31"/>
+       <use x="269.199951" xlink:href="#HiraginoSans-W4-2d"/>
+       <use x="306.499939" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="373.799927" xlink:href="#HiraginoSans-W4-38"/>
+       <use x="441.099915" xlink:href="#HiraginoSans-W4-2d"/>
+       <use x="478.399902" xlink:href="#HiraginoSans-W4-31"/>
+       <use x="545.69989" xlink:href="#HiraginoSans-W4-35"/>
+      </g>
+     </g>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_11">
+      <defs>
+       <path d="M 0 0 
+L -3.5 0 
+" id="mbeb307c440" style="stroke:#000000;stroke-width:0.8;"/>
+      </defs>
+      <g>
+       <use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#mbeb307c440" y="501.283051"/>
+      </g>
+     </g>
+     <g id="text_11">
+      <!-- 0 -->
+      <g transform="translate(41.21875 505.137738)scale(0.1 -0.1)">
+       <use xlink:href="#HiraginoSans-W4-30"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_12">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#mbeb307c440" y="430.228871"/>
+      </g>
+     </g>
+     <g id="text_12">
+      <!-- 1000 -->
+      <g transform="translate(21.029688 434.083559)scale(0.1 -0.1)">
+       <use xlink:href="#HiraginoSans-W4-31"/>
+       <use x="67.299988" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="134.599976" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="201.899963" xlink:href="#HiraginoSans-W4-30"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_13">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#mbeb307c440" y="359.174692"/>
+      </g>
+     </g>
+     <g id="text_13">
+      <!-- 2000 -->
+      <g transform="translate(21.029688 363.029379)scale(0.1 -0.1)">
+       <use xlink:href="#HiraginoSans-W4-32"/>
+       <use x="67.299988" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="134.599976" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="201.899963" xlink:href="#HiraginoSans-W4-30"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_14">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#mbeb307c440" y="288.120512"/>
+      </g>
+     </g>
+     <g id="text_14">
+      <!-- 3000 -->
+      <g transform="translate(21.029688 291.9752)scale(0.1 -0.1)">
+       <defs>
+        <path d="M 282 1101 
+C 397 768 474 621 621 448 
+C 934 90 1434 -96 2112 -96 
+C 2720 -96 3213 70 3533 384 
+C 3770 614 3904 954 3904 1306 
+C 3904 1677 3802 1958 3597 2182 
+C 3379 2419 3130 2528 2688 2586 
+C 2995 2650 3130 2701 3290 2816 
+C 3578 3021 3738 3366 3738 3757 
+C 3738 4538 3117 5043 2157 5043 
+C 1594 5043 1146 4883 845 4576 
+C 666 4390 582 4237 467 3891 
+L 1107 3757 
+C 1171 3981 1216 4083 1306 4192 
+C 1478 4416 1741 4525 2125 4525 
+C 2746 4525 3110 4224 3110 3725 
+C 3110 3482 3021 3264 2867 3110 
+C 2669 2918 2374 2829 1965 2829 
+C 1779 2829 1613 2842 1459 2861 
+L 1459 2272 
+C 1651 2298 1811 2310 2003 2310 
+C 2829 2310 3264 1990 3264 1376 
+C 3264 794 2816 429 2106 429 
+C 1779 429 1510 506 1293 666 
+C 1107 800 1024 928 928 1248 
+L 282 1101 
+z
+" id="HiraginoSans-W4-33" transform="scale(0.015625)"/>
+       </defs>
+       <use xlink:href="#HiraginoSans-W4-33"/>
+       <use x="67.299988" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="134.599976" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="201.899963" xlink:href="#HiraginoSans-W4-30"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_15">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#mbeb307c440" y="217.066333"/>
+      </g>
+     </g>
+     <g id="text_15">
+      <!-- 4000 -->
+      <g transform="translate(21.009375 220.92102)scale(0.1 -0.1)">
+       <use xlink:href="#HiraginoSans-W4-34"/>
+       <use x="67.499985" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="134.799973" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="202.09996" xlink:href="#HiraginoSans-W4-30"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_16">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#mbeb307c440" y="146.012153"/>
+      </g>
+     </g>
+     <g id="text_16">
+      <!-- 5000 -->
+      <g transform="translate(21.029688 149.866841)scale(0.1 -0.1)">
+       <use xlink:href="#HiraginoSans-W4-35"/>
+       <use x="67.299988" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="134.599976" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="201.899963" xlink:href="#HiraginoSans-W4-30"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_17">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#mbeb307c440" y="74.957974"/>
+      </g>
+     </g>
+     <g id="text_17">
+      <!-- 6000 -->
+      <g transform="translate(21.029688 78.812661)scale(0.1 -0.1)">
+       <use xlink:href="#HiraginoSans-W4-36"/>
+       <use x="67.299988" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="134.599976" xlink:href="#HiraginoSans-W4-30"/>
+       <use x="201.899963" xlink:href="#HiraginoSans-W4-30"/>
+      </g>
+     </g>
+    </g>
+    <g id="text_18">
+     <!-- daily count -->
+     <g transform="translate(14.909375 316.535)rotate(-90)scale(0.1 -0.1)">
+      <defs>
+       <path d="M 3187 0 
+L 3802 0 
+C 3770 250 3757 442 3757 774 
+L 3757 4173 
+C 3757 4467 3770 4666 3802 4934 
+L 3142 4934 
+C 3174 4691 3187 4486 3187 4173 
+L 3187 3398 
+C 3187 3296 3187 3194 3194 3149 
+C 3200 3040 3200 3040 3206 2970 
+C 2918 3379 2470 3597 1901 3597 
+C 909 3597 282 2886 282 1766 
+C 282 1171 461 672 794 339 
+C 1069 70 1446 -64 1914 -64 
+C 2483 -64 2880 128 3206 563 
+C 3200 480 3187 365 3187 288 
+L 3187 0 
+z
+M 1971 3098 
+C 2310 3098 2618 2976 2842 2752 
+C 3059 2541 3181 2189 3181 1786 
+C 3181 966 2707 429 1978 429 
+C 1709 429 1459 512 1274 672 
+C 1024 890 883 1280 883 1786 
+C 883 2598 1293 3098 1971 3098 
+z
+" id="HiraginoSans-W4-64" transform="scale(0.015625)"/>
+       <path d="M 2765 0 
+L 3373 0 
+C 3334 269 3322 422 3322 736 
+L 3322 2515 
+C 3322 2867 3238 3110 3046 3290 
+C 2816 3514 2464 3622 1978 3622 
+C 1485 3622 1094 3507 813 3270 
+C 627 3123 531 2976 416 2656 
+L 1011 2541 
+C 1069 2714 1114 2797 1197 2886 
+C 1370 3066 1626 3155 1971 3155 
+C 2515 3155 2765 2950 2765 2515 
+L 2765 2182 
+C 1933 2163 1581 2118 1197 1997 
+C 646 1818 333 1434 333 941 
+C 333 320 774 -58 1491 -58 
+C 1741 -58 1978 -19 2195 64 
+C 2406 141 2522 218 2765 429 
+L 2765 0 
+z
+M 2765 1363 
+C 2765 1126 2707 973 2554 813 
+C 2304 557 1920 397 1568 397 
+C 1165 397 915 608 915 941 
+C 915 1235 1075 1440 1395 1568 
+C 1677 1683 2035 1728 2765 1747 
+L 2765 1363 
+z
+" id="HiraginoSans-W4-61" transform="scale(0.015625)"/>
+       <path d="M 442 4934 
+L 442 4294 
+L 1152 4294 
+L 1152 4934 
+L 442 4934 
+z
+M 454 3520 
+C 486 3296 499 3085 499 2765 
+L 499 755 
+C 499 461 486 282 454 0 
+L 1133 0 
+C 1101 269 1088 448 1088 755 
+L 1088 2758 
+C 1088 3104 1101 3290 1133 3520 
+L 454 3520 
+z
+" id="HiraginoSans-W4-69" transform="scale(0.015625)"/>
+       <path d="M 442 4934 
+C 474 4704 486 4518 486 4179 
+L 486 755 
+C 486 429 474 250 442 0 
+L 1120 0 
+C 1088 262 1075 448 1075 755 
+L 1075 4179 
+C 1075 4512 1088 4698 1120 4934 
+L 442 4934 
+z
+" id="HiraginoSans-W4-6c" transform="scale(0.015625)"/>
+       <path d="M 1600 154 
+L 1325 -486 
+C 1229 -710 1069 -832 858 -832 
+C 730 -832 621 -800 442 -717 
+L 301 -1274 
+C 550 -1325 710 -1344 864 -1344 
+C 1357 -1344 1664 -1146 1843 -717 
+L 3283 2758 
+C 3462 3181 3571 3437 3603 3520 
+L 2912 3520 
+C 2880 3334 2829 3168 2694 2816 
+L 1901 768 
+L 1011 2822 
+C 902 3072 819 3341 787 3520 
+L 64 3520 
+C 134 3386 134 3386 422 2758 
+L 1600 154 
+z
+" id="HiraginoSans-W4-79" transform="scale(0.015625)"/>
+       <path id="HiraginoSans-W4-20" transform="scale(0.015625)"/>
+       <path d="M 3475 2573 
+C 3405 2758 3347 2867 3251 3002 
+C 2970 3405 2522 3616 1965 3616 
+C 947 3616 282 2874 282 1747 
+C 282 627 954 -90 1990 -90 
+C 2534 -90 2970 102 3258 480 
+C 3366 621 3430 742 3520 986 
+L 2950 1126 
+C 2899 966 2867 890 2816 806 
+C 2650 550 2362 410 2010 410 
+C 1312 410 870 934 870 1760 
+C 870 2598 1299 3130 1984 3130 
+C 2438 3130 2739 2899 2912 2413 
+L 3475 2573 
+z
+" id="HiraginoSans-W4-63" transform="scale(0.015625)"/>
+       <path d="M 2054 -90 
+C 3110 -90 3802 640 3802 1766 
+C 3802 2893 3117 3610 2042 3610 
+C 966 3610 282 2886 282 1760 
+C 282 627 966 -90 2054 -90 
+z
+M 2054 3130 
+C 2771 3130 3213 2605 3213 1754 
+C 3213 909 2771 397 2042 397 
+C 1318 397 870 922 870 1766 
+C 870 2611 1325 3130 2054 3130 
+z
+" id="HiraginoSans-W4-6f" transform="scale(0.015625)"/>
+       <path d="M 2944 3520 
+C 2976 3264 2989 3046 2989 2765 
+L 2989 1510 
+C 2918 1248 2835 1094 2662 890 
+C 2400 576 2125 435 1792 435 
+C 1306 435 1056 723 1056 1286 
+L 1056 2765 
+C 1056 3066 1069 3251 1101 3520 
+L 429 3520 
+C 461 3302 474 3104 474 2771 
+L 474 1197 
+C 474 858 538 608 666 416 
+C 877 109 1242 -58 1709 -58 
+C 2272 -58 2682 166 3002 653 
+C 2989 493 2989 461 2989 378 
+L 2989 0 
+L 3616 0 
+C 3578 256 3565 442 3565 755 
+L 3565 2765 
+C 3565 3091 3578 3264 3616 3520 
+L 2944 3520 
+z
+" id="HiraginoSans-W4-75" transform="scale(0.015625)"/>
+       <path d="M 1114 0 
+C 1082 256 1069 474 1069 755 
+L 1069 2010 
+C 1139 2272 1222 2426 1395 2630 
+C 1658 2944 1933 3085 2266 3085 
+C 2752 3085 3002 2797 3002 2234 
+L 3002 755 
+C 3002 454 2989 269 2957 0 
+L 3629 0 
+C 3597 218 3584 416 3584 749 
+L 3584 2323 
+C 3584 2662 3520 2912 3392 3110 
+C 3181 3418 2816 3584 2349 3584 
+C 1779 3584 1376 3360 1056 2867 
+C 1069 3027 1069 3059 1069 3142 
+L 1069 3520 
+L 442 3520 
+C 480 3264 493 3078 493 2765 
+L 493 755 
+C 493 429 480 256 442 0 
+L 1114 0 
+z
+" id="HiraginoSans-W4-6e" transform="scale(0.015625)"/>
+       <path d="M 851 4480 
+C 877 4262 896 4006 896 3750 
+L 896 3520 
+L 646 3520 
+C 378 3520 250 3526 70 3558 
+L 70 2995 
+C 275 3021 416 3034 640 3034 
+L 896 3034 
+L 896 787 
+C 896 461 954 269 1094 134 
+C 1235 6 1466 -64 1773 -64 
+C 2042 -64 2246 -26 2515 83 
+L 2374 602 
+C 2176 486 2048 448 1875 448 
+C 1741 448 1632 486 1568 544 
+C 1504 608 1478 698 1478 883 
+L 1478 3034 
+L 1779 3034 
+C 2074 3034 2221 3027 2426 2995 
+L 2426 3558 
+C 2214 3526 2074 3520 1773 3520 
+L 1478 3520 
+L 1478 3750 
+C 1478 4026 1498 4275 1523 4480 
+L 851 4480 
+z
+" id="HiraginoSans-W4-74" transform="scale(0.015625)"/>
+      </defs>
+      <use xlink:href="#HiraginoSans-W4-64"/>
+      <use x="66.299988" xlink:href="#HiraginoSans-W4-61"/>
+      <use x="125.499985" xlink:href="#HiraginoSans-W4-69"/>
+      <use x="150.299973" xlink:href="#HiraginoSans-W4-6c"/>
+      <use x="174.59996" xlink:href="#HiraginoSans-W4-79"/>
+      <use x="231.999954" xlink:href="#HiraginoSans-W4-20"/>
+      <use x="265.299942" xlink:href="#HiraginoSans-W4-63"/>
+      <use x="324.399933" xlink:href="#HiraginoSans-W4-6f"/>
+      <use x="388.199921" xlink:href="#HiraginoSans-W4-75"/>
+      <use x="451.599915" xlink:href="#HiraginoSans-W4-6e"/>
+      <use x="514.999908" xlink:href="#HiraginoSans-W4-74"/>
+     </g>
+    </g>
+   </g>
+   <g id="line2d_18">
+    <path clip-path="url(#p2e2e49a568)" d="M 95.530256 467.532316 
+L 101.542377 470.019212 
+L 107.554498 469.592887 
+L 113.566619 476.058817 
+L 119.578741 483.59056 
+L 125.590862 472.932433 
+L 131.602983 461.847981 
+L 137.615104 462.558523 
+L 143.627225 463.126956 
+L 149.639347 460.782168 
+L 155.651468 471.369241 
+L 161.663589 479.540472 
+L 167.67571 465.045419 
+L 173.687831 459.290031 
+L 179.699953 449.484554 
+L 185.712074 453.889913 
+L 191.724195 447.352929 
+L 197.736316 462.700631 
+L 203.748438 472.506108 
+L 209.760559 450.763529 
+L 215.77268 441.384377 
+L 221.784801 440.105402 
+L 227.796922 447.352929 
+L 233.809044 439.03959 
+L 239.821165 456.163647 
+L 245.833286 471.085025 
+L 251.845407 442.45019 
+L 257.857528 435.557935 
+L 263.86965 428.310408 
+L 269.881771 451.687234 
+L 275.893892 426.676162 
+L 287.918134 450.976692 
+L 293.930256 458.011055 
+L 299.942377 457.158405 
+L 305.954498 459.290031 
+L 311.966619 436.83691 
+L 317.978741 421.631316 
+L 323.990862 427.955138 
+L 330.002983 460.569006 
+L 336.015104 435.557935 
+L 342.027225 432.431551 
+L 348.039347 429.51833 
+L 354.051468 440.602782 
+L 360.063589 446.429224 
+L 366.07571 462.771686 
+L 372.087831 471.51135 
+L 378.099953 449.271391 
+L 384.112074 446.855549 
+L 390.124195 441.384377 
+L 396.136316 455.168888 
+L 402.148438 458.508435 
+L 408.160559 463.269065 
+L 414.17268 477.12463 
+L 426.196922 448.489795 
+L 432.209044 452.681992 
+L 438.221165 457.655785 
+L 444.233286 462.984848 
+L 450.245407 469.450778 
+L 456.257528 482.808964 
+L 462.26965 467.816532 
+L 468.281771 466.679665 
+L 474.293892 465.187528 
+L 486.318134 470.303429 
+L 492.330256 476.343034 
+L 498.342377 484.585319 
+L 504.354498 475.064059 
+L 510.366619 470.019212 
+L 516.378741 470.090266 
+L 522.390862 470.374483 
+L 528.402983 468.100749 
+L 534.415104 479.68258 
+L 540.427225 486.432727 
+L 546.439347 477.337792 
+L 552.451468 465.684907 
+L 558.463589 469.166562 
+L 564.47571 469.095507 
+L 570.487831 473.714029 
+L 576.499953 474.566679 
+L 582.512074 484.514264 
+L 588.524195 470.374483 
+L 594.536316 457.300514 
+L 600.548438 460.782168 
+L 606.560559 461.350602 
+L 612.57268 463.340119 
+L 618.584801 473.856138 
+L 624.596922 478.758876 
+L 630.609044 467.461261 
+L 636.621165 450.550367 
+L 642.633286 453.463588 
+L 648.645407 454.387292 
+L 654.657528 450.408258 
+L 660.66965 464.476986 
+L 666.681771 476.982521 
+L 672.693892 459.147922 
+L 678.706013 435.913206 
+L 684.718134 437.618506 
+L 690.730256 442.876515 
+L 696.742377 433.78158 
+L 702.754498 457.655785 
+L 708.766619 465.613853 
+L 714.778741 442.308082 
+L 720.790862 419.641799 
+L 726.802983 408.344184 
+L 732.815104 410.973189 
+L 738.827225 401.096658 
+L 744.839347 429.660438 
+L 750.851468 449.626662 
+L 756.863589 402.730904 
+L 762.87571 371.111794 
+L 768.887831 360.66683 
+L 774.899953 404.720421 
+L 780.912074 421.133936 
+L 786.924195 376.014532 
+L 792.936316 399.746628 
+L 798.948438 298.920748 
+L 804.960559 275.543923 
+L 810.97268 226.658647 
+L 816.984801 266.804259 
+L 822.996922 212.945191 
+L 829.009044 283.99937 
+L 835.021165 345.319127 
+L 841.033286 237.743099 
+L 847.045407 205.271339 
+L 853.057528 143.027878 
+L 859.06965 180.47343 
+L 865.081771 176.849667 
+L 871.093892 212.376757 
+L 877.106013 296.362797 
+L 883.118134 315.689534 
+L 889.130256 202.855497 
+L 901.154498 91.087273 
+L 907.166619 139.333061 
+L 907.166619 139.333061 
+" style="fill:none;stroke:#008000;stroke-linecap:square;stroke-width:1.5;"/>
+   </g>
+   <g id="line2d_19">
+    <path clip-path="url(#p2e2e49a568)" d="M 95.530256 467.532316 
+L 101.542377 468.775764 
+L 107.554498 469.048138 
+L 113.566619 470.800808 
+L 119.578741 473.358758 
+L 125.590862 473.287704 
+L 131.602983 471.653458 
+L 137.615104 470.942916 
+L 143.627225 469.958308 
+L 149.639347 468.699634 
+L 161.663589 467.451111 
+L 167.67571 466.324394 
+L 173.687831 465.958973 
+L 179.699953 464.091263 
+L 185.712074 462.771686 
+L 191.724195 460.853223 
+L 197.736316 459.61485 
+L 203.748438 458.609941 
+L 209.760559 456.569671 
+L 215.77268 454.01172 
+L 221.784801 452.671841 
+L 227.796922 451.737986 
+L 233.809044 450.550367 
+L 239.821165 449.616512 
+L 245.833286 449.4135 
+L 251.845407 448.22588 
+L 257.857528 447.393531 
+L 263.86965 445.708532 
+L 269.881771 446.327718 
+L 275.893892 444.561514 
+L 281.906013 442.084769 
+L 287.918134 439.21215 
+L 293.930256 441.43513 
+L 299.942377 444.520912 
+L 305.954498 448.946572 
+L 311.966619 446.825098 
+L 317.978741 446.104405 
+L 323.990862 444.551364 
+L 330.002983 445.921694 
+L 336.015104 442.714106 
+L 342.027225 439.181698 
+L 348.039347 434.928598 
+L 354.051468 435.466579 
+L 360.063589 439.009138 
+L 366.07571 443.98293 
+L 372.087831 445.546122 
+L 384.112074 449.565759 
+L 390.124195 451.260908 
+L 396.136316 453.341781 
+L 402.148438 455.067382 
+L 408.160559 455.138437 
+L 414.17268 455.940334 
+L 420.184801 457.868947 
+L 426.196922 458.102411 
+L 432.209044 459.716356 
+L 438.221165 460.071627 
+L 444.233286 460.711114 
+L 456.257528 462.406264 
+L 462.26965 463.126956 
+L 468.281771 465.725509 
+L 474.293892 467.512014 
+L 480.306013 468.953399 
+L 492.330256 470.983519 
+L 498.342377 471.237283 
+L 504.354498 472.272644 
+L 510.366619 472.749722 
+L 516.378741 473.450114 
+L 522.390862 473.825686 
+L 528.402983 473.511017 
+L 534.415104 473.988095 
+L 546.439347 474.57683 
+L 552.451468 473.957643 
+L 564.47571 473.642975 
+L 570.487831 474.444872 
+L 576.499953 473.714029 
+L 582.512074 473.439963 
+L 588.524195 472.445205 
+L 606.560559 468.943249 
+L 612.57268 467.461261 
+L 618.584801 467.359755 
+L 624.596922 466.537557 
+L 630.609044 466.121383 
+L 648.645407 463.116806 
+L 654.657528 461.269397 
+L 660.66965 459.929518 
+L 666.681771 459.675753 
+L 672.693892 458.488134 
+L 678.706013 456.397111 
+L 684.718134 454.133527 
+L 690.730256 452.489131 
+L 696.742377 450.113891 
+L 702.754498 449.139434 
+L 708.766619 447.515338 
+L 720.790862 442.78516 
+L 726.802983 438.603114 
+L 738.827225 429.376221 
+L 744.839347 425.376886 
+L 750.851468 423.093002 
+L 756.863589 417.439119 
+L 768.887831 403.695211 
+L 774.899953 402.801958 
+L 780.912074 405.664426 
+L 786.924195 398.000726 
+L 792.936316 390.875006 
+L 798.948438 376.044984 
+L 804.960559 362.392431 
+L 810.97268 343.248405 
+L 816.984801 323.546096 
+L 822.996922 293.804847 
+L 829.009044 280.659824 
+L 835.021165 272.884466 
+L 841.033286 264.144802 
+L 847.045407 254.105862 
+L 853.057528 242.158609 
+L 859.06965 229.825633 
+L 865.081771 224.66913 
+L 871.093892 214.437328 
+L 877.106013 207.443567 
+L 883.118134 218.578772 
+L 889.130256 218.233652 
+L 895.142377 218.771633 
+L 901.154498 206.002182 
+L 907.166619 200.642667 
+L 907.166619 200.642667 
+" style="fill:none;stroke:#ff0000;stroke-linecap:square;stroke-width:1.5;"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 54.948438 506.2 
+L 54.948438 71.32 
+" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;stroke-width:0.8;"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 947.748438 506.2 
+L 947.748438 71.32 
+" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;stroke-width:0.8;"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 54.948438 506.2 
+L 947.748438 506.2 
+" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;stroke-width:0.8;"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 54.948438 71.32 
+L 947.748438 71.32 
+" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;stroke-width:0.8;"/>
+   </g>
+  </g>
+  <g id="axes_2">
+   <g id="matplotlib.axis_3">
+    <g id="ytick_8">
+     <g id="line2d_20">
+      <defs>
+       <path d="M 0 0 
+L 3.5 0 
+" id="m903682b865" style="stroke:#000000;stroke-width:0.8;"/>
+      </defs>
+      <g>
+       <use style="stroke:#000000;stroke-width:0.8;" x="947.748438" xlink:href="#m903682b865" y="419.944261"/>
+      </g>
+     </g>
+     <g id="text_19">
+      <!-- 1.0 -->
+      <g transform="translate(954.748438 423.798949)scale(0.1 -0.1)">
+       <defs>
+        <path d="M 442 723 
+L 442 0 
+L 1165 0 
+L 1165 723 
+L 442 723 
+z
+" id="HiraginoSans-W4-2e" transform="scale(0.015625)"/>
+       </defs>
+       <use xlink:href="#HiraginoSans-W4-31"/>
+       <use x="67.299988" xlink:href="#HiraginoSans-W4-2e"/>
+       <use x="92.299973" xlink:href="#HiraginoSans-W4-30"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_9">
+     <g id="line2d_21">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.8;" x="947.748438" xlink:href="#m903682b865" y="323.786053"/>
+      </g>
+     </g>
+     <g id="text_20">
+      <!-- 1.5 -->
+      <g transform="translate(954.748438 327.640741)scale(0.1 -0.1)">
+       <use xlink:href="#HiraginoSans-W4-31"/>
+       <use x="67.299988" xlink:href="#HiraginoSans-W4-2e"/>
+       <use x="92.299973" xlink:href="#HiraginoSans-W4-35"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_10">
+     <g id="line2d_22">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.8;" x="947.748438" xlink:href="#m903682b865" y="227.627845"/>
+      </g>
+     </g>
+     <g id="text_21">
+      <!-- 2.0 -->
+      <g transform="translate(954.748438 231.482533)scale(0.1 -0.1)">
+       <use xlink:href="#HiraginoSans-W4-32"/>
+       <use x="67.299988" xlink:href="#HiraginoSans-W4-2e"/>
+       <use x="92.299973" xlink:href="#HiraginoSans-W4-30"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_11">
+     <g id="line2d_23">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.8;" x="947.748438" xlink:href="#m903682b865" y="131.469637"/>
+      </g>
+     </g>
+     <g id="text_22">
+      <!-- 2.5 -->
+      <g transform="translate(954.748438 135.324325)scale(0.1 -0.1)">
+       <use xlink:href="#HiraginoSans-W4-32"/>
+       <use x="67.299988" xlink:href="#HiraginoSans-W4-2e"/>
+       <use x="92.299973" xlink:href="#HiraginoSans-W4-35"/>
+      </g>
+     </g>
+    </g>
+    <g id="text_23">
+     <!-- effective reproduction number -->
+     <g transform="translate(982.517188 367.211562)rotate(-90)scale(0.1 -0.1)">
+      <defs>
+       <path d="M 3578 1651 
+C 3558 1971 3546 2106 3533 2170 
+C 3405 3066 2797 3610 1933 3610 
+C 934 3610 282 2880 282 1760 
+C 282 621 941 -96 1978 -96 
+C 2470 -96 2880 64 3187 371 
+C 3341 518 3424 646 3546 915 
+L 3008 1114 
+C 2944 928 2899 845 2803 742 
+C 2605 512 2323 390 1984 390 
+C 1613 390 1312 531 1114 800 
+C 947 1024 883 1235 858 1651 
+L 3578 1651 
+z
+M 877 2118 
+C 915 2349 947 2451 1037 2605 
+C 1229 2944 1542 3130 1920 3130 
+C 2221 3130 2464 3040 2656 2854 
+C 2842 2669 2938 2451 2976 2118 
+L 877 2118 
+z
+" id="HiraginoSans-W4-65" transform="scale(0.015625)"/>
+       <path d="M 922 3034 
+L 922 755 
+C 922 467 909 237 877 0 
+L 1549 0 
+C 1517 224 1504 429 1504 755 
+L 1504 3034 
+L 1818 3034 
+C 2131 3034 2291 3021 2509 2995 
+L 2509 3558 
+C 2266 3533 2080 3520 1818 3520 
+L 1504 3520 
+L 1504 3846 
+C 1504 4198 1542 4333 1670 4429 
+C 1760 4493 1882 4518 2048 4518 
+C 2227 4518 2394 4474 2566 4378 
+L 2714 4870 
+C 2470 4960 2259 4998 2010 4998 
+C 1626 4998 1318 4890 1152 4691 
+C 986 4506 922 4282 922 3885 
+L 922 3520 
+L 659 3520 
+C 416 3520 243 3533 70 3558 
+L 70 2995 
+C 269 3021 435 3034 659 3034 
+L 922 3034 
+z
+" id="HiraginoSans-W4-66" transform="scale(0.015625)"/>
+       <path d="M 51 3520 
+C 198 3213 262 3072 365 2822 
+L 1280 589 
+C 1408 275 1446 160 1485 0 
+L 2112 0 
+C 2150 186 2170 237 2310 589 
+L 3232 2822 
+C 3411 3270 3456 3366 3539 3520 
+L 2829 3520 
+C 2803 3341 2758 3200 2643 2899 
+L 1939 1024 
+C 1888 883 1843 755 1798 602 
+C 1754 736 1690 934 1651 1024 
+L 947 2899 
+C 851 3142 787 3360 762 3520 
+L 51 3520 
+z
+" id="HiraginoSans-W4-76" transform="scale(0.015625)"/>
+       <path d="M 2784 3520 
+C 2522 3565 2394 3578 2195 3578 
+C 1862 3578 1568 3488 1350 3315 
+C 1242 3238 1165 3142 1056 2976 
+C 1062 3027 1062 3040 1069 3085 
+C 1069 3104 1069 3117 1069 3130 
+C 1069 3162 1069 3181 1069 3187 
+L 1069 3520 
+L 442 3520 
+C 474 3283 486 3104 486 2765 
+L 486 755 
+C 486 467 480 314 442 0 
+L 1114 0 
+C 1082 262 1069 448 1069 755 
+L 1069 2022 
+C 1101 2317 1158 2470 1312 2669 
+C 1504 2912 1760 3034 2093 3034 
+C 2259 3034 2381 3014 2618 2938 
+L 2784 3520 
+z
+" id="HiraginoSans-W4-72" transform="scale(0.015625)"/>
+       <path d="M 1101 -1312 
+C 1069 -1075 1056 -877 1056 -550 
+L 1056 128 
+C 1056 301 1050 397 1037 570 
+C 1363 154 1792 -51 2349 -51 
+C 3334 -51 3968 659 3968 1773 
+C 3968 2906 3354 3590 2336 3590 
+C 1766 3590 1344 3379 1037 2944 
+C 1050 3078 1050 3117 1050 3194 
+L 1050 3520 
+L 442 3520 
+C 474 3277 486 3078 486 2752 
+L 486 -557 
+C 486 -845 474 -1056 442 -1312 
+L 1101 -1312 
+z
+M 2272 442 
+C 1952 442 1626 570 1421 781 
+C 1197 1005 1062 1376 1062 1766 
+C 1062 2547 1555 3091 2278 3091 
+C 2976 3091 3373 2611 3373 1773 
+C 3373 941 2957 442 2272 442 
+z
+" id="HiraginoSans-W4-70" transform="scale(0.015625)"/>
+       <path d="M 1107 0 
+C 1075 262 1062 442 1062 755 
+L 1062 2016 
+C 1062 2144 1178 2464 1286 2624 
+C 1485 2912 1786 3091 2074 3091 
+C 2528 3091 2765 2803 2765 2246 
+L 2765 755 
+C 2765 422 2752 230 2720 0 
+L 3392 0 
+C 3360 230 3347 416 3347 749 
+L 3347 2016 
+C 3347 2176 3456 2483 3571 2650 
+C 3763 2931 4045 3091 4346 3091 
+C 4525 3091 4672 3053 4781 2976 
+C 4973 2842 5043 2637 5043 2246 
+L 5043 755 
+C 5043 403 5037 256 4998 0 
+L 5670 0 
+C 5638 230 5626 416 5626 749 
+L 5626 2336 
+C 5626 2733 5555 2995 5382 3206 
+C 5184 3462 4864 3590 4442 3590 
+C 3898 3590 3552 3398 3232 2925 
+C 3168 3104 3130 3181 3034 3277 
+C 2842 3488 2566 3590 2202 3590 
+C 1690 3590 1280 3373 1050 2970 
+C 1050 3008 1050 3008 1056 3066 
+C 1056 3085 1062 3181 1062 3200 
+L 1062 3520 
+L 442 3520 
+C 474 3290 486 3117 486 2765 
+L 486 755 
+C 486 435 474 243 442 0 
+L 1107 0 
+z
+" id="HiraginoSans-W4-6d" transform="scale(0.015625)"/>
+       <path d="M 1050 0 
+L 1050 314 
+C 1043 448 1043 448 1037 506 
+C 1037 518 1037 538 1037 557 
+C 1338 141 1766 -64 2317 -64 
+C 3341 -64 3962 634 3962 1786 
+C 3962 2918 3360 3597 2355 3597 
+C 1779 3597 1344 3379 1037 2931 
+C 1050 3078 1056 3206 1056 3386 
+L 1056 4173 
+C 1056 4499 1069 4691 1101 4934 
+L 442 4934 
+C 474 4666 486 4461 486 4173 
+L 486 774 
+C 486 442 474 243 442 0 
+L 1050 0 
+z
+M 3366 1786 
+C 3366 941 2950 429 2259 429 
+C 1555 429 1062 986 1062 1779 
+C 1062 2566 1562 3104 2285 3104 
+C 2970 3104 3366 2618 3366 1786 
+z
+" id="HiraginoSans-W4-62" transform="scale(0.015625)"/>
+      </defs>
+      <use xlink:href="#HiraginoSans-W4-65"/>
+      <use x="60.199997" xlink:href="#HiraginoSans-W4-66"/>
+      <use x="103.599991" xlink:href="#HiraginoSans-W4-66"/>
+      <use x="146.999985" xlink:href="#HiraginoSans-W4-65"/>
+      <use x="207.199982" xlink:href="#HiraginoSans-W4-63"/>
+      <use x="266.299973" xlink:href="#HiraginoSans-W4-74"/>
+      <use x="306.799957" xlink:href="#HiraginoSans-W4-69"/>
+      <use x="331.599945" xlink:href="#HiraginoSans-W4-76"/>
+      <use x="387.699936" xlink:href="#HiraginoSans-W4-65"/>
+      <use x="447.899933" xlink:href="#HiraginoSans-W4-20"/>
+      <use x="481.199921" xlink:href="#HiraginoSans-W4-72"/>
+      <use x="525.899918" xlink:href="#HiraginoSans-W4-65"/>
+      <use x="586.099915" xlink:href="#HiraginoSans-W4-70"/>
+      <use x="652.499908" xlink:href="#HiraginoSans-W4-72"/>
+      <use x="697.199905" xlink:href="#HiraginoSans-W4-6f"/>
+      <use x="760.999893" xlink:href="#HiraginoSans-W4-64"/>
+      <use x="827.299881" xlink:href="#HiraginoSans-W4-75"/>
+      <use x="890.699875" xlink:href="#HiraginoSans-W4-63"/>
+      <use x="949.799866" xlink:href="#HiraginoSans-W4-74"/>
+      <use x="990.29985" xlink:href="#HiraginoSans-W4-69"/>
+      <use x="1015.099838" xlink:href="#HiraginoSans-W4-6f"/>
+      <use x="1078.899826" xlink:href="#HiraginoSans-W4-6e"/>
+      <use x="1142.29982" xlink:href="#HiraginoSans-W4-20"/>
+      <use x="1175.599808" xlink:href="#HiraginoSans-W4-6e"/>
+      <use x="1238.999802" xlink:href="#HiraginoSans-W4-75"/>
+      <use x="1302.399796" xlink:href="#HiraginoSans-W4-6d"/>
+      <use x="1397.799789" xlink:href="#HiraginoSans-W4-62"/>
+      <use x="1464.099777" xlink:href="#HiraginoSans-W4-65"/>
+      <use x="1524.299774" xlink:href="#HiraginoSans-W4-72"/>
+     </g>
+    </g>
+   </g>
+   <g id="line2d_24">
+    <path clip-path="url(#p2e2e49a568)" d="M 95.530256 419.944261 
+L 131.602983 419.944261 
+L 137.615104 415.332357 
+L 143.627225 408.941575 
+L 149.639347 400.771916 
+L 155.651468 396.423549 
+L 161.663589 392.668141 
+L 167.67571 385.354978 
+L 173.687831 382.983141 
+L 179.699953 370.860421 
+L 185.712074 362.295456 
+L 191.724195 349.843314 
+L 197.736316 341.805423 
+L 209.760559 328.836852 
+L 215.77268 322.041121 
+L 221.784801 325.343756 
+L 227.796922 325.723307 
+L 233.809044 323.872604 
+L 239.821165 328.02997 
+L 245.833286 329.865021 
+L 251.845407 337.905354 
+L 257.857528 343.149488 
+L 263.86965 347.904067 
+L 269.881771 358.618515 
+L 275.893892 356.631721 
+L 281.906013 357.643347 
+L 287.918134 359.734398 
+L 293.930256 375.489412 
+L 299.942377 391.930131 
+L 305.954498 413.864631 
+L 311.966619 409.553885 
+L 317.978741 407.675152 
+L 323.990862 406.625237 
+L 330.002983 414.691694 
+L 336.015104 409.582007 
+L 342.027225 394.936733 
+L 348.039347 387.28351 
+L 354.051468 398.443867 
+L 360.063589 419.315263 
+L 366.07571 428.131409 
+L 372.087831 423.417788 
+L 378.099953 414.647727 
+L 384.112074 429.622814 
+L 390.124195 437.916436 
+L 396.136316 449.743155 
+L 402.148438 451.714905 
+L 408.160559 460.740673 
+L 414.17268 471.84266 
+L 420.184801 486.432727 
+L 426.196922 486.086397 
+L 432.209044 483.892996 
+L 438.221165 473.942759 
+L 444.233286 472.270017 
+L 450.245407 470.328404 
+L 456.257528 467.693087 
+L 462.26965 465.564775 
+L 468.281771 469.621591 
+L 474.293892 471.729881 
+L 480.306013 477.520734 
+L 486.318134 479.572253 
+L 492.330256 478.039377 
+L 498.342377 478.443895 
+L 504.354498 478.038378 
+L 510.366619 479.107612 
+L 516.378741 480.328826 
+L 522.390862 479.213131 
+L 528.402983 474.877462 
+L 534.415104 474.687163 
+L 540.427225 466.060673 
+L 546.439347 460.17637 
+L 552.451468 449.712548 
+L 558.463589 443.469015 
+L 564.47571 436.824295 
+L 570.487831 440.475338 
+L 576.499953 429.499521 
+L 582.512074 424.596526 
+L 588.524195 413.000671 
+L 594.536316 401.885714 
+L 600.548438 395.975001 
+L 606.560559 384.398981 
+L 612.57268 371.630449 
+L 618.584801 367.972778 
+L 624.596922 367.721639 
+L 630.609044 365.98191 
+L 636.621165 360.900367 
+L 642.633286 345.898077 
+L 648.645407 346.019984 
+L 654.657528 335.880323 
+L 660.66965 336.478531 
+L 666.681771 345.851421 
+L 672.693892 348.755312 
+L 678.706013 345.335633 
+L 684.718134 344.160512 
+L 690.730256 335.640387 
+L 696.742377 329.039219 
+L 702.754498 327.06165 
+L 708.766619 326.028574 
+L 714.778741 321.632866 
+L 720.790862 317.494851 
+L 726.802983 311.003988 
+L 732.815104 299.56948 
+L 738.827225 279.894371 
+L 744.839347 271.145364 
+L 750.851468 277.250873 
+L 756.863589 270.27282 
+L 762.87571 254.472928 
+L 768.887831 245.482256 
+L 774.899953 249.042093 
+L 780.912074 270.251872 
+L 786.924195 258.661195 
+L 792.936316 249.28555 
+L 798.948438 228.001577 
+L 804.960559 214.99837 
+L 810.97268 189.5935 
+L 816.984801 161.945025 
+L 822.996922 101.946833 
+L 829.009044 106.207735 
+L 835.021165 128.383714 
+L 841.033286 144.932186 
+L 847.045407 129.566692 
+L 853.057528 91.087273 
+L 859.06965 106.794543 
+L 865.081771 130.435298 
+L 871.093892 171.77846 
+L 877.106013 205.392621 
+L 883.118134 268.230585 
+L 889.130256 305.993215 
+L 895.142377 350.394215 
+L 901.154498 354.865483 
+L 907.166619 359.115146 
+L 907.166619 359.115146 
+" style="fill:none;stroke:#bf00bf;stroke-linecap:square;stroke-width:1.5;"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 54.948438 506.2 
+L 54.948438 71.32 
+" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;stroke-width:0.8;"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 947.748438 506.2 
+L 947.748438 71.32 
+" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;stroke-width:0.8;"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 54.948438 506.2 
+L 947.748438 506.2 
+" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;stroke-width:0.8;"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 54.948438 71.32 
+L 947.748438 71.32 
+" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;stroke-width:0.8;"/>
+   </g>
+  </g>
+  <g id="legend_1">
+   <g id="patch_11">
+    <path d="M 869.245312 52.548438 
+L 1058.148438 52.548438 
+Q 1060.148438 52.548438 1060.148438 50.548438 
+L 1060.148438 7 
+Q 1060.148438 5 1058.148438 5 
+L 869.245312 5 
+Q 867.245312 5 867.245312 7 
+L 867.245312 50.548438 
+Q 867.245312 52.548438 869.245312 52.548438 
+z
+" style="fill:#ffffff;opacity:0.8;stroke:#cccccc;stroke-linejoin:miter;"/>
+   </g>
+   <g id="line2d_25">
+    <path d="M 871.245312 13.209375 
+L 891.245312 13.209375 
+" style="fill:none;stroke:#008000;stroke-linecap:square;stroke-width:1.5;"/>
+   </g>
+   <g id="line2d_26"/>
+   <g id="text_24">
+    <!-- daily count -->
+    <g transform="translate(899.245312 16.709375)scale(0.1 -0.1)">
+     <use xlink:href="#HiraginoSans-W4-64"/>
+     <use x="66.299988" xlink:href="#HiraginoSans-W4-61"/>
+     <use x="125.499985" xlink:href="#HiraginoSans-W4-69"/>
+     <use x="150.299973" xlink:href="#HiraginoSans-W4-6c"/>
+     <use x="174.59996" xlink:href="#HiraginoSans-W4-79"/>
+     <use x="231.999954" xlink:href="#HiraginoSans-W4-20"/>
+     <use x="265.299942" xlink:href="#HiraginoSans-W4-63"/>
+     <use x="324.399933" xlink:href="#HiraginoSans-W4-6f"/>
+     <use x="388.199921" xlink:href="#HiraginoSans-W4-75"/>
+     <use x="451.599915" xlink:href="#HiraginoSans-W4-6e"/>
+     <use x="514.999908" xlink:href="#HiraginoSans-W4-74"/>
+    </g>
+   </g>
+   <g id="line2d_27">
+    <path d="M 871.245312 28.089063 
+L 891.245312 28.089063 
+" style="fill:none;stroke:#ff0000;stroke-linecap:square;stroke-width:1.5;"/>
+   </g>
+   <g id="line2d_28"/>
+   <g id="text_25">
+    <!-- 7days mean -->
+    <g transform="translate(899.245312 31.589063)scale(0.1 -0.1)">
+     <defs>
+      <path d="M 262 973 
+C 326 704 378 589 480 448 
+C 730 109 1184 -70 1786 -70 
+C 2707 -70 3270 339 3270 1011 
+C 3270 1293 3136 1555 2912 1722 
+C 2720 1862 2483 1946 1894 2074 
+C 1510 2157 1357 2208 1210 2285 
+C 1075 2355 998 2483 998 2624 
+C 998 2944 1312 3162 1760 3162 
+C 2042 3162 2259 3078 2400 2925 
+C 2483 2835 2515 2758 2554 2598 
+L 3155 2688 
+C 3066 2982 2982 3136 2810 3283 
+C 2573 3494 2208 3610 1754 3610 
+C 1299 3610 941 3494 698 3258 
+C 518 3091 416 2861 416 2618 
+C 416 2310 557 2054 819 1888 
+C 1043 1747 1261 1677 1760 1574 
+C 2246 1466 2349 1440 2490 1350 
+C 2618 1274 2682 1139 2682 973 
+C 2682 621 2342 397 1818 397 
+C 1504 397 1267 474 1107 614 
+C 986 730 934 832 890 1069 
+L 262 973 
+z
+" id="HiraginoSans-W4-73" transform="scale(0.015625)"/>
+     </defs>
+     <use xlink:href="#HiraginoSans-W4-37"/>
+     <use x="67.299988" xlink:href="#HiraginoSans-W4-64"/>
+     <use x="133.599976" xlink:href="#HiraginoSans-W4-61"/>
+     <use x="192.799973" xlink:href="#HiraginoSans-W4-79"/>
+     <use x="250.199966" xlink:href="#HiraginoSans-W4-73"/>
+     <use x="305.499954" xlink:href="#HiraginoSans-W4-20"/>
+     <use x="338.799942" xlink:href="#HiraginoSans-W4-6d"/>
+     <use x="434.199936" xlink:href="#HiraginoSans-W4-65"/>
+     <use x="494.399933" xlink:href="#HiraginoSans-W4-61"/>
+     <use x="553.59993" xlink:href="#HiraginoSans-W4-6e"/>
+    </g>
+   </g>
+   <g id="line2d_29">
+    <path d="M 871.245312 42.998438 
+L 891.245312 42.998438 
+" style="fill:none;stroke:#bf00bf;stroke-linecap:square;stroke-width:1.5;"/>
+   </g>
+   <g id="line2d_30"/>
+   <g id="text_26">
+    <!-- effective reproduction number -->
+    <g transform="translate(899.245312 46.498438)scale(0.1 -0.1)">
+     <use xlink:href="#HiraginoSans-W4-65"/>
+     <use x="60.199997" xlink:href="#HiraginoSans-W4-66"/>
+     <use x="103.599991" xlink:href="#HiraginoSans-W4-66"/>
+     <use x="146.999985" xlink:href="#HiraginoSans-W4-65"/>
+     <use x="207.199982" xlink:href="#HiraginoSans-W4-63"/>
+     <use x="266.299973" xlink:href="#HiraginoSans-W4-74"/>
+     <use x="306.799957" xlink:href="#HiraginoSans-W4-69"/>
+     <use x="331.599945" xlink:href="#HiraginoSans-W4-76"/>
+     <use x="387.699936" xlink:href="#HiraginoSans-W4-65"/>
+     <use x="447.899933" xlink:href="#HiraginoSans-W4-20"/>
+     <use x="481.199921" xlink:href="#HiraginoSans-W4-72"/>
+     <use x="525.899918" xlink:href="#HiraginoSans-W4-65"/>
+     <use x="586.099915" xlink:href="#HiraginoSans-W4-70"/>
+     <use x="652.499908" xlink:href="#HiraginoSans-W4-72"/>
+     <use x="697.199905" xlink:href="#HiraginoSans-W4-6f"/>
+     <use x="760.999893" xlink:href="#HiraginoSans-W4-64"/>
+     <use x="827.299881" xlink:href="#HiraginoSans-W4-75"/>
+     <use x="890.699875" xlink:href="#HiraginoSans-W4-63"/>
+     <use x="949.799866" xlink:href="#HiraginoSans-W4-74"/>
+     <use x="990.29985" xlink:href="#HiraginoSans-W4-69"/>
+     <use x="1015.099838" xlink:href="#HiraginoSans-W4-6f"/>
+     <use x="1078.899826" xlink:href="#HiraginoSans-W4-6e"/>
+     <use x="1142.29982" xlink:href="#HiraginoSans-W4-20"/>
+     <use x="1175.599808" xlink:href="#HiraginoSans-W4-6e"/>
+     <use x="1238.999802" xlink:href="#HiraginoSans-W4-75"/>
+     <use x="1302.399796" xlink:href="#HiraginoSans-W4-6d"/>
+     <use x="1397.799789" xlink:href="#HiraginoSans-W4-62"/>
+     <use x="1464.099777" xlink:href="#HiraginoSans-W4-65"/>
+     <use x="1524.299774" xlink:href="#HiraginoSans-W4-72"/>
+    </g>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p2e2e49a568">
+   <rect height="434.88" width="892.8" x="54.948438" y="71.32"/>
+  </clipPath>
+ </defs>
+</svg>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+ 
+
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://nkm3.org/calculate-effective-reproduction-number.html">posted at 00:00</a>
+                    &nbsp;&middot;&nbsp;<a href="https://nkm3.org/category/note.html" rel="tag">note</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://nkm3.org/tag/note.html" class="tags">note</a>
+                    &nbsp;<a href="https://nkm3.org/tag/software.html" class="tags selected">software</a>
+                </div>
+            </article>            <h4 class="date">2021/08/12</h4>
 
             <article class="post">
                 <h2 class="title">
