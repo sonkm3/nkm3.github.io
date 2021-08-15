@@ -60,3 +60,10 @@ MARKDOWN = {
     },
     'output_format': 'html5',
 }
+
+MARKUP = ('md', )
+
+from pelican_jupyter import liquid as nb_liquid
+PLUGINS = [nb_liquid]
+
+IGNORE_FILES = [".ipynb_checkpoints"]
