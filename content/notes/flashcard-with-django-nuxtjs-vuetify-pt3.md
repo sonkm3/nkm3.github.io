@@ -1,4 +1,4 @@
-Title: Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part2
+Title: Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part3
 Date: 2021-08-12 00:00
 Modified: 2021-08-12 00:00
 Category: note
@@ -75,7 +75,7 @@ Summary: Making Flashcard app with Django REST framework, nuxtjs and Vuetify. pa
 ドキュメント上ではidのプレースホルダになっている箇所は`_id.vue`とファイルになっているがディレクトリ＋index.vueファイルの組み合わせでも期待通りのルーティングがされる  
 上記`/courses/1/words/`は`/courses/1/words/index.vue`にルーティングされる
 
-<pre>
+```
 pages/
 ├── courses
 │   ├── _course_id
@@ -88,7 +88,7 @@ pages/
 ├── signin.vue
 ├── signout.vue
 └── signup.vue
-</pre>
+```
 
 
 
