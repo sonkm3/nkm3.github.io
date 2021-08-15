@@ -1,48 +1,62 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-        <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>nkm3 | calculate effective reproduction number</title>
-    <link rel="shortcut icon" type="image/png" href="https://nkm3.org/favicon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="https://nkm3.org/favicon.ico">
-    <link href="https://nkm3.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="nkm3 Full Atom Feed" />
-    <link href="https://nkm3.org/feeds/note.atom.xml" type="application/atom+xml" rel="alternate" title="nkm3 Categories Atom Feed" />
-    <link rel="stylesheet" href="https://nkm3.org/theme/css/main.css" type="text/css" />
-    <link rel="stylesheet" href="https://nkm3.org/theme/css/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
-    <meta name="generator" content="Pelican" />
-    <meta name="description" content="" />
-    <meta name="author" content="sonkmr" />
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>    calculate effective reproduction number
+</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+            <link rel="stylesheet" href="https://nkm3.org/theme/css/normalize.css">
+        <link href='//fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://nkm3.org/theme/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://nkm3.org/theme/css/main.css">
 
-    <meta name="keywords" content="note,software" />
-</head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="https://nkm3.org/">Home</a></li>
-                <li><a href="/pages/about.html">About</a></li>
-                <li><a href="/archives.html">Archives</a></li>
-            </ul>
-        </nav>
-        <div class="header_box">
-            <h1><a href="https://nkm3.org/">nkm3</a></h1>
-        </div>
-    </header>
-    <div id="wrapper">
-        <div id="content">
-            <div class="center">            <h4 class="date">2021/08/15</h4>
+    <link rel="stylesheet" href="https://nkm3.org/theme/css/blog.css">
+    <link rel="stylesheet" href="https://nkm3.org/theme/css/github.css">
+        <link href="https://nkm3.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="nkm3 Atom Feed" />
+        <script src="https://nkm3.org/theme/js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
 
-            <article class="post">
-                <h2 class="title">
-                    <a href="https://nkm3.org/calculate-effective-reproduction-number.html" rel="bookmark" title="Permanent Link to &quot;calculate effective reproduction number&quot;">calculate effective reproduction number</a>
-                </h2>
+        <div id="wrapper">
+<header id="sidebar" class="side-shadow">
+    <hgroup id="site-header">
+        <a id="site-title" href="https://nkm3.org"><h1><i class="icon-coffee"></i> nkm3</h1></a>
+        <p id="site-desc"></p>
+    </hgroup>
+    <nav>
+        <ul id="nav-links">
+        </ul>
+    </nav>
+<footer id="site-info">
+    <p>
+        Proudly powered by <a href="http://getpelican.com/" target="pelican">Pelican</a> and <a href="http://python.org/" target="python">Python</a>. Theme by <a href="https://github.com/hdra/pelican-cait" target="github">hndr</a>.
+    </p>
+    <p>
+        Textures by <a href="http://subtlepatterns.com/" target="subtlepatterns">Subtle Pattern</a>. Font Awesome by <a href="http://fortawesome.github.io/Font-Awesome/" target="github">Dave Grandy</a>.
+    </p>
+</footer></header>
+    <div id="post-container">
+        <ol id="post-list">
+            <li>
+                <article class="post-entry">
+                    <header class="entry-header">
+                        <time class="post-time" datetime="2021-08-15T00:00:00+09:00" pubdate>
+                            2021-08-15
+                        </time>
+                        <a href="https://nkm3.org/calculate-effective-reproduction-number.html" rel="bookmark"><h1>calculate effective reproduction number</h1></a>
+                    </header>
 
-                
-                
-
-                <h2>東京都のコロナウイルス実行再生算数の簡易計算</h2>
+                    <section class="post-content">
+                        <h2>東京都のコロナウイルス実行再生算数を簡易計算してみた</h2>
 <p>今回もふと思い立って書いてみたプログラムです  </p>
 <p>国立感染症研究所のサイトに簡易的な実行再生算数の計算方法が載っていたので公開されている東京都のデータと合わせて<a href="https://jupyter.org" rel="nofollow">Jupyter Notebook</a>と<a href="https://pandas.pydata.org" rel="nofollow">pandas</a>の練習がてら手元で計算してみました  </p>
 <ul>
@@ -1167,43 +1181,24 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
  .highlight pre  .vm { color: #19177C } /* Name.Variable.Magic */
  .highlight pre  .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="c1"># download csv from https://stopcovid19.metro.tokyo.lg.jp/data/130001_tokyo_covid19_patients.csv</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/130001_tokyo_covid19_patients.csv&#39;</span><span class="p">,</span> <span class="n">parse_dates</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;公表_年月日&#39;</span><span class="p">,</span> <span class="s1">&#39;発症_年月日&#39;</span><span class="p">,</span> <span class="s1">&#39;確定_年月日&#39;</span><span class="p">])</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/130001_tokyo_covid19_patients.csv&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;公表_年月日&#39;</span><span class="p">,</span> <span class="s1">&#39;発症_年月日&#39;</span><span class="p">,</span> <span class="s1">&#39;確定_年月日&#39;</span><span class="p">],</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/sousuke/.virtualenvs/data/lib/python3.8/site-packages/IPython/core/interactiveshell.py:3441: DtypeWarning: Columns (10) have mixed types.Specify dtype option on import or set low_memory=False.
-  exec(code_obj, self.user_global_ns, self.user_ns)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;公表_年月日&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="s1">&#39;2021-04-01&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;公表_年月日&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="s1">&#39;2021-09-01&#39;</span><span class="p">)]</span>
@@ -1218,7 +1213,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">daily</span><span class="p">[</span><span class="s1">&#39;7dmean&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">daily</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="s1">&#39;7D&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
@@ -1238,7 +1233,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
@@ -1267,13 +1262,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[4]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.legend.Legend at 0x12b8826d0&gt;</pre>
+<pre>&lt;matplotlib.legend.Legend at 0x12ffac070&gt;</pre>
 </div>
 
 </div>
@@ -1293,7 +1288,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <rdf:RDF xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2021-08-15T09:09:34.913949</dc:date>
+    <dc:date>2021-08-15T10:56:57.392871</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -1330,10 +1325,10 @@ z
       <defs>
        <path d="M 0 0 
 L 0 3.5 
-" id="m0c693a0ac3" style="stroke:#000000;stroke-width:0.8;"/>
+" id="me57058b131" style="stroke:#000000;stroke-width:0.8;"/>
       </defs>
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="95.530256" xlink:href="#m0c693a0ac3" y="506.2"/>
+       <use style="stroke:#000000;stroke-width:0.8;" x="95.530256" xlink:href="#me57058b131" y="506.2"/>
       </g>
      </g>
      <g id="text_1">
@@ -1460,7 +1455,7 @@ z
     <g id="xtick_2">
      <g id="line2d_2">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="179.699953" xlink:href="#m0c693a0ac3" y="506.2"/>
+       <use style="stroke:#000000;stroke-width:0.8;" x="179.699953" xlink:href="#me57058b131" y="506.2"/>
       </g>
      </g>
      <g id="text_2">
@@ -1512,7 +1507,7 @@ z
     <g id="xtick_3">
      <g id="line2d_3">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="275.893892" xlink:href="#m0c693a0ac3" y="506.2"/>
+       <use style="stroke:#000000;stroke-width:0.8;" x="275.893892" xlink:href="#me57058b131" y="506.2"/>
       </g>
      </g>
      <g id="text_3">
@@ -1534,7 +1529,7 @@ z
     <g id="xtick_4">
      <g id="line2d_4">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="360.063589" xlink:href="#m0c693a0ac3" y="506.2"/>
+       <use style="stroke:#000000;stroke-width:0.8;" x="360.063589" xlink:href="#me57058b131" y="506.2"/>
       </g>
      </g>
      <g id="text_4">
@@ -1556,7 +1551,7 @@ z
     <g id="xtick_5">
      <g id="line2d_5">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="462.26965" xlink:href="#m0c693a0ac3" y="506.2"/>
+       <use style="stroke:#000000;stroke-width:0.8;" x="462.26965" xlink:href="#me57058b131" y="506.2"/>
       </g>
      </g>
      <g id="text_5">
@@ -1604,7 +1599,7 @@ z
     <g id="xtick_6">
      <g id="line2d_6">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="546.439347" xlink:href="#m0c693a0ac3" y="506.2"/>
+       <use style="stroke:#000000;stroke-width:0.8;" x="546.439347" xlink:href="#me57058b131" y="506.2"/>
       </g>
      </g>
      <g id="text_6">
@@ -1626,7 +1621,7 @@ z
     <g id="xtick_7">
      <g id="line2d_7">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="642.633286" xlink:href="#m0c693a0ac3" y="506.2"/>
+       <use style="stroke:#000000;stroke-width:0.8;" x="642.633286" xlink:href="#me57058b131" y="506.2"/>
       </g>
      </g>
      <g id="text_7">
@@ -1666,7 +1661,7 @@ z
     <g id="xtick_8">
      <g id="line2d_8">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="726.802983" xlink:href="#m0c693a0ac3" y="506.2"/>
+       <use style="stroke:#000000;stroke-width:0.8;" x="726.802983" xlink:href="#me57058b131" y="506.2"/>
       </g>
      </g>
      <g id="text_8">
@@ -1688,7 +1683,7 @@ z
     <g id="xtick_9">
      <g id="line2d_9">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="829.009044" xlink:href="#m0c693a0ac3" y="506.2"/>
+       <use style="stroke:#000000;stroke-width:0.8;" x="829.009044" xlink:href="#me57058b131" y="506.2"/>
       </g>
      </g>
      <g id="text_9">
@@ -1737,7 +1732,7 @@ z
     <g id="xtick_10">
      <g id="line2d_10">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="913.178741" xlink:href="#m0c693a0ac3" y="506.2"/>
+       <use style="stroke:#000000;stroke-width:0.8;" x="913.178741" xlink:href="#me57058b131" y="506.2"/>
       </g>
      </g>
      <g id="text_10">
@@ -1763,10 +1758,10 @@ z
       <defs>
        <path d="M 0 0 
 L -3.5 0 
-" id="mbeb307c440" style="stroke:#000000;stroke-width:0.8;"/>
+" id="ma33ee378de" style="stroke:#000000;stroke-width:0.8;"/>
       </defs>
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#mbeb307c440" y="501.283051"/>
+       <use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#ma33ee378de" y="501.283051"/>
       </g>
      </g>
      <g id="text_11">
@@ -1779,7 +1774,7 @@ L -3.5 0
     <g id="ytick_2">
      <g id="line2d_12">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#mbeb307c440" y="430.228871"/>
+       <use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#ma33ee378de" y="430.228871"/>
       </g>
      </g>
      <g id="text_12">
@@ -1795,7 +1790,7 @@ L -3.5 0
     <g id="ytick_3">
      <g id="line2d_13">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#mbeb307c440" y="359.174692"/>
+       <use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#ma33ee378de" y="359.174692"/>
       </g>
      </g>
      <g id="text_13">
@@ -1811,7 +1806,7 @@ L -3.5 0
     <g id="ytick_4">
      <g id="line2d_14">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#mbeb307c440" y="288.120512"/>
+       <use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#ma33ee378de" y="288.120512"/>
       </g>
      </g>
      <g id="text_14">
@@ -1857,7 +1852,7 @@ z
     <g id="ytick_5">
      <g id="line2d_15">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#mbeb307c440" y="217.066333"/>
+       <use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#ma33ee378de" y="217.066333"/>
       </g>
      </g>
      <g id="text_15">
@@ -1873,7 +1868,7 @@ z
     <g id="ytick_6">
      <g id="line2d_16">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#mbeb307c440" y="146.012153"/>
+       <use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#ma33ee378de" y="146.012153"/>
       </g>
      </g>
      <g id="text_16">
@@ -1889,7 +1884,7 @@ z
     <g id="ytick_7">
      <g id="line2d_17">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#mbeb307c440" y="74.957974"/>
+       <use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#ma33ee378de" y="74.957974"/>
       </g>
      </g>
      <g id="text_17">
@@ -2128,7 +2123,7 @@ z
     </g>
    </g>
    <g id="line2d_18">
-    <path clip-path="url(#p2e2e49a568)" d="M 95.530256 467.532316 
+    <path clip-path="url(#p551567dbcd)" d="M 95.530256 467.532316 
 L 101.542377 470.019212 
 L 107.554498 469.592887 
 L 113.566619 476.058817 
@@ -2264,7 +2259,7 @@ L 907.166619 139.333061
 " style="fill:none;stroke:#008000;stroke-linecap:square;stroke-width:1.5;"/>
    </g>
    <g id="line2d_19">
-    <path clip-path="url(#p2e2e49a568)" d="M 95.530256 467.532316 
+    <path clip-path="url(#p551567dbcd)" d="M 95.530256 467.532316 
 L 101.542377 468.775764 
 L 107.554498 469.048138 
 L 113.566619 470.800808 
@@ -2418,10 +2413,10 @@ L 947.748438 71.32
       <defs>
        <path d="M 0 0 
 L 3.5 0 
-" id="m903682b865" style="stroke:#000000;stroke-width:0.8;"/>
+" id="m92c9d3091a" style="stroke:#000000;stroke-width:0.8;"/>
       </defs>
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="947.748438" xlink:href="#m903682b865" y="419.944261"/>
+       <use style="stroke:#000000;stroke-width:0.8;" x="947.748438" xlink:href="#m92c9d3091a" y="419.944261"/>
       </g>
      </g>
      <g id="text_19">
@@ -2445,7 +2440,7 @@ z
     <g id="ytick_9">
      <g id="line2d_21">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="947.748438" xlink:href="#m903682b865" y="323.786053"/>
+       <use style="stroke:#000000;stroke-width:0.8;" x="947.748438" xlink:href="#m92c9d3091a" y="323.786053"/>
       </g>
      </g>
      <g id="text_20">
@@ -2460,7 +2455,7 @@ z
     <g id="ytick_10">
      <g id="line2d_22">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="947.748438" xlink:href="#m903682b865" y="227.627845"/>
+       <use style="stroke:#000000;stroke-width:0.8;" x="947.748438" xlink:href="#m92c9d3091a" y="227.627845"/>
       </g>
      </g>
      <g id="text_21">
@@ -2475,7 +2470,7 @@ z
     <g id="ytick_11">
      <g id="line2d_23">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="947.748438" xlink:href="#m903682b865" y="131.469637"/>
+       <use style="stroke:#000000;stroke-width:0.8;" x="947.748438" xlink:href="#m92c9d3091a" y="131.469637"/>
       </g>
      </g>
      <g id="text_22">
@@ -2697,7 +2692,7 @@ z
     </g>
    </g>
    <g id="line2d_24">
-    <path clip-path="url(#p2e2e49a568)" d="M 95.530256 419.944261 
+    <path clip-path="url(#p551567dbcd)" d="M 95.530256 419.944261 
 L 131.602983 419.944261 
 L 137.615104 415.332357 
 L 143.627225 408.941575 
@@ -2979,7 +2974,7 @@ L 891.245312 42.998438
   </g>
  </g>
  <defs>
-  <clipPath id="p2e2e49a568">
+  <clipPath id="p551567dbcd">
    <rect height="434.88" width="892.8" x="54.948438" y="71.32"/>
   </clipPath>
  </defs>
@@ -3037,51 +3032,19 @@ L 891.245312 42.998438
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="https://nkm3.org/calculate-effective-reproduction-number.html">posted at 00:00</a>
-                    &nbsp;&middot;&nbsp;<a href="https://nkm3.org/category/note.html" rel="tag">note</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://nkm3.org/tag/note.html" class="tags">note</a>
-                    &nbsp;<a href="https://nkm3.org/tag/software.html" class="tags">software</a>
-                </div>
-            </article>            </div>
-            <div class="sidebar_right">
-<h2 class="title">about</h2>
-
-
-<ul>
-    <li>なにか</li>
-    <li>かきます</li>
-</ul>
-            </div>
-        </div>
-        <div class="clear"></div>
-        <footer>
-            </p>
-            <small>&copy; 2021 sonkmr</small>
-        </footer>
-
-        <div class="clear"></div>
+                    </section>
+                    <hr/>
+                    <aside class="post-meta">
+                        <p>Category: <a href="https://nkm3.org/category/note.html">note</a></p>
+                        <p>Tags: <a href="https://nkm3.org/tag/note.html">note</a>, <a href="https://nkm3.org/tag/software.html">software</a>, </p>
+                    </aside>
+                    <hr/>
+                </article>
+            </li>
+        </ol>
     </div>
-<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
-<script>
-window.cookieconsent.initialise({
-  "palette": {
-    "popup": {
-      "background": "#EEF7FB",
-      "text": "#5c7291"
-    },
-    "button": {
-      "background": "#4EA6D6",
-      "text": "#ffffff"
-    }
-  },
-  "theme": "edgeless",
-  "content": {
-    "href": "/pages/about.html#privacypolicy"
-  }
-});
-</script></body>
+        </div>
+
+        <script src="https://nkm3.org/theme/js/main.js"></script>
+    </body>
 </html>

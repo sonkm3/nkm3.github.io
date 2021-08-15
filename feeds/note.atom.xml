@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>nkm3 - note</title><link href="https://nkm3.org/" rel="alternate"></link><link href="https://nkm3.org/feeds/note.atom.xml" rel="self"></link><id>https://nkm3.org/</id><updated>2021-08-15T00:00:00+09:00</updated><entry><title>calculate effective reproduction number</title><link href="https://nkm3.org/calculate-effective-reproduction-number.html" rel="alternate"></link><published>2021-08-15T00:00:00+09:00</published><updated>2021-08-15T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-08-15:/calculate-effective-reproduction-number.html</id><summary type="html"></summary><content type="html">&lt;h2&gt;東京都のコロナウイルス実行再生算数の簡易計算&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>nkm3 - note</title><link href="https://nkm3.org/" rel="alternate"></link><link href="https://nkm3.org/feeds/note.atom.xml" rel="self"></link><id>https://nkm3.org/</id><updated>2021-08-15T00:00:00+09:00</updated><entry><title>calculate effective reproduction number</title><link href="https://nkm3.org/calculate-effective-reproduction-number.html" rel="alternate"></link><published>2021-08-15T00:00:00+09:00</published><updated>2021-08-15T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-08-15:/calculate-effective-reproduction-number.html</id><summary type="html">&lt;p&gt;東京都のコロナウイルス実行再生算数を簡易計算してみた&lt;/p&gt;</summary><content type="html">&lt;h2&gt;東京都のコロナウイルス実行再生算数を簡易計算してみた&lt;/h2&gt;
 &lt;p&gt;今回もふと思い立って書いてみたプログラムです  &lt;/p&gt;
 &lt;p&gt;国立感染症研究所のサイトに簡易的な実行再生算数の計算方法が載っていたので公開されている東京都のデータと合わせて&lt;a href="https://jupyter.org" rel="nofollow"&gt;Jupyter Notebook&lt;/a&gt;と&lt;a href="https://pandas.pydata.org" rel="nofollow"&gt;pandas&lt;/a&gt;の練習がてら手元で計算してみました  &lt;/p&gt;
 &lt;ul&gt;
@@ -1124,43 +1124,24 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
  .highlight pre  .vm { color: #19177C } /* Name.Variable.Magic */
  .highlight pre  .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;&lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[2]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[1]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
 
 &lt;span class="c1"&gt;# download csv from https://stopcovid19.metro.tokyo.lg.jp/data/130001_tokyo_covid19_patients.csv&lt;/span&gt;
-&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;data/130001_tokyo_covid19_patients.csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;parse_dates&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;公表_年月日&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;発症_年月日&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;確定_年月日&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;data/130001_tokyo_covid19_patients.csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;parse_dates&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;公表_年月日&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;発症_年月日&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;確定_年月日&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;low_memory&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
     &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-
-
-&lt;div class="output_area"&gt;
-
-    &lt;div class="prompt"&gt;&lt;/div&gt;
-
-
-&lt;div class="output_subarea output_stream output_stderr output_text"&gt;
-&lt;pre&gt;/Users/sousuke/.virtualenvs/data/lib/python3.8/site-packages/IPython/core/interactiveshell.py:3441: DtypeWarning: Columns (10) have mixed types.Specify dtype option on import or set low_memory=False.
-  exec(code_obj, self.user_global_ns, self.user_ns)
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[3]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[2]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;公表_年月日&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;2021-04-01&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;公表_年月日&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;2021-09-01&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
@@ -1175,7 +1156,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[4]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[3]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;daily&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;7dmean&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;daily&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rolling&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;window&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;7D&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -1195,7 +1176,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[5]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[4]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;fig&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
@@ -1224,13 +1205,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 &lt;div class="output_area"&gt;
 
-    &lt;div class="prompt output_prompt"&gt;Out[5]:&lt;/div&gt;
+    &lt;div class="prompt output_prompt"&gt;Out[4]:&lt;/div&gt;
 
 
 
 
 &lt;div class="output_text output_subarea output_execute_result"&gt;
-&lt;pre&gt;&amp;lt;matplotlib.legend.Legend at 0x12b8826d0&amp;gt;&lt;/pre&gt;
+&lt;pre&gt;&amp;lt;matplotlib.legend.Legend at 0x12ffac070&amp;gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;
@@ -1250,7 +1231,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   &lt;rdf:RDF xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"&gt;
    &lt;cc:Work&gt;
     &lt;dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/&gt;
-    &lt;dc:date&gt;2021-08-15T09:09:34.913949&lt;/dc:date&gt;
+    &lt;dc:date&gt;2021-08-15T10:56:57.392871&lt;/dc:date&gt;
     &lt;dc:format&gt;image/svg+xml&lt;/dc:format&gt;
     &lt;dc:creator&gt;
      &lt;cc:Agent&gt;
@@ -1287,10 +1268,10 @@ z
       &lt;defs&gt;
        &lt;path d="M 0 0 
 L 0 3.5 
-" id="m0c693a0ac3" style="stroke:#000000;stroke-width:0.8;"/&gt;
+" id="me57058b131" style="stroke:#000000;stroke-width:0.8;"/&gt;
       &lt;/defs&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="95.530256" xlink:href="#m0c693a0ac3" y="506.2"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="95.530256" xlink:href="#me57058b131" y="506.2"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_1"&gt;
@@ -1417,7 +1398,7 @@ z
     &lt;g id="xtick_2"&gt;
      &lt;g id="line2d_2"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="179.699953" xlink:href="#m0c693a0ac3" y="506.2"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="179.699953" xlink:href="#me57058b131" y="506.2"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_2"&gt;
@@ -1469,7 +1450,7 @@ z
     &lt;g id="xtick_3"&gt;
      &lt;g id="line2d_3"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="275.893892" xlink:href="#m0c693a0ac3" y="506.2"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="275.893892" xlink:href="#me57058b131" y="506.2"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_3"&gt;
@@ -1491,7 +1472,7 @@ z
     &lt;g id="xtick_4"&gt;
      &lt;g id="line2d_4"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="360.063589" xlink:href="#m0c693a0ac3" y="506.2"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="360.063589" xlink:href="#me57058b131" y="506.2"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_4"&gt;
@@ -1513,7 +1494,7 @@ z
     &lt;g id="xtick_5"&gt;
      &lt;g id="line2d_5"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="462.26965" xlink:href="#m0c693a0ac3" y="506.2"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="462.26965" xlink:href="#me57058b131" y="506.2"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_5"&gt;
@@ -1561,7 +1542,7 @@ z
     &lt;g id="xtick_6"&gt;
      &lt;g id="line2d_6"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="546.439347" xlink:href="#m0c693a0ac3" y="506.2"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="546.439347" xlink:href="#me57058b131" y="506.2"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_6"&gt;
@@ -1583,7 +1564,7 @@ z
     &lt;g id="xtick_7"&gt;
      &lt;g id="line2d_7"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="642.633286" xlink:href="#m0c693a0ac3" y="506.2"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="642.633286" xlink:href="#me57058b131" y="506.2"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_7"&gt;
@@ -1623,7 +1604,7 @@ z
     &lt;g id="xtick_8"&gt;
      &lt;g id="line2d_8"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="726.802983" xlink:href="#m0c693a0ac3" y="506.2"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="726.802983" xlink:href="#me57058b131" y="506.2"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_8"&gt;
@@ -1645,7 +1626,7 @@ z
     &lt;g id="xtick_9"&gt;
      &lt;g id="line2d_9"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="829.009044" xlink:href="#m0c693a0ac3" y="506.2"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="829.009044" xlink:href="#me57058b131" y="506.2"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_9"&gt;
@@ -1694,7 +1675,7 @@ z
     &lt;g id="xtick_10"&gt;
      &lt;g id="line2d_10"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="913.178741" xlink:href="#m0c693a0ac3" y="506.2"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="913.178741" xlink:href="#me57058b131" y="506.2"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_10"&gt;
@@ -1720,10 +1701,10 @@ z
       &lt;defs&gt;
        &lt;path d="M 0 0 
 L -3.5 0 
-" id="mbeb307c440" style="stroke:#000000;stroke-width:0.8;"/&gt;
+" id="ma33ee378de" style="stroke:#000000;stroke-width:0.8;"/&gt;
       &lt;/defs&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#mbeb307c440" y="501.283051"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#ma33ee378de" y="501.283051"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_11"&gt;
@@ -1736,7 +1717,7 @@ L -3.5 0
     &lt;g id="ytick_2"&gt;
      &lt;g id="line2d_12"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#mbeb307c440" y="430.228871"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#ma33ee378de" y="430.228871"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_12"&gt;
@@ -1752,7 +1733,7 @@ L -3.5 0
     &lt;g id="ytick_3"&gt;
      &lt;g id="line2d_13"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#mbeb307c440" y="359.174692"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#ma33ee378de" y="359.174692"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_13"&gt;
@@ -1768,7 +1749,7 @@ L -3.5 0
     &lt;g id="ytick_4"&gt;
      &lt;g id="line2d_14"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#mbeb307c440" y="288.120512"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#ma33ee378de" y="288.120512"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_14"&gt;
@@ -1814,7 +1795,7 @@ z
     &lt;g id="ytick_5"&gt;
      &lt;g id="line2d_15"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#mbeb307c440" y="217.066333"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#ma33ee378de" y="217.066333"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_15"&gt;
@@ -1830,7 +1811,7 @@ z
     &lt;g id="ytick_6"&gt;
      &lt;g id="line2d_16"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#mbeb307c440" y="146.012153"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#ma33ee378de" y="146.012153"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_16"&gt;
@@ -1846,7 +1827,7 @@ z
     &lt;g id="ytick_7"&gt;
      &lt;g id="line2d_17"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#mbeb307c440" y="74.957974"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="54.948438" xlink:href="#ma33ee378de" y="74.957974"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_17"&gt;
@@ -2085,7 +2066,7 @@ z
     &lt;/g&gt;
    &lt;/g&gt;
    &lt;g id="line2d_18"&gt;
-    &lt;path clip-path="url(#p2e2e49a568)" d="M 95.530256 467.532316 
+    &lt;path clip-path="url(#p551567dbcd)" d="M 95.530256 467.532316 
 L 101.542377 470.019212 
 L 107.554498 469.592887 
 L 113.566619 476.058817 
@@ -2221,7 +2202,7 @@ L 907.166619 139.333061
 " style="fill:none;stroke:#008000;stroke-linecap:square;stroke-width:1.5;"/&gt;
    &lt;/g&gt;
    &lt;g id="line2d_19"&gt;
-    &lt;path clip-path="url(#p2e2e49a568)" d="M 95.530256 467.532316 
+    &lt;path clip-path="url(#p551567dbcd)" d="M 95.530256 467.532316 
 L 101.542377 468.775764 
 L 107.554498 469.048138 
 L 113.566619 470.800808 
@@ -2375,10 +2356,10 @@ L 947.748438 71.32
       &lt;defs&gt;
        &lt;path d="M 0 0 
 L 3.5 0 
-" id="m903682b865" style="stroke:#000000;stroke-width:0.8;"/&gt;
+" id="m92c9d3091a" style="stroke:#000000;stroke-width:0.8;"/&gt;
       &lt;/defs&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="947.748438" xlink:href="#m903682b865" y="419.944261"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="947.748438" xlink:href="#m92c9d3091a" y="419.944261"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_19"&gt;
@@ -2402,7 +2383,7 @@ z
     &lt;g id="ytick_9"&gt;
      &lt;g id="line2d_21"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="947.748438" xlink:href="#m903682b865" y="323.786053"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="947.748438" xlink:href="#m92c9d3091a" y="323.786053"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_20"&gt;
@@ -2417,7 +2398,7 @@ z
     &lt;g id="ytick_10"&gt;
      &lt;g id="line2d_22"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="947.748438" xlink:href="#m903682b865" y="227.627845"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="947.748438" xlink:href="#m92c9d3091a" y="227.627845"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_21"&gt;
@@ -2432,7 +2413,7 @@ z
     &lt;g id="ytick_11"&gt;
      &lt;g id="line2d_23"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="947.748438" xlink:href="#m903682b865" y="131.469637"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="947.748438" xlink:href="#m92c9d3091a" y="131.469637"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_22"&gt;
@@ -2654,7 +2635,7 @@ z
     &lt;/g&gt;
    &lt;/g&gt;
    &lt;g id="line2d_24"&gt;
-    &lt;path clip-path="url(#p2e2e49a568)" d="M 95.530256 419.944261 
+    &lt;path clip-path="url(#p551567dbcd)" d="M 95.530256 419.944261 
 L 131.602983 419.944261 
 L 137.615104 415.332357 
 L 143.627225 408.941575 
@@ -2936,7 +2917,7 @@ L 891.245312 42.998438
   &lt;/g&gt;
  &lt;/g&gt;
  &lt;defs&gt;
-  &lt;clipPath id="p2e2e49a568"&gt;
+  &lt;clipPath id="p551567dbcd"&gt;
    &lt;rect height="434.88" width="892.8" x="54.948438" y="71.32"/&gt;
   &lt;/clipPath&gt;
  &lt;/defs&gt;
@@ -2993,7 +2974,7 @@ L 891.245312 42.998438
         "}); ";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</content><category term="note"></category><category term="note"></category><category term="software"></category></entry><entry><title>Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part2</title><link href="https://nkm3.org/flashcard-with-django-nuxtjs-vuetify-pt3.html" rel="alternate"></link><published>2021-08-12T00:00:00+09:00</published><updated>2021-08-12T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-08-12:/flashcard-with-django-nuxtjs-vuetify-pt3.html</id><summary type="html">&lt;p&gt;Making Flashcard app with Django REST framework, nuxtjs and Vuetify.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;まだ書いてる途中だけどなんとなく公開&lt;/h2&gt;
+&lt;/script&gt;</content><category term="note"></category><category term="note"></category><category term="software"></category></entry><entry><title>Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part2</title><link href="https://nkm3.org/flashcard-with-django-nuxtjs-vuetify-pt3.html" rel="alternate"></link><published>2021-08-12T00:00:00+09:00</published><updated>2021-08-12T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-08-12:/flashcard-with-django-nuxtjs-vuetify-pt3.html</id><summary type="html">&lt;p&gt;Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part3&lt;/p&gt;</summary><content type="html">&lt;h2&gt;まだ書いてる途中だけどなんとなく公開&lt;/h2&gt;
 &lt;h2&gt;これはなに&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Django REST frameworkとnuxtjs、Vuetifyで作った単語カード風アプリ&lt;/li&gt;
@@ -3078,7 +3059,7 @@ pages/
 &lt;/pre&gt;
 
 &lt;h2&gt;リスト表示とCRUD処理&lt;/h2&gt;
-&lt;h2&gt;単語カード表示&lt;/h2&gt;</content><category term="note"></category><category term="note"></category><category term="software"></category></entry><entry><title>Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part1</title><link href="https://nkm3.org/flashcard-with-django-nuxtjs-vuetify-pt2.html" rel="alternate"></link><published>2021-08-11T00:00:00+09:00</published><updated>2021-08-11T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-08-11:/flashcard-with-django-nuxtjs-vuetify-pt2.html</id><summary type="html">&lt;p&gt;Making Flashcard app with Django REST framework, nuxtjs and Vuetify.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;まだ書いてる途中だけどなんとなく公開&lt;/h2&gt;
+&lt;h2&gt;単語カード表示&lt;/h2&gt;</content><category term="note"></category><category term="note"></category><category term="software"></category></entry><entry><title>Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part2</title><link href="https://nkm3.org/flashcard-with-django-nuxtjs-vuetify-pt2.html" rel="alternate"></link><published>2021-08-11T00:00:00+09:00</published><updated>2021-08-11T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-08-11:/flashcard-with-django-nuxtjs-vuetify-pt2.html</id><summary type="html">&lt;p&gt;Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part2&lt;/p&gt;</summary><content type="html">&lt;h2&gt;まだ書いてる途中だけどなんとなく公開&lt;/h2&gt;
 &lt;h2&gt;これはなに&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Django REST frameworkとnuxtjs、Vuetifyで作った単語カード風アプリ&lt;/li&gt;
@@ -3183,7 +3164,7 @@ pages/
 &lt;li&gt;&lt;code&gt;DJOSER&lt;/code&gt;の&lt;code&gt;LOGIN_FIELD&lt;/code&gt;を&lt;code&gt;email&lt;/code&gt;に設定(djoserのユーザー名フィールドを変更する設定)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</content><category term="note"></category><category term="note"></category><category term="software"></category></entry><entry><title>Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part1</title><link href="https://nkm3.org/flashcard-with-django-nuxtjs-vuetify-pt1.html" rel="alternate"></link><published>2021-08-10T00:00:00+09:00</published><updated>2021-08-10T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-08-10:/flashcard-with-django-nuxtjs-vuetify-pt1.html</id><summary type="html">&lt;p&gt;Making Flashcard app with Django REST framework, nuxtjs and Vuetify.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;まだ書いてる途中だけどなんとなく公開&lt;/h2&gt;
+&lt;/ul&gt;</content><category term="note"></category><category term="note"></category><category term="software"></category></entry><entry><title>Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part1</title><link href="https://nkm3.org/flashcard-with-django-nuxtjs-vuetify-pt1.html" rel="alternate"></link><published>2021-08-10T00:00:00+09:00</published><updated>2021-08-10T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-08-10:/flashcard-with-django-nuxtjs-vuetify-pt1.html</id><summary type="html">&lt;p&gt;Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part1&lt;/p&gt;</summary><content type="html">&lt;h2&gt;まだ書いてる途中だけどなんとなく公開&lt;/h2&gt;
 &lt;h2&gt;これはなに&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Django REST frameworkとnuxtjs、Vuetifyで作った単語カード風アプリ&lt;/li&gt;
