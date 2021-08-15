@@ -5,6 +5,6 @@ Category: Python
 Tags: pelican
 Slug: about
 Authors: sonkmr
-Summary: Short version for index and feeds
+Summary: About this site.
 
-This is the content of my super blog post.
+音楽のこととか映画のこととか写真のこととか書きたい

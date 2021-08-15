@@ -95,7 +95,7 @@ h1, h2, h3, h4, h5, h6 {
 h1, h2, h3 {
     font-size: 1.5em;
     line-height: 1em;
-    margin: 0 0 1em;
+    margin: 1em 0;
 }
 
 img, p, .post > .highlight, .highlighttable, h4, h5, h6 {
@@ -444,3 +444,8 @@ footer p { margin: 0; }
         margin:0 ;
     }
 }
+
+.title {
+    margin: 0 0 1em;
+}
+
