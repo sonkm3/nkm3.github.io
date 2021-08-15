@@ -12,7 +12,10 @@ Summary: 東京都のコロナウイルス実行再生算数を簡易計算し�
 国立感染症研究所のサイトに簡易的な実行再生算数の計算方法が載っていたので公開されている東京都のデータと合わせて[Jupyter Notebook](https://jupyter.org)と[pandas](https://pandas.pydata.org)の練習がてら手元で計算してみました  
 
 ポイントは  
-`daily['ern'] = daily['count'].rolling(window='19D').apply(calc_ern)`  
+```
+daily['ern'] = daily['count'].rolling(window='19D').apply(calc_ern)
+```  
+
 19日単位のウインドウで実行再生算数を計算している  
 「絶対できるはずだけどこの世界の言葉でどう呼ばれているのか」で手間取った  
 
