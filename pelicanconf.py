@@ -69,3 +69,5 @@ from pelican_jupyter import liquid as nb_liquid
 PLUGINS = [nb_liquid]
 
 IGNORE_FILES = [".ipynb_checkpoints"]
+
+GOOGLE_ANALYTICS = 'UA-1928342-2'
