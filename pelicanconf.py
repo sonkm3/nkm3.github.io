@@ -76,3 +76,4 @@ COOKIE_CONCENT = True
 
 USE_OPEN_GRAPH = True
 
+SITE_DESCRIPTION = 'そすすすすすすす'
