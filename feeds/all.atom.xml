@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>nkm3</title><link href="https://nkm3.org/" rel="alternate"></link><link href="https://nkm3.org/feeds/all.atom.xml" rel="self"></link><id>https://nkm3.org/</id><updated>2021-08-17T00:00:00+09:00</updated><entry><title>visualize per generation positive share</title><link href="https://nkm3.org/visualize-per-generation-positive-share.html" rel="alternate"></link><published>2021-08-17T00:00:00+09:00</published><updated>2021-08-17T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-08-17:/visualize-per-generation-positive-share.html</id><summary type="html">&lt;p&gt;年代ごとの陽性数のシェアを可視化してみた&lt;/p&gt;</summary><content type="html">&lt;h2&gt;年代ごとの陽性数のシェアを可視化してみた&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>nkm3</title><link href="https://nkm3.org/" rel="alternate"></link><link href="https://nkm3.org/feeds/all.atom.xml" rel="self"></link><id>https://nkm3.org/</id><updated>2021-08-17T00:00:00+09:00</updated><entry><title>visualize per generation positive share</title><link href="https://nkm3.org/visualize-per-generation-positive-share.html" rel="alternate"></link><published>2021-08-17T00:00:00+09:00</published><updated>2021-08-17T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-08-17:/visualize-per-generation-positive-share.html</id><summary type="html">&lt;p&gt;陽性者の年代別シェアを可視化してみた&lt;/p&gt;</summary><content type="html">&lt;h2&gt;陽性者の年代別シェアを可視化してみた&lt;/h2&gt;
 &lt;p&gt;今回はやろうと思っていたけどやり方がわからず詰まっていたプログラムです&lt;/p&gt;
 &lt;p&gt;年代ごとの陽性者数のデータはあるけど日毎の偏りはわかりにくいので計算して画像かしてみたのがこちら&lt;br&gt;
 「若者の感染が増えてます」みたいな煽りを見た気がするけど2月から4月が比較的少なく、シェアで見ると全体的に20代、30代が占めている割合は多いように見える&lt;br&gt;
-毎回のように不安になるけど、、計算あってるのか！？  &lt;/p&gt;
+毎回のように不安になるけど、、、計算あってるのか！？  &lt;/p&gt;
 &lt;h3&gt;迷ったところ&lt;/h3&gt;
 &lt;p&gt;全行に対して割合を計算する方法&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pivot_df = pivot_df.loc[:, &amp;#39;10歳未満&amp;#39;: &amp;#39;100歳以上&amp;#39;].div(pivot_df[&amp;quot;All&amp;quot;], axis=0)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;「10歳未満」から「100歳以上」の各セルを行の合計(Allのカラム)で割っている  &lt;/p&gt;
+&lt;p&gt;「10歳未満」から「100歳以上」の各セルを行の合計(Allのカラム)で割っている&lt;br&gt;
+一行ずつループで回したりしなくていいのは楽ちん  &lt;/p&gt;
 &lt;p&gt;あとDataFrameのカラムの並び順の変え方がわからなかったけど  &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pivot_df = pivot_df.reindex(columns=[&amp;#39;10歳未満&amp;#39;, &amp;#39;10代&amp;#39;, &amp;#39;20代&amp;#39;, &amp;#39;30代&amp;#39;, &amp;#39;40代&amp;#39;, &amp;#39;50代&amp;#39;, &amp;#39;60代&amp;#39;, &amp;#39;70代&amp;#39;,&amp;#39;80代&amp;#39;, &amp;#39;90代&amp;#39;, &amp;#39;100歳以上&amp;#39;, &amp;#39;All&amp;#39;])
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
