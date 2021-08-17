@@ -73,3 +73,6 @@ IGNORE_FILES = [".ipynb_checkpoints"]
 GOOGLE_ANALYTICS = 'UA-1928342-2'
 
 COOKIE_CONCENT = True
+
+USE_OPEN_GRAPH = True
+
