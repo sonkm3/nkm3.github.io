@@ -78,3 +78,7 @@ USE_OPEN_GRAPH = True
 
 SITE_DESCRIPTION = 'そすすすすすすす'
 OPEN_GRAPH_IMAGE = 'images/siteicon.png'
+
+
+DIRECT_TEMPLATES = ('sitemap', )
+SITEMAP_SAVE_AS = 'sitemap.xml'
