@@ -66,7 +66,7 @@ MARKDOWN = {
 MARKUP = ('md', )
 
 from pelican_jupyter import liquid as nb_liquid
-PLUGINS = [nb_liquid]
+PLUGINS = [nb_liquid, "sitemap"]
 
 IGNORE_FILES = [".ipynb_checkpoints"]
 
@@ -79,6 +79,17 @@ USE_OPEN_GRAPH = True
 SITE_DESCRIPTION = 'そすすすすすすす'
 OPEN_GRAPH_IMAGE = 'images/siteicon.png'
 
-
-DIRECT_TEMPLATES = ('sitemap', )
-SITEMAP_SAVE_AS = 'sitemap.xml'
+SITEMAP = {
+    "exclude": ["tag/", "category/"],
+    "format": "xml",
+    "priorities": {
+        "articles": 0.7,
+        "indexes": 0.1,
+        "pages": 0.2
+    },
+    "changefreqs": {
+        "articles": "daily",
+        "indexes": "daily",
+        "pages": "daily"
+    }
+}
