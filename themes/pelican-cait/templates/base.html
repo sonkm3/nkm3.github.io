@@ -52,7 +52,9 @@
         <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
         {% endif %}
         <script src="{{ SITEURL }}/theme/js/vendor/modernizr-2.6.2.min.js"></script>
-        <meta name="google-site-verification" content="DpqlLQbMCcABYeNKp2A06sMQTxLp3Cjn0E4JdR3wLGA" />
+        {% if GOOGLE_SITE_VERIFICATION %}
+        <meta name="google-site-verification" content="{{GOOGLE_SITE_VERIFICATION}}" />
+        {% endif %}
     </head>
     <body>
         <!--[if lt IE 7]>

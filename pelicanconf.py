@@ -71,6 +71,7 @@ PLUGINS = [nb_liquid, "sitemap"]
 IGNORE_FILES = [".ipynb_checkpoints"]
 
 GOOGLE_ANALYTICS = 'UA-1928342-2'
+GOOGLE_SITE_VERIFICATION = 'DpqlLQbMCcABYeNKp2A06sMQTxLp3Cjn0E4JdR3wLGA'
 
 COOKIE_CONCENT = True
 
