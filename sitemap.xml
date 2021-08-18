@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://nkm3.org/visualize-per-generation-positive-share.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://nkm3.org/calculate-positive-count-and-rate-by-ward.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://nkm3.org/calculate-effective-reproduction-number.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://nkm3.org/flashcard-with-django-nuxtjs-vuetify-pt3.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://nkm3.org/flashcard-with-django-nuxtjs-vuetify-pt2.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://nkm3.org/flashcard-with-django-nuxtjs-vuetify-pt1.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+
+  <url>
+    <loc>https://nkm3.org/pages/about.html</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://nkm3.org/pages/sidebar.html</loc>
+    <priority>1.0</priority>
+  </url>
+
+
+</urlset>
