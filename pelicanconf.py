@@ -50,7 +50,7 @@ CUSTOM_MENUITEMS = (
 
 DISPLAY_PAGES_ON_MENU = False
 
-STATIC_PATHS = ['images', 'extra/CNAME']
+STATIC_PATHS = ['images', 'extra/CNAME', 'javascripts']
 EXTRA_PATH_METADATA = {'extra/CNAME': {'path': 'CNAME'},}
 
 MARKDOWN = {
@@ -70,8 +70,6 @@ PLUGINS = [nb_liquid, "sitemap"]
 
 IGNORE_FILES = [".ipynb_checkpoints"]
 
-GOOGLE_ANALYTICS = 'UA-1928342-2'
-GOOGLE_SITE_VERIFICATION = 'DpqlLQbMCcABYeNKp2A06sMQTxLp3Cjn0E4JdR3wLGA'
 
 COOKIE_CONCENT = True
 
