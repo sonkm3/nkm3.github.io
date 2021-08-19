@@ -8,3 +8,5 @@ Authors: sonkmr
 Summary: About this site.
 
 音楽のこととか映画のこととか写真のこととか書きたい
+
+github repository for this site is here [https://github.com/sonkm3/sonkm3.github.io](https://github.com/sonkm3/sonkm3.github.io)
