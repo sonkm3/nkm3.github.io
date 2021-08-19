@@ -155,7 +155,7 @@ function embed() {
     const errorMsg = `Failed to process ${rawFileURL}
 ${error}`;
     const targetDiv = document.getElementById(containerId);
-    embedCodeToTarget(targetDiv, errorMsg, showBorder, showLineNumbers, showFileMeta, showCopy, isDarkStyle, target.href, rawFileURL, 'plaintext', -1, -1, tabSize, sourceURL.origin);
+    embedCodeToTarget(targetDiv, errorMsg, showBorder, showLineNumbers, showFileMeta, showCopy, isDarkStyle, target.href, rawFileURL, 'plaintext', -1, -1, tabSize, sourceURL.origin,);
   });
 }
 
@@ -245,7 +245,7 @@ function embedCodeToTarget(targetDiv, codeText, showBorder, showLineNumbers, sho
   if (showFileMeta) {
     const meta = document.createElement("div");
     const rawFileURLSplit = rawFileURL.split("/");
-    meta.innerHTML = `<a target="_blank" href="${rawFileURL}" style="float:right">view raw</a>
+    meta.innerHTML = `<a target="_blank" href="${fileURL}" style="float:right">go to github.</a>
 <a target="_blank" href="${fileURL}">${rawFileURLSplit[rawFileURLSplit.length - 1]}</a>
 delivered <span class="hide-in-phone">with ❤ </span>by <a target="_blank" href="${serviceProvider}">EmGithub</a>`;
     meta.classList.add("file-meta");

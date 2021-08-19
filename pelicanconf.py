@@ -58,7 +58,8 @@ MARKDOWN = {
         'markdown.extensions.codehilite': {'css_class': 'highlight'},
         'markdown.extensions.extra': {},
         'markdown.extensions.meta': {},
-        'mdx_linkify.mdx_linkify': {},
+        # 'mdx_linkify.mdx_linkify': {},
+        'plugins.embed_github:EmbedGithubExtension': {},
     },
     'output_format': 'html5',
 }
