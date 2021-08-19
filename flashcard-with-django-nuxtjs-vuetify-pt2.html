@@ -70,7 +70,7 @@
 <ul>
 <li>Django REST frameworkとnuxtjs、Vuetifyで作った単語カード風アプリ</li>
 <li>nuxtjsとVuetifyを使ってみたくて作りはじめた</li>
-<li>ソースコードのレポジトリ <a href="https://github.com/sonkm3/wordbook" rel="nofollow">https://github.com/sonkm3/wordbook</a></li>
+<li>ソースコードのレポジトリ https://github.com/sonkm3/wordbook</li>
 </ul>
 <h2>想定していた完成形</h2>
 <ul>
@@ -97,25 +97,25 @@
 <li>
 <p>バックエンド</p>
 <ul>
-<li>Django <a href="https://www.djangoproject.com" rel="nofollow">https://www.djangoproject.com</a></li>
-<li>Django REST framework <a href="https://www.django-rest-framework.org" rel="nofollow">https://www.django-rest-framework.org</a></li>
-<li>djoser <a href="https://github.com/sunscrapers/djoser" rel="nofollow">https://github.com/sunscrapers/djoser</a></li>
-<li>Django Filter <a href="https://github.com/carltongibson/django-filter/tree/main" rel="nofollow">https://github.com/carltongibson/django-filter/tree/main</a></li>
-<li>drf-nested-routers <a href="https://github.com/alanjds/drf-nested-routers" rel="nofollow">https://github.com/alanjds/drf-nested-routers</a></li>
-<li>django-cors-headers <a href="https://github.com/adamchainz/django-cors-headers" rel="nofollow">https://github.com/adamchainz/django-cors-headers</a></li>
+<li>Django https://www.djangoproject.com</li>
+<li>Django REST framework https://www.django-rest-framework.org</li>
+<li>djoser https://github.com/sunscrapers/djoser</li>
+<li>Django Filter https://github.com/carltongibson/django-filter/tree/main</li>
+<li>drf-nested-routers https://github.com/alanjds/drf-nested-routers</li>
+<li>django-cors-headers https://github.com/adamchainz/django-cors-headers</li>
 </ul>
 </li>
 <li>
 <p>フロントエンド</p>
 <ul>
-<li>NuxtJS <a href="https://nuxtjs.org" rel="nofollow">https://nuxtjs.org</a></li>
-<li>Vuetify <a href="https://vuetifyjs.com/en/" rel="nofollow">https://vuetifyjs.com/en/</a></li>
+<li>NuxtJS https://nuxtjs.org</li>
+<li>Vuetify https://vuetifyjs.com/en/</li>
 </ul>
 </li>
 </ul>
 <h2>バックエンドの実装</h2>
 <h3>modelの実装</h3>
-<p><a href="https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/models.py" rel="nofollow">https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/models.py</a></p>
+<p>https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/models.py</p>
 <ul>
 <li><code>django REST framework</code>の<code>ModelViewSet</code>と<code>ModelSerializer</code>から使うためデフォルトのクエリセット以外に処理を書く必要がない</li>
 <li><code>models.Manager</code>クラスを使うことでクエリに関わる実装を少なくする<ul>
@@ -126,7 +126,7 @@
 </li>
 </ul>
 <h3>serializerの実装</h3>
-<p><a href="https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/serializers.py" rel="nofollow">https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/serializers.py</a></p>
+<p>https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/serializers.py</p>
 <ul>
 <li><code>django REST framework</code>の<code>ModelViewSet</code>から使う想定</li>
 <li><code>serializers.ModelSerializer</code>を使うので書き足した箇所はバリデーションぐらい</li>
@@ -136,7 +136,7 @@
 </li>
 </ul>
 <h3>viewの実装</h3>
-<p><a href="https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/views.py" rel="nofollow">https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/views.py</a></p>
+<p>https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/views.py</p>
 <ul>
 <li><code>django REST framework</code>の<code>ModelViewSet</code>を使っているのであまり書かなくてよいが<code>drf-nested-routers</code>に関わる実装は必要</li>
 <li><code>drf-nested-routers</code>に関わる実装について<ul>
@@ -151,19 +151,19 @@
 </li>
 </ul>
 <h3>ルーティング</h3>
-<p><a href="https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/wordbook/urls.py" rel="nofollow">https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/wordbook/urls.py</a></p>
+<p>https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/wordbook/urls.py</p>
 <ul>
 <li><code>NestedSimpleRouter</code>を使って<code>courses/{course_id}/words/</code>を実現している</li>
 </ul>
 <h3>emailでのログインについて</h3>
-<p><a href="https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/models.py#L9-L51" rel="nofollow">https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/models.py#L9-L51</a></p>
+<p>https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/models.py#L9-L51</p>
 <ul>
 <li><code>CustomUser</code>と<code>CustomUserManager</code>を作って対応</li>
 <li><code>create_user</code>に関わる処理の変更を<code>CustomUserManager</code>でオーバーライドする</li>
 <li><code>AbstractUser</code>を継承しているので<code>username</code>の条件は<code>CustomUser</code>でオーバーライドできる</li>
 <li>CustomUserはAbstractModelを継承しているのでfirst/last_nameなどの使わないフィールドは<code>Null</code>を代入することで削除できる</li>
 </ul>
-<p><a href="https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/wordbook/settings.py" rel="nofollow">https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/wordbook/settings.py</a></p>
+<p>https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/wordbook/settings.py</p>
 <ul>
 <li>CustomUserクラスとemailフィールドをログイン時に使うようにする変更は<code>settings.py</code>でおこなう<ul>
 <li><code>AUTH_USER_MODEL</code>を上で定義した<code>CustomUser</code>に設定(Djangoが使うユーザーモデルを変更する設定)</li>

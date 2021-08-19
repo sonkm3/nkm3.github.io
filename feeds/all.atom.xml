@@ -18,11 +18,11 @@
 &lt;p&gt;のDataframe.reindex()でできた  &lt;/p&gt;
 &lt;h3&gt;リンク&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;東京都福祉保健局のオープンデータ&lt;a href="https://catalog.data.metro.tokyo.lg.jp/dataset/t000010d0000000068" rel="nofollow"&gt;東京都 新型コロナウイルス陽性患者発表詳細&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;東京都福祉保健局のオープンデータ&lt;a href="https://catalog.data.metro.tokyo.lg.jp/dataset/t000010d0000000068"&gt;東京都 新型コロナウイルス陽性患者発表詳細&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;notebook&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;github &lt;a href="https://github.com/sonkm3/sonkm3.github.io/blob/main/content/ipynb/tokyo_covid19_per_generation_daily_graph.ipynb" rel="nofollow"&gt;tokyo_covid19_effective_reproduction_number.ipynb&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;github &lt;a href="https://github.com/sonkm3/sonkm3.github.io/blob/main/content/ipynb/tokyo_covid19_per_generation_daily_graph.ipynb"&gt;tokyo_covid19_effective_reproduction_number.ipynb&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;style type="text/css"&gt;/*!
 *
@@ -11777,11 +11777,11 @@ z
 前回と同じく「できるはずだけどこの世界の言葉でどう呼ばれているのかがわからない」で手間取った  &lt;/p&gt;
 &lt;h3&gt;リンク&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;東京都福祉保健局のオープンデータ&lt;a href="https://catalog.data.metro.tokyo.lg.jp/dataset/t000010d0000000085" rel="nofollow"&gt;陽性者数（区市町村別）&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;東京都の統計[住民基本台帳による東京都の世帯と人口（町丁別・年齢別）] &lt;a href="https://www.toukei.metro.tokyo.lg.jp/juukiy/2021/jy21000001.htm" rel="nofollow"&gt;https://www.toukei.metro.tokyo.lg.jp/juukiy/2021/jy21000001.htm&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;東京都福祉保健局のオープンデータ&lt;a href="https://catalog.data.metro.tokyo.lg.jp/dataset/t000010d0000000085"&gt;陽性者数（区市町村別）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;東京都の統計[住民基本台帳による東京都の世帯と人口（町丁別・年齢別）] https://www.toukei.metro.tokyo.lg.jp/juukiy/2021/jy21000001.htm&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;notebook&lt;/h3&gt;
-&lt;p&gt;github &lt;a href="https://github.com/sonkm3/sonkm3.github.io/blob/main/content/ipynb/tokyo_covid19_daily_positive_count_and_rate_graph_by_ward.ipynb" rel="nofollow"&gt;tokyo_covid19_daily_positive_count_and_rate_graph_by_ward.ipynb&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;github &lt;a href="https://github.com/sonkm3/sonkm3.github.io/blob/main/content/ipynb/tokyo_covid19_daily_positive_count_and_rate_graph_by_ward.ipynb"&gt;tokyo_covid19_daily_positive_count_and_rate_graph_by_ward.ipynb&lt;/a&gt;&lt;/p&gt;
 &lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
@@ -25986,7 +25986,7 @@ z
 }
 &lt;/script&gt;</content><category term="note"></category><category term="note"></category><category term="software"></category></entry><entry><title>calculate effective reproduction number</title><link href="https://nkm3.org/calculate-effective-reproduction-number.html" rel="alternate"></link><published>2021-08-15T00:00:00+09:00</published><updated>2021-08-15T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-08-15:/calculate-effective-reproduction-number.html</id><summary type="html">&lt;p&gt;東京都の実行再生算数を簡易計算してみた&lt;/p&gt;</summary><content type="html">&lt;h2&gt;東京都の実行再生算数を簡易計算してみた&lt;/h2&gt;
 &lt;p&gt;今回もふと思い立って書いてみたプログラムです  &lt;/p&gt;
-&lt;p&gt;国立感染症研究所のサイトに簡易的な実行再生算数の計算方法が載っていたので公開されている東京都のデータと合わせて&lt;a href="https://jupyter.org" rel="nofollow"&gt;Jupyter Notebook&lt;/a&gt;と&lt;a href="https://pandas.pydata.org" rel="nofollow"&gt;pandas&lt;/a&gt;の練習がてら手元で計算してみました  &lt;/p&gt;
+&lt;p&gt;国立感染症研究所のサイトに簡易的な実行再生算数の計算方法が載っていたので公開されている東京都のデータと合わせて&lt;a href="https://jupyter.org"&gt;Jupyter Notebook&lt;/a&gt;と&lt;a href="https://pandas.pydata.org"&gt;pandas&lt;/a&gt;の練習がてら手元で計算してみました  &lt;/p&gt;
 &lt;h3&gt;迷ったところ&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;daily[&amp;#39;ern&amp;#39;] = daily[&amp;#39;count&amp;#39;].rolling(window=&amp;#39;19D&amp;#39;).apply(calc_ern)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -25995,12 +25995,12 @@ z
 「できるはずだけどこの世界の言葉でどう呼ばれているのかがわからない」で手間取った  &lt;/p&gt;
 &lt;h3&gt;リンク&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;簡易的な実行再生算数の計算方法&lt;a href="https://www.niid.go.jp/niid/ja/diseases/ka/corona-virus/2019-ncov/2502-idsc/iasr-in/10465-496d04.html" rel="nofollow"&gt;COVID-19感染報告者数に基づく簡易実効再生産数推定方法&lt;/a&gt;  &lt;/li&gt;
-&lt;li&gt;東京都福祉保健局のオープンデータ&lt;a href="https://catalog.data.metro.tokyo.lg.jp/dataset/t000010d0000000068" rel="nofollow"&gt;東京都 新型コロナウイルス陽性患者発表詳細&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;簡易的な実行再生算数の計算方法&lt;a href="https://www.niid.go.jp/niid/ja/diseases/ka/corona-virus/2019-ncov/2502-idsc/iasr-in/10465-496d04.html"&gt;COVID-19感染報告者数に基づく簡易実効再生産数推定方法&lt;/a&gt;  &lt;/li&gt;
+&lt;li&gt;東京都福祉保健局のオープンデータ&lt;a href="https://catalog.data.metro.tokyo.lg.jp/dataset/t000010d0000000068"&gt;東京都 新型コロナウイルス陽性患者発表詳細&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;notebook&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;github &lt;a href="https://github.com/sonkm3/sonkm3.github.io/blob/main/content/ipynb/tokyo_covid19_effective_reproduction_number.ipynb" rel="nofollow"&gt;tokyo_covid19_effective_reproduction_number.ipynb&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;github &lt;a href="https://github.com/sonkm3/sonkm3.github.io/blob/main/content/ipynb/tokyo_covid19_effective_reproduction_number.ipynb"&gt;tokyo_covid19_effective_reproduction_number.ipynb&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;style type="text/css"&gt;/*!
 *
@@ -29897,7 +29897,7 @@ L 808.834375 57.8875
 &lt;ul&gt;
 &lt;li&gt;Django REST frameworkとnuxtjs、Vuetifyで作った単語カード風アプリ&lt;/li&gt;
 &lt;li&gt;nuxtjsとVuetifyを使ってみたくて作りはじめた&lt;/li&gt;
-&lt;li&gt;ソースコードのレポジトリ &lt;a href="https://github.com/sonkm3/wordbook" rel="nofollow"&gt;https://github.com/sonkm3/wordbook&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ソースコードのレポジトリ https://github.com/sonkm3/wordbook&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;想定していた完成形&lt;/h2&gt;
 &lt;ul&gt;
@@ -29924,29 +29924,29 @@ L 808.834375 57.8875
 &lt;li&gt;
 &lt;p&gt;バックエンド&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Django &lt;a href="https://www.djangoproject.com" rel="nofollow"&gt;https://www.djangoproject.com&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Django REST framework &lt;a href="https://www.django-rest-framework.org" rel="nofollow"&gt;https://www.django-rest-framework.org&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;djoser &lt;a href="https://github.com/sunscrapers/djoser" rel="nofollow"&gt;https://github.com/sunscrapers/djoser&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Django Filter &lt;a href="https://github.com/carltongibson/django-filter/tree/main" rel="nofollow"&gt;https://github.com/carltongibson/django-filter/tree/main&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;drf-nested-routers &lt;a href="https://github.com/alanjds/drf-nested-routers" rel="nofollow"&gt;https://github.com/alanjds/drf-nested-routers&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;django-cors-headers &lt;a href="https://github.com/adamchainz/django-cors-headers" rel="nofollow"&gt;https://github.com/adamchainz/django-cors-headers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Django https://www.djangoproject.com&lt;/li&gt;
+&lt;li&gt;Django REST framework https://www.django-rest-framework.org&lt;/li&gt;
+&lt;li&gt;djoser https://github.com/sunscrapers/djoser&lt;/li&gt;
+&lt;li&gt;Django Filter https://github.com/carltongibson/django-filter/tree/main&lt;/li&gt;
+&lt;li&gt;drf-nested-routers https://github.com/alanjds/drf-nested-routers&lt;/li&gt;
+&lt;li&gt;django-cors-headers https://github.com/adamchainz/django-cors-headers&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;フロントエンド&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;NuxtJS &lt;a href="https://nuxtjs.org" rel="nofollow"&gt;https://nuxtjs.org&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Vuetify &lt;a href="https://vuetifyjs.com/en/" rel="nofollow"&gt;https://vuetifyjs.com/en/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;NuxtJS https://nuxtjs.org&lt;/li&gt;
+&lt;li&gt;Vuetify https://vuetifyjs.com/en/&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;フロントエンドの概要&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;手が入っているのは主にpages以下のvueファイル&lt;/li&gt;
-&lt;li&gt;サインイン、トークン取得、サインアウトはnuxt/authを使っている &lt;a href="https://auth.nuxtjs.org" rel="nofollow"&gt;https://auth.nuxtjs.org&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;httpクライアントはnuxt/axios &lt;a href="https://axios.nuxtjs.org" rel="nofollow"&gt;https://axios.nuxtjs.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;サインイン、トークン取得、サインアウトはnuxt/authを使っている https://auth.nuxtjs.org&lt;/li&gt;
+&lt;li&gt;httpクライアントはnuxt/axios https://axios.nuxtjs.org&lt;/li&gt;
 &lt;li&gt;ルーティングはnuxtjsのもの&lt;/li&gt;
-&lt;li&gt;リスト表示はData tablesのCRUDのサンプルをもとにして作った &lt;a href="https://vuetifyjs.com/ja/components/data-tables/" rel="nofollow"&gt;https://vuetifyjs.com/ja/components/data-tables/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;リスト表示はData tablesのCRUDのサンプルをもとにして作った https://vuetifyjs.com/ja/components/data-tables/&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;認証について&lt;/h2&gt;
 &lt;h2&gt;httpクライアント&lt;/h2&gt;
@@ -29956,7 +29956,7 @@ L 808.834375 57.8875
 &lt;li&gt;バックエンドと同じく&lt;code&gt;/courses/1/words/&lt;/code&gt;のようなパスを使いたい&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;code&gt;dynamic nested routes&lt;/code&gt;と呼ばれる仕組みを使って実装&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://nuxtjs.org/docs/2.x/features/file-system-routing#dynamic-nested-routes" rel="nofollow"&gt;https://nuxtjs.org/docs/2.x/features/file-system-routing#dynamic-nested-routes&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;https://nuxtjs.org/docs/2.x/features/file-system-routing#dynamic-nested-routes&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;ドキュメント上ではidのプレースホルダになっている箇所は&lt;code&gt;_id.vue&lt;/code&gt;とファイルになっているがディレクトリ＋index.vueファイルの組み合わせでも期待通りのルーティングがされる&lt;br&gt;
@@ -29984,7 +29984,7 @@ L 808.834375 57.8875
 &lt;ul&gt;
 &lt;li&gt;Django REST frameworkとnuxtjs、Vuetifyで作った単語カード風アプリ&lt;/li&gt;
 &lt;li&gt;nuxtjsとVuetifyを使ってみたくて作りはじめた&lt;/li&gt;
-&lt;li&gt;ソースコードのレポジトリ &lt;a href="https://github.com/sonkm3/wordbook" rel="nofollow"&gt;https://github.com/sonkm3/wordbook&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ソースコードのレポジトリ https://github.com/sonkm3/wordbook&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;想定していた完成形&lt;/h2&gt;
 &lt;ul&gt;
@@ -30011,25 +30011,25 @@ L 808.834375 57.8875
 &lt;li&gt;
 &lt;p&gt;バックエンド&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Django &lt;a href="https://www.djangoproject.com" rel="nofollow"&gt;https://www.djangoproject.com&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Django REST framework &lt;a href="https://www.django-rest-framework.org" rel="nofollow"&gt;https://www.django-rest-framework.org&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;djoser &lt;a href="https://github.com/sunscrapers/djoser" rel="nofollow"&gt;https://github.com/sunscrapers/djoser&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Django Filter &lt;a href="https://github.com/carltongibson/django-filter/tree/main" rel="nofollow"&gt;https://github.com/carltongibson/django-filter/tree/main&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;drf-nested-routers &lt;a href="https://github.com/alanjds/drf-nested-routers" rel="nofollow"&gt;https://github.com/alanjds/drf-nested-routers&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;django-cors-headers &lt;a href="https://github.com/adamchainz/django-cors-headers" rel="nofollow"&gt;https://github.com/adamchainz/django-cors-headers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Django https://www.djangoproject.com&lt;/li&gt;
+&lt;li&gt;Django REST framework https://www.django-rest-framework.org&lt;/li&gt;
+&lt;li&gt;djoser https://github.com/sunscrapers/djoser&lt;/li&gt;
+&lt;li&gt;Django Filter https://github.com/carltongibson/django-filter/tree/main&lt;/li&gt;
+&lt;li&gt;drf-nested-routers https://github.com/alanjds/drf-nested-routers&lt;/li&gt;
+&lt;li&gt;django-cors-headers https://github.com/adamchainz/django-cors-headers&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;フロントエンド&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;NuxtJS &lt;a href="https://nuxtjs.org" rel="nofollow"&gt;https://nuxtjs.org&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Vuetify &lt;a href="https://vuetifyjs.com/en/" rel="nofollow"&gt;https://vuetifyjs.com/en/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;NuxtJS https://nuxtjs.org&lt;/li&gt;
+&lt;li&gt;Vuetify https://vuetifyjs.com/en/&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;バックエンドの実装&lt;/h2&gt;
 &lt;h3&gt;modelの実装&lt;/h3&gt;
-&lt;p&gt;&lt;a href="https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/models.py" rel="nofollow"&gt;https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/models.py&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/models.py&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;django REST framework&lt;/code&gt;の&lt;code&gt;ModelViewSet&lt;/code&gt;と&lt;code&gt;ModelSerializer&lt;/code&gt;から使うためデフォルトのクエリセット以外に処理を書く必要がない&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;models.Manager&lt;/code&gt;クラスを使うことでクエリに関わる実装を少なくする&lt;ul&gt;
@@ -30040,7 +30040,7 @@ L 808.834375 57.8875
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;serializerの実装&lt;/h3&gt;
-&lt;p&gt;&lt;a href="https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/serializers.py" rel="nofollow"&gt;https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/serializers.py&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/serializers.py&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;django REST framework&lt;/code&gt;の&lt;code&gt;ModelViewSet&lt;/code&gt;から使う想定&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;serializers.ModelSerializer&lt;/code&gt;を使うので書き足した箇所はバリデーションぐらい&lt;/li&gt;
@@ -30050,7 +30050,7 @@ L 808.834375 57.8875
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;viewの実装&lt;/h3&gt;
-&lt;p&gt;&lt;a href="https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/views.py" rel="nofollow"&gt;https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/views.py&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/views.py&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;django REST framework&lt;/code&gt;の&lt;code&gt;ModelViewSet&lt;/code&gt;を使っているのであまり書かなくてよいが&lt;code&gt;drf-nested-routers&lt;/code&gt;に関わる実装は必要&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;drf-nested-routers&lt;/code&gt;に関わる実装について&lt;ul&gt;
@@ -30065,19 +30065,19 @@ L 808.834375 57.8875
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;ルーティング&lt;/h3&gt;
-&lt;p&gt;&lt;a href="https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/wordbook/urls.py" rel="nofollow"&gt;https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/wordbook/urls.py&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/wordbook/urls.py&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;NestedSimpleRouter&lt;/code&gt;を使って&lt;code&gt;courses/{course_id}/words/&lt;/code&gt;を実現している&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;emailでのログインについて&lt;/h3&gt;
-&lt;p&gt;&lt;a href="https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/models.py#L9-L51" rel="nofollow"&gt;https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/models.py#L9-L51&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/models.py#L9-L51&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;CustomUser&lt;/code&gt;と&lt;code&gt;CustomUserManager&lt;/code&gt;を作って対応&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;create_user&lt;/code&gt;に関わる処理の変更を&lt;code&gt;CustomUserManager&lt;/code&gt;でオーバーライドする&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;AbstractUser&lt;/code&gt;を継承しているので&lt;code&gt;username&lt;/code&gt;の条件は&lt;code&gt;CustomUser&lt;/code&gt;でオーバーライドできる&lt;/li&gt;
 &lt;li&gt;CustomUserはAbstractModelを継承しているのでfirst/last_nameなどの使わないフィールドは&lt;code&gt;Null&lt;/code&gt;を代入することで削除できる&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;a href="https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/wordbook/settings.py" rel="nofollow"&gt;https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/wordbook/settings.py&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/wordbook/settings.py&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;CustomUserクラスとemailフィールドをログイン時に使うようにする変更は&lt;code&gt;settings.py&lt;/code&gt;でおこなう&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;AUTH_USER_MODEL&lt;/code&gt;を上で定義した&lt;code&gt;CustomUser&lt;/code&gt;に設定(Djangoが使うユーザーモデルを変更する設定)&lt;/li&gt;
@@ -30089,7 +30089,7 @@ L 808.834375 57.8875
 &lt;ul&gt;
 &lt;li&gt;Django REST frameworkとnuxtjs、Vuetifyで作った単語カード風アプリ&lt;/li&gt;
 &lt;li&gt;nuxtjsとVuetifyを使ってみたくて作りはじめた&lt;/li&gt;
-&lt;li&gt;ソースコードのレポジトリ &lt;a href="https://github.com/sonkm3/wordbook" rel="nofollow"&gt;https://github.com/sonkm3/wordbook&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ソースコードのレポジトリ https://github.com/sonkm3/wordbook&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;想定していた完成形&lt;/h2&gt;
 &lt;ul&gt;
@@ -30116,19 +30116,19 @@ L 808.834375 57.8875
 &lt;li&gt;
 &lt;p&gt;バックエンド&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Django &lt;a href="https://www.djangoproject.com" rel="nofollow"&gt;https://www.djangoproject.com&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Django REST framework &lt;a href="https://www.django-rest-framework.org" rel="nofollow"&gt;https://www.django-rest-framework.org&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;djoser &lt;a href="https://github.com/sunscrapers/djoser" rel="nofollow"&gt;https://github.com/sunscrapers/djoser&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Django Filter &lt;a href="https://github.com/carltongibson/django-filter/tree/main" rel="nofollow"&gt;https://github.com/carltongibson/django-filter/tree/main&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;drf-nested-routers &lt;a href="https://github.com/alanjds/drf-nested-routers" rel="nofollow"&gt;https://github.com/alanjds/drf-nested-routers&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;django-cors-headers &lt;a href="https://github.com/adamchainz/django-cors-headers" rel="nofollow"&gt;https://github.com/adamchainz/django-cors-headers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Django https://www.djangoproject.com&lt;/li&gt;
+&lt;li&gt;Django REST framework https://www.django-rest-framework.org&lt;/li&gt;
+&lt;li&gt;djoser https://github.com/sunscrapers/djoser&lt;/li&gt;
+&lt;li&gt;Django Filter https://github.com/carltongibson/django-filter/tree/main&lt;/li&gt;
+&lt;li&gt;drf-nested-routers https://github.com/alanjds/drf-nested-routers&lt;/li&gt;
+&lt;li&gt;django-cors-headers https://github.com/adamchainz/django-cors-headers&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;フロントエンド&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;NuxtJS &lt;a href="https://nuxtjs.org" rel="nofollow"&gt;https://nuxtjs.org&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Vuetify &lt;a href="https://vuetifyjs.com/en/" rel="nofollow"&gt;https://vuetifyjs.com/en/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;NuxtJS https://nuxtjs.org&lt;/li&gt;
+&lt;li&gt;Vuetify https://vuetifyjs.com/en/&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
