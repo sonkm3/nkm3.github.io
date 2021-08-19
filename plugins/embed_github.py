@@ -12,7 +12,7 @@ class EmbedGithubExtension(Extension):
 
 
 class EmbedGithubPostprocesser(Postprocessor):
-    _pattern = re.compile(r"\[(http(s)?(://[\w:;/.?%#&=+-]+)):embed\-github\]")
+    _pattern = re.compile(r"\[(http(s)?(://github\.com\/[\w:;/.?%#&=+-]+)):embed\-github\]")
 
     def run(self, html):
         return re.sub(self._pattern, self._replace_embed, html) 
