@@ -17,7 +17,7 @@ daily['ern'] = daily['count'].rolling(window='19D').apply(calc_ern)
 ```  
 
 19日単位のウインドウで実行再生算数を計算している  
-「絶対できるはずだけどこの世界の言葉でどう呼ばれているのか」で手間取った  
+「できるはずだけどこの世界の言葉でどう呼ばれているのかがわからない」で手間取った  
 
 ### リンク
 - 簡易的な実行再生算数の計算方法[COVID-19感染報告者数に基づく簡易実効再生産数推定方法](https://www.niid.go.jp/niid/ja/diseases/ka/corona-virus/2019-ncov/2502-idsc/iasr-in/10465-496d04.html)  
