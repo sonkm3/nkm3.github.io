@@ -16,8 +16,8 @@ gistみたいにgithubのソースコードをpelicanのページに埋め込め
 
 [https://github.com/sonkm3/sonkm3.github.io/blob/main/plugins/embed_github.py:embed-github]
 
-行番号をしていしても大丈夫  
-例えばこんな感じに書くと [\https://github.com/sonkm3/sonkm3.github.io/blob/main/plugins/embed_github.py#L8-L11:embed-github] 下のように表示される(`\`は実際にはいらない)
+行番号で範囲指定もできる  
+例えばこんな感じに書くと [\https://github.com/sonkm3/sonkm3.github.io/blob/main/plugins/embed_github.py#L8-L11:embed-github] 下のように表示される(`\`は消してねおねがい)
 
 [https://github.com/sonkm3/sonkm3.github.io/blob/main/plugins/embed_github.py#L8-L11:embed-github]
 
@@ -39,7 +39,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> ^D
 ```
 
-
+リンク
 
 - Embed Like Gist [https://emgithub.com](https://emgithub.com)
 - Embedly Extension for Python-Markdown(mdx_embedly) [https://github.com/yymm/mdx_embedly](https://github.com/yymm/mdx_embedly)
