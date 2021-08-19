@@ -7,22 +7,42 @@ Slug: plugin-to-embed-sourceccode-from-github
 Authors: sonkmr
 Summary: githubのソースコードを埋め込めるようにした
 
-gistみたいにgithubのソースコードをpelicanのページに埋め込めるようにしてみた  
+## gistみたいにgithubのソースコードをpelicanのページに埋め込めるようにしてみた  
 
 ソースコードの埋め込み表示にはEmbed Like Gistを使って、jsへ値を渡すためのMarkdownエクステンションをmdx_embedlyを元にして書いた感じ  
 
-さっそく埋め込んでみる  
-埋め込みたいところで[https://github.com/{user}/{repo}/blob/main/{path-to-file}:embed-github]と書くと以下のようにソースコードが埋め込まれる
+### さっそく埋め込んでみる
+埋め込みたいところで[https://github.com/{user}/{repo}/blob/main/{path-to-file}:embed-github]と書くと以下のようにソースコードが埋め込まれる  
+実際のエクステンションのソースも動作もこれだけ、というかそれだけ、という感じ
 
 [https://github.com/sonkm3/sonkm3.github.io/blob/main/plugins/embed_github.py:embed-github]
 
-行番号で範囲指定もできる  
+### 行番号で範囲指定もできる  
 例えばこんな感じに書くと [\https://github.com/sonkm3/sonkm3.github.io/blob/main/plugins/embed_github.py#L8-L11:embed-github] 下のように表示される(`\`は消してねおねがい)
 
 [https://github.com/sonkm3/sonkm3.github.io/blob/main/plugins/embed_github.py#L8-L11:embed-github]
 
 
-Markdownのエクステンションを書く時はPelicannからではなくmarkdownモジュールを直接使うと動作の確認がしやすかった  
+### おまけ:MarkdownモジュールはEmbedGithubExtensionを自動で使えるようにしてくれない
+`pelican.conf`の`MARKDOWN`に`'plugins.embed_github:EmbedGithubExtension': {},`のように追加すると使えるようになる  
+例えばこんな感じ  
+以前の`Pelican`と書き方が変わったのかな？使っているのは`Pelican 4.6`です  
+
+```
+MARKDOWN = {
+    'extension_configs': {
+        'markdown.extensions.codehilite': {'css_class': 'highlight'},
+        'markdown.extensions.extra': {},
+        'markdown.extensions.meta': {},
+        'plugins.embed_github:EmbedGithubExtension': {},
+    },
+    'output_format': 'html5',
+}
+```
+
+
+### おまけ:Markdownエクステンションの動作確認
+Markdownのエクステンションを書く時はPelicanからではなくmarkdownモジュールを直接使うと動作の確認がしやすかった  
 以下が確認で使ったReplのログ  
 ここのURLの箇所も展開されてしまうのでembed-githubのところはembed-github-dummyに置き換えている  
 
@@ -39,7 +59,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> ^D
 ```
 
-リンク
+### リンク
 
 - Embed Like Gist [https://emgithub.com](https://emgithub.com)
 - Embedly Extension for Python-Markdown(mdx_embedly) [https://github.com/yymm/mdx_embedly](https://github.com/yymm/mdx_embedly)
