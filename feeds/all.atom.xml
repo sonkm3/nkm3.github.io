@@ -5,17 +5,17 @@
 「若者の感染が増えてます」みたいな煽りを見た気がするけど2月から4月が比較的少なく、シェアで見ると全体的に20代、30代が占めている割合は多いように見える&lt;br&gt;
 毎回のように不安になるけど、、、計算あってるのか！？  &lt;/p&gt;
 &lt;h3&gt;迷ったところ&lt;/h3&gt;
-&lt;p&gt;全行に対して割合を計算する方法&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pivot_df = pivot_df.loc[:, &amp;#39;10歳未満&amp;#39;: &amp;#39;100歳以上&amp;#39;].div(pivot_df[&amp;quot;All&amp;quot;], axis=0)
+&lt;p&gt;全ての行の指定した列に対して割合を計算する方法&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;cross_df.update(cross_df.loc[:, &amp;#39;10歳未満&amp;#39;: &amp;#39;-&amp;#39;].div(cross_df[&amp;quot;All&amp;quot;], axis=0))
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;「10歳未満」から「100歳以上」の各セルを行の合計(Allのカラム)で割っている&lt;br&gt;
-一行ずつループで回したりしなくていいのは楽ちん  &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;10歳未満&lt;/code&gt;から&lt;code&gt;-&lt;/code&gt;の各セルを行のAll列の値(小計)で割っている&lt;br&gt;
+一行ずつループで回したりしなくてよくて楽ちん(ましてExcelで同じことをすると思うと)  &lt;/p&gt;
 &lt;p&gt;あとDataFrameのカラムの並び順の変え方がわからなかったけど  &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pivot_df = pivot_df.reindex(columns=[&amp;#39;10歳未満&amp;#39;, &amp;#39;10代&amp;#39;, &amp;#39;20代&amp;#39;, &amp;#39;30代&amp;#39;, &amp;#39;40代&amp;#39;, &amp;#39;50代&amp;#39;, &amp;#39;60代&amp;#39;, &amp;#39;70代&amp;#39;,&amp;#39;80代&amp;#39;, &amp;#39;90代&amp;#39;, &amp;#39;100歳以上&amp;#39;, &amp;#39;All&amp;#39;])
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;cross_df = cross_df.reindex(columns=[&amp;#39;10歳未満&amp;#39;, &amp;#39;10代&amp;#39;, &amp;#39;20代&amp;#39;, &amp;#39;30代&amp;#39;, &amp;#39;40代&amp;#39;, &amp;#39;50代&amp;#39;, &amp;#39;60代&amp;#39;, &amp;#39;70代&amp;#39;,&amp;#39;80代&amp;#39;, &amp;#39;90代&amp;#39;, &amp;#39;100歳以上&amp;#39;, &amp;#39;-&amp;#39;, &amp;#39;All&amp;#39;])
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;のreindexでできた  &lt;/p&gt;
+&lt;p&gt;のDataframe.reindex()でできた  &lt;/p&gt;
 &lt;h3&gt;リンク&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;東京都福祉保健局のオープンデータ&lt;a href="https://catalog.data.metro.tokyo.lg.jp/dataset/t000010d0000000068" rel="nofollow"&gt;東京都 新型コロナウイルス陽性患者発表詳細&lt;/a&gt;&lt;/li&gt;
@@ -1142,7 +1142,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
  .highlight pre  .vm { color: #19177C } /* Name.Variable.Magic */
  .highlight pre  .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;&lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[1]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[8]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
@@ -1159,7 +1159,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[2]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[9]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;daily_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;公表_年月日&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;2020-09-01&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;公表_年月日&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;2021-09-01&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
@@ -1178,7 +1178,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[3]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[10]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;fig&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
@@ -1187,7 +1187,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 &lt;span class="n"&gt;ax2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ax1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;twinx&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
 &lt;span class="n"&gt;ax1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stackplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cross_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cross_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;drop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;All&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;labels&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;10歳未満&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;10代&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;20代&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;30代&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;40代&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;50代&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;60代&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;70代&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;80代&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;90代&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;100歳以上&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;-&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="n"&gt;ax2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cross_df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;All&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;k&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;ax2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cross_df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;All&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;darkgray&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;ax2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cross_df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;All&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rolling&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;5d&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;gray&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;legend&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -1202,13 +1203,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 &lt;div class="output_area"&gt;
 
-    &lt;div class="prompt output_prompt"&gt;Out[3]:&lt;/div&gt;
+    &lt;div class="prompt output_prompt"&gt;Out[10]:&lt;/div&gt;
 
 
 
 
 &lt;div class="output_text output_subarea output_execute_result"&gt;
-&lt;pre&gt;&amp;lt;matplotlib.legend.Legend at 0x12f2fd9d0&amp;gt;&lt;/pre&gt;
+&lt;pre&gt;&amp;lt;matplotlib.legend.Legend at 0x1404fefd0&amp;gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;
@@ -1228,7 +1229,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   &lt;rdf:RDF xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"&gt;
    &lt;cc:Work&gt;
     &lt;dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/&gt;
-    &lt;dc:date&gt;2021-08-18T21:53:24.228102&lt;/dc:date&gt;
+    &lt;dc:date&gt;2021-08-19T13:37:00.474556&lt;/dc:date&gt;
     &lt;dc:format&gt;image/svg+xml&lt;/dc:format&gt;
     &lt;dc:creator&gt;
      &lt;cc:Agent&gt;
@@ -1260,7 +1261,7 @@ z
 " style="fill:#ffffff;"/&gt;
    &lt;/g&gt;
    &lt;g id="PolyCollection_1"&gt;
-    &lt;path clip-path="url(#p2905eb5eac)" d="M 70.761506 501.327395 
+    &lt;path clip-path="url(#p00cd7268d2)" d="M 70.761506 501.327395 
 L 70.761506 506.2 
 L 73.07386 506.2 
 L 75.386214 506.2 
@@ -1970,7 +1971,7 @@ z
 " style="fill:#1f77b4;"/&gt;
    &lt;/g&gt;
    &lt;g id="PolyCollection_2"&gt;
-    &lt;path clip-path="url(#p2905eb5eac)" d="M 70.761506 476.96437 
+    &lt;path clip-path="url(#p00cd7268d2)" d="M 70.761506 476.96437 
 L 70.761506 501.327395 
 L 73.07386 468.013982 
 L 75.386214 498.348409 
@@ -2680,7 +2681,7 @@ z
 " style="fill:#ff7f0e;"/&gt;
    &lt;/g&gt;
    &lt;g id="PolyCollection_3"&gt;
-    &lt;path clip-path="url(#p2905eb5eac)" d="M 70.761506 360.021849 
+    &lt;path clip-path="url(#p00cd7268d2)" d="M 70.761506 360.021849 
 L 70.761506 476.96437 
 L 73.07386 462.13921 
 L 75.386214 474.793636 
@@ -3390,7 +3391,7 @@ z
 " style="fill:#2ca02c;"/&gt;
    &lt;/g&gt;
    &lt;g id="PolyCollection_4"&gt;
-    &lt;path clip-path="url(#p2905eb5eac)" d="M 70.761506 267.442353 
+    &lt;path clip-path="url(#p00cd7268d2)" d="M 70.761506 267.442353 
 L 70.761506 360.021849 
 L 73.07386 359.330699 
 L 75.386214 353.093974 
@@ -4100,7 +4101,7 @@ z
 " style="fill:#d62728;"/&gt;
    &lt;/g&gt;
    &lt;g id="PolyCollection_5"&gt;
-    &lt;path clip-path="url(#p2905eb5eac)" d="M 70.761506 199.225882 
+    &lt;path clip-path="url(#p00cd7268d2)" d="M 70.761506 199.225882 
 L 70.761506 267.442353 
 L 73.07386 271.209119 
 L 75.386214 264.763575 
@@ -4810,7 +4811,7 @@ z
 " style="fill:#9467bd;"/&gt;
    &lt;/g&gt;
    &lt;g id="PolyCollection_6"&gt;
-    &lt;path clip-path="url(#p2905eb5eac)" d="M 70.761506 157.808739 
+    &lt;path clip-path="url(#p00cd7268d2)" d="M 70.761506 157.808739 
 L 70.761506 199.225882 
 L 73.07386 206.586626 
 L 75.386214 205.876642 
@@ -5520,7 +5521,7 @@ z
 " style="fill:#8c564b;"/&gt;
    &lt;/g&gt;
    &lt;g id="PolyCollection_7"&gt;
-    &lt;path clip-path="url(#p2905eb5eac)" d="M 70.761506 121.264202 
+    &lt;path clip-path="url(#p00cd7268d2)" d="M 70.761506 121.264202 
 L 70.761506 157.808739 
 L 73.07386 153.713678 
 L 75.386214 146.989709 
@@ -6230,7 +6231,7 @@ z
 " style="fill:#e377c2;"/&gt;
    &lt;/g&gt;
    &lt;g id="PolyCollection_8"&gt;
-    &lt;path clip-path="url(#p2905eb5eac)" d="M 70.761506 106.646387 
+    &lt;path clip-path="url(#p00cd7268d2)" d="M 70.761506 106.646387 
 L 70.761506 121.264202 
 L 73.07386 124.339818 
 L 75.386214 133.249425 
@@ -6940,7 +6941,7 @@ z
 " style="fill:#7f7f7f;"/&gt;
    &lt;/g&gt;
    &lt;g id="PolyCollection_9"&gt;
-    &lt;path clip-path="url(#p2905eb5eac)" d="M 70.761506 94.464874 
+    &lt;path clip-path="url(#p00cd7268d2)" d="M 70.761506 94.464874 
 L 70.761506 106.646387 
 L 73.07386 106.715502 
 L 75.386214 115.583345 
@@ -7650,7 +7651,7 @@ z
 " style="fill:#bcbd22;"/&gt;
    &lt;/g&gt;
    &lt;g id="PolyCollection_10"&gt;
-    &lt;path clip-path="url(#p2905eb5eac)" d="M 70.761506 92.028571 
+    &lt;path clip-path="url(#p00cd7268d2)" d="M 70.761506 92.028571 
 L 70.761506 94.464874 
 L 73.07386 92.028571 
 L 75.386214 101.84306 
@@ -8360,7 +8361,7 @@ z
 " style="fill:#17becf;"/&gt;
    &lt;/g&gt;
    &lt;g id="PolyCollection_11"&gt;
-    &lt;path clip-path="url(#p2905eb5eac)" d="M 70.761506 92.028571 
+    &lt;path clip-path="url(#p00cd7268d2)" d="M 70.761506 92.028571 
 L 70.761506 92.028571 
 L 73.07386 92.028571 
 L 75.386214 92.028571 
@@ -9070,7 +9071,7 @@ z
 " style="fill:#1f77b4;"/&gt;
    &lt;/g&gt;
    &lt;g id="PolyCollection_12"&gt;
-    &lt;path clip-path="url(#p2905eb5eac)" d="M 70.761506 92.028571 
+    &lt;path clip-path="url(#p00cd7268d2)" d="M 70.761506 92.028571 
 L 70.761506 92.028571 
 L 73.07386 92.028571 
 L 75.386214 92.028571 
@@ -9785,10 +9786,10 @@ z
       &lt;defs&gt;
        &lt;path d="M 0 0 
 L 0 3.5 
-" id="med5cdb0223" style="stroke:#000000;stroke-width:0.8;"/&gt;
+" id="m9c6d0c34ac" style="stroke:#000000;stroke-width:0.8;"/&gt;
       &lt;/defs&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="70.761506" xlink:href="#med5cdb0223" y="506.2"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="70.761506" xlink:href="#m9c6d0c34ac" y="506.2"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_1"&gt;
@@ -9895,7 +9896,7 @@ z
     &lt;g id="xtick_2"&gt;
      &lt;g id="line2d_2"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="211.815119" xlink:href="#med5cdb0223" y="506.2"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="211.815119" xlink:href="#m9c6d0c34ac" y="506.2"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_2"&gt;
@@ -9931,7 +9932,7 @@ z
     &lt;g id="xtick_3"&gt;
      &lt;g id="line2d_3"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="352.868732" xlink:href="#med5cdb0223" y="506.2"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="352.868732" xlink:href="#m9c6d0c34ac" y="506.2"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_3"&gt;
@@ -9950,7 +9951,7 @@ z
     &lt;g id="xtick_4"&gt;
      &lt;g id="line2d_4"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="489.297636" xlink:href="#med5cdb0223" y="506.2"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="489.297636" xlink:href="#m9c6d0c34ac" y="506.2"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_4"&gt;
@@ -9999,7 +10000,7 @@ z
     &lt;g id="xtick_5"&gt;
      &lt;g id="line2d_5"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="630.351249" xlink:href="#med5cdb0223" y="506.2"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="630.351249" xlink:href="#m9c6d0c34ac" y="506.2"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_5"&gt;
@@ -10048,7 +10049,7 @@ z
     &lt;g id="xtick_6"&gt;
      &lt;g id="line2d_6"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="771.404862" xlink:href="#med5cdb0223" y="506.2"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="771.404862" xlink:href="#m9c6d0c34ac" y="506.2"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_6"&gt;
@@ -10085,7 +10086,7 @@ z
     &lt;g id="xtick_7"&gt;
      &lt;g id="line2d_7"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="914.77083" xlink:href="#med5cdb0223" y="506.2"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="914.77083" xlink:href="#m9c6d0c34ac" y="506.2"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_7"&gt;
@@ -10108,10 +10109,10 @@ z
       &lt;defs&gt;
        &lt;path d="M 0 0 
 L -3.5 0 
-" id="m616ecf5c24" style="stroke:#000000;stroke-width:0.8;"/&gt;
+" id="mae35bad146" style="stroke:#000000;stroke-width:0.8;"/&gt;
       &lt;/defs&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="30.179688" xlink:href="#m616ecf5c24" y="506.2"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="30.179688" xlink:href="#mae35bad146" y="506.2"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_8"&gt;
@@ -10135,7 +10136,7 @@ z
     &lt;g id="ytick_2"&gt;
      &lt;g id="line2d_9"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="30.179688" xlink:href="#m616ecf5c24" y="423.365714"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="30.179688" xlink:href="#mae35bad146" y="423.365714"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_9"&gt;
@@ -10150,7 +10151,7 @@ z
     &lt;g id="ytick_3"&gt;
      &lt;g id="line2d_10"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="30.179688" xlink:href="#m616ecf5c24" y="340.531429"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="30.179688" xlink:href="#mae35bad146" y="340.531429"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_10"&gt;
@@ -10196,7 +10197,7 @@ z
     &lt;g id="ytick_4"&gt;
      &lt;g id="line2d_11"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="30.179688" xlink:href="#m616ecf5c24" y="257.697143"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="30.179688" xlink:href="#mae35bad146" y="257.697143"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_11"&gt;
@@ -10237,7 +10238,7 @@ z
     &lt;g id="ytick_5"&gt;
      &lt;g id="line2d_12"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="30.179688" xlink:href="#m616ecf5c24" y="174.862857"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="30.179688" xlink:href="#mae35bad146" y="174.862857"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_12"&gt;
@@ -10279,7 +10280,7 @@ z
     &lt;g id="ytick_6"&gt;
      &lt;g id="line2d_13"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="30.179688" xlink:href="#m616ecf5c24" y="92.028571"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="30.179688" xlink:href="#mae35bad146" y="92.028571"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_13"&gt;
@@ -10320,10 +10321,10 @@ L 922.979687 71.32
       &lt;defs&gt;
        &lt;path d="M 0 0 
 L 3.5 0 
-" id="m594e0f799f" style="stroke:#000000;stroke-width:0.8;"/&gt;
+" id="m6da80ec70f" style="stroke:#000000;stroke-width:0.8;"/&gt;
       &lt;/defs&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="922.979687" xlink:href="#m594e0f799f" y="490.514873"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="922.979687" xlink:href="#m6da80ec70f" y="490.514873"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_14"&gt;
@@ -10336,7 +10337,7 @@ L 3.5 0
     &lt;g id="ytick_8"&gt;
      &lt;g id="line2d_15"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="922.979687" xlink:href="#m594e0f799f" y="421.325959"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="922.979687" xlink:href="#m6da80ec70f" y="421.325959"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_15"&gt;
@@ -10352,7 +10353,7 @@ L 3.5 0
     &lt;g id="ytick_9"&gt;
      &lt;g id="line2d_16"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="922.979687" xlink:href="#m594e0f799f" y="352.137045"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="922.979687" xlink:href="#m6da80ec70f" y="352.137045"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_16"&gt;
@@ -10368,7 +10369,7 @@ L 3.5 0
     &lt;g id="ytick_10"&gt;
      &lt;g id="line2d_17"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="922.979687" xlink:href="#m594e0f799f" y="282.948131"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="922.979687" xlink:href="#m6da80ec70f" y="282.948131"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_17"&gt;
@@ -10384,7 +10385,7 @@ L 3.5 0
     &lt;g id="ytick_11"&gt;
      &lt;g id="line2d_18"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="922.979687" xlink:href="#m594e0f799f" y="213.759217"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="922.979687" xlink:href="#m6da80ec70f" y="213.759217"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_18"&gt;
@@ -10400,7 +10401,7 @@ L 3.5 0
     &lt;g id="ytick_12"&gt;
      &lt;g id="line2d_19"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="922.979687" xlink:href="#m594e0f799f" y="144.570303"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="922.979687" xlink:href="#m6da80ec70f" y="144.570303"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_19"&gt;
@@ -10416,7 +10417,7 @@ L 3.5 0
     &lt;g id="ytick_13"&gt;
      &lt;g id="line2d_20"&gt;
       &lt;g&gt;
-       &lt;use style="stroke:#000000;stroke-width:0.8;" x="922.979687" xlink:href="#m594e0f799f" y="75.381389"/&gt;
+       &lt;use style="stroke:#000000;stroke-width:0.8;" x="922.979687" xlink:href="#m6da80ec70f" y="75.381389"/&gt;
       &lt;/g&gt;
      &lt;/g&gt;
      &lt;g id="text_20"&gt;
@@ -10431,7 +10432,7 @@ L 3.5 0
     &lt;/g&gt;
    &lt;/g&gt;
    &lt;g id="line2d_21"&gt;
-    &lt;path clip-path="url(#p2905eb5eac)" d="M 70.761506 478.752758 
+    &lt;path clip-path="url(#p00cd7268d2)" d="M 70.761506 478.752758 
 L 73.07386 480.759236 
 L 75.386214 475.916012 
 L 77.698569 481.105181 
@@ -10778,7 +10779,350 @@ L 877.773161 285.57731
 L 880.085515 187.674997 
 L 882.397869 117.863382 
 L 882.397869 117.863382 
-" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-width:1.5;"/&gt;
+" style="fill:none;stroke:#a9a9a9;stroke-linecap:square;stroke-width:1.5;"/&gt;
+   &lt;/g&gt;
+   &lt;g id="line2d_22"&gt;
+    &lt;path clip-path="url(#p00cd7268d2)" d="M 70.761506 478.752758 
+L 73.07386 479.755997 
+L 75.386214 478.476002 
+L 77.698569 479.133297 
+L 80.010923 478.904973 
+L 82.323277 479.652214 
+L 84.635632 480.55167 
+L 86.947986 481.119019 
+L 89.26034 480.939128 
+L 91.572694 479.624538 
+L 93.885049 478.642056 
+L 96.197403 476.566388 
+L 98.509757 476.898495 
+L 100.822112 477.853302 
+L 103.134466 479.029513 
+L 105.44682 479.36162 
+L 107.759175 480.122698 
+L 110.071529 479.098702 
+L 112.383883 477.189088 
+L 114.696238 477.590384 
+L 117.008592 478.503678 
+L 119.320946 479.652214 
+L 121.633301 481.880097 
+L 123.945655 482.226041 
+L 126.258009 481.769394 
+L 128.570363 479.389296 
+L 130.882718 478.61438 
+L 135.507426 478.102382 
+L 137.819781 478.11622 
+L 140.132135 478.600542 
+L 142.444489 477.880978 
+L 144.756844 476.123579 
+L 147.069198 477.562708 
+L 149.381552 479.347782 
+L 154.006261 480.92529 
+L 156.318615 480.330265 
+L 158.63097 479.001838 
+L 160.943324 476.469524 
+L 163.255678 476.884657 
+L 165.568032 477.7426 
+L 167.880387 478.877298 
+L 170.192741 479.23708 
+L 174.81745 478.226922 
+L 177.129804 476.05439 
+L 179.442158 476.524875 
+L 181.754513 477.894815 
+L 184.066867 479.901294 
+L 186.379221 480.42713 
+L 188.691576 481.119019 
+L 191.00393 480.371778 
+L 193.316284 478.669731 
+L 195.628639 478.877298 
+L 197.940993 479.472323 
+L 200.253347 479.845943 
+L 202.565701 480.053509 
+L 204.878056 479.790592 
+L 207.19041 478.697407 
+L 209.502764 477.133737 
+L 211.815119 477.714924 
+L 214.127473 478.877298 
+L 216.439827 479.029513 
+L 218.752182 480.150374 
+L 221.064536 479.403134 
+L 223.37689 477.659573 
+L 225.689245 474.795152 
+L 228.001599 475.071908 
+L 230.313953 474.601423 
+L 232.626308 474.269316 
+L 234.938662 473.24532 
+L 237.251016 471.889218 
+L 241.875725 466.617022 
+L 244.188079 467.142858 
+L 246.500433 469.024797 
+L 248.812788 470.325548 
+L 251.125142 468.775716 
+L 253.437496 466.298753 
+L 255.749851 462.604065 
+L 258.062205 457.636301 
+L 260.374559 456.363225 
+L 262.686914 458.729486 
+L 264.999268 463.475846 
+L 267.311622 465.13638 
+L 269.623977 465.925133 
+L 271.936331 463.434332 
+L 274.248685 460.030238 
+L 276.561039 456.83371 
+L 278.873394 458.07911 
+L 281.185748 459.628942 
+L 283.498102 460.583749 
+L 285.810457 460.985045 
+L 288.122811 460.431533 
+L 290.435165 456.667656 
+L 292.74752 457.248843 
+L 295.059874 460.0164 
+L 297.372228 462.479525 
+L 299.684583 460.88818 
+L 301.996937 460.652938 
+L 304.309291 456.944412 
+L 306.621646 452.516322 
+L 308.934 450.758923 
+L 311.246354 454.481287 
+L 313.558708 456.473928 
+L 315.871063 455.297716 
+L 318.183417 452.516322 
+L 320.495771 449.984007 
+L 322.808126 444.019923 
+L 325.12048 442.649982 
+L 327.432834 446.579913 
+L 329.745189 450.067034 
+L 332.057543 448.766282 
+L 334.369897 446.566075 
+L 336.682252 441.944256 
+L 338.994606 434.236611 
+L 341.30696 432.326997 
+L 343.619315 436.021685 
+L 345.931669 436.381467 
+L 348.244023 435.398984 
+L 350.556377 429.877709 
+L 352.868732 428.701497 
+L 355.181086 424.024327 
+L 357.49344 424.619352 
+L 359.805795 425.394267 
+L 362.118149 425.920103 
+L 364.430503 414.199501 
+L 369.055212 368.202711 
+L 371.367566 348.456195 
+L 373.679921 345.757827 
+L 375.992275 351.126887 
+L 378.304629 371.814372 
+L 380.616984 385.361562 
+L 382.929338 396.155032 
+L 385.241692 388.765656 
+L 389.866401 372.755342 
+L 392.178755 376.394678 
+L 394.491109 380.532176 
+L 396.803464 391.021215 
+L 399.115818 395.91979 
+L 401.428172 401.607119 
+L 403.740527 403.516733 
+L 406.052881 407.211421 
+L 408.365235 416.441222 
+L 410.67759 422.792764 
+L 412.989944 425.671023 
+L 415.302298 425.864752 
+L 417.614653 427.456097 
+L 419.927007 425.366592 
+L 422.239361 430.791003 
+L 424.551715 438.85843 
+L 426.86407 445.901861 
+L 429.176424 448.600229 
+L 431.488778 449.098389 
+L 433.801133 449.887143 
+L 436.113487 446.483048 
+L 438.425841 448.240447 
+L 440.738196 453.77556 
+L 443.05055 458.231326 
+L 445.362904 459.421375 
+L 447.675259 462.258121 
+L 449.987613 463.94633 
+L 452.299967 462.659416 
+L 454.612322 463.226766 
+L 456.924676 466.340267 
+L 459.23703 467.50264 
+L 463.861739 465.468486 
+L 466.174093 465.717566 
+L 468.486447 464.873462 
+L 470.798802 465.952809 
+L 473.111156 468.720365 
+L 475.42351 471.072788 
+L 477.735865 473.010078 
+L 480.048219 472.830187 
+L 482.360573 472.857862 
+L 484.672928 470.657655 
+L 486.985282 469.910415 
+L 489.297636 471.183491 
+L 491.609991 472.677971 
+L 493.922345 472.041433 
+L 496.234699 472.844025 
+L 498.547053 473.231482 
+L 500.859408 470.851384 
+L 503.171762 470.782195 
+L 505.484116 473.549751 
+L 507.796471 473.397536 
+L 512.421179 472.276675 
+L 514.733534 471.349544 
+L 517.045888 468.388259 
+L 519.358242 469.093985 
+L 521.670597 471.37722 
+L 523.982951 471.861542 
+L 526.295305 470.408575 
+L 528.60766 470.505439 
+L 530.920014 469.619821 
+L 533.232368 467.308911 
+L 535.544722 467.917774 
+L 537.857077 470.989762 
+L 540.169431 470.796033 
+L 542.481785 469.177012 
+L 544.79414 468.457447 
+L 547.106494 466.796913 
+L 549.418848 463.434332 
+L 551.731203 463.766439 
+L 554.043557 466.340267 
+L 556.355911 466.7554 
+L 560.98062 465.606864 
+L 563.292974 463.849466 
+L 565.605329 460.915856 
+L 567.917683 461.040396 
+L 570.230037 463.32363 
+L 572.542391 464.375301 
+L 574.854746 462.783956 
+L 577.1671 461.414016 
+L 579.479454 458.89554 
+L 581.791809 454.453611 
+L 584.104163 454.14918 
+L 586.416517 457.594788 
+L 588.728872 458.07911 
+L 591.041226 457.33187 
+L 593.35358 455.131663 
+L 595.665935 451.727568 
+L 597.978289 445.459052 
+L 600.290643 445.002406 
+L 602.602998 447.576233 
+L 604.915352 447.825313 
+L 607.227706 445.389863 
+L 609.54006 443.97841 
+L 611.852415 440.989449 
+L 614.164769 434.471853 
+L 616.477123 435.523524 
+L 618.789478 441.307718 
+L 621.101832 441.764364 
+L 623.414186 439.467292 
+L 625.726541 437.377787 
+L 628.038895 436.506007 
+L 630.351249 427.857393 
+L 632.663604 427.151666 
+L 634.975958 430.154465 
+L 637.288312 435.938658 
+L 639.600667 437.004167 
+L 641.913021 443.355709 
+L 644.225375 442.968252 
+L 648.850084 431.399865 
+L 651.162438 432.064079 
+L 653.474792 427.442259 
+L 655.787147 426.584317 
+L 658.099501 428.120311 
+L 660.411855 430.583436 
+L 662.72421 427.829717 
+L 665.036564 433.129588 
+L 667.348918 440.740368 
+L 669.661273 444.587272 
+L 671.973627 445.804997 
+L 674.285981 444.822514 
+L 676.598336 443.341872 
+L 678.91069 440.809557 
+L 681.223044 443.535601 
+L 683.535398 449.430496 
+L 685.847753 453.595669 
+L 688.160107 452.294917 
+L 692.784816 450.067034 
+L 695.09717 447.313315 
+L 697.409524 448.614067 
+L 699.721879 455.297716 
+L 702.034233 458.245164 
+L 704.346587 460.002562 
+L 706.658942 460.431533 
+L 708.971296 460.099427 
+L 711.28365 457.663977 
+L 713.596005 459.324511 
+L 715.908359 462.811632 
+L 718.220713 464.735084 
+L 720.533067 465.177893 
+L 722.845422 465.13638 
+L 725.157776 463.974006 
+L 727.47013 460.76364 
+L 729.782485 461.663096 
+L 732.094839 464.859624 
+L 734.407193 466.271078 
+L 736.719548 465.357784 
+L 739.031902 465.565351 
+L 741.344256 463.503521 
+L 743.656611 461.026558 
+L 745.968965 460.486885 
+L 748.281319 464.153897 
+L 750.593674 464.389139 
+L 752.906028 462.092067 
+L 757.530736 456.999763 
+L 759.843091 452.876104 
+L 762.155445 453.554155 
+L 764.467799 457.733166 
+L 766.780154 459.033917 
+L 769.092508 456.930574 
+L 771.404862 455.007123 
+L 773.717217 451.21557 
+L 776.029571 445.694295 
+L 778.341925 445.113108 
+L 780.65428 450.260763 
+L 782.966634 451.367786 
+L 785.278988 447.769962 
+L 787.591343 445.279161 
+L 789.903697 441.072475 
+L 792.216051 432.659103 
+L 794.528405 432.36851 
+L 796.84076 438.152703 
+L 799.153114 439.065997 
+L 801.465468 434.541042 
+L 803.777823 429.587116 
+L 806.090177 420.495692 
+L 808.402531 407.930985 
+L 810.714886 405.46786 
+L 813.02724 411.307404 
+L 815.339594 410.21422 
+L 819.964303 394.577525 
+L 822.276657 389.720463 
+L 824.589012 384.171512 
+L 826.901366 378.968506 
+L 829.21372 384.545133 
+L 831.526074 372.520099 
+L 833.838429 347.36301 
+L 836.150783 309.488999 
+L 838.463137 288.220326 
+L 840.775492 251.840795 
+L 843.087846 248.934861 
+L 845.4002 262.523564 
+L 847.712555 264.682258 
+L 850.024909 252.698738 
+L 852.337263 239.08236 
+L 854.649618 218.92071 
+L 856.961972 186.111327 
+L 859.274326 181.171239 
+L 861.586681 198.911276 
+L 863.899035 232.537088 
+L 866.211389 236.89599 
+L 868.523743 231.042608 
+L 870.836098 207.421513 
+L 873.148452 176.840013 
+L 875.460806 153.551024 
+L 877.773161 170.682199 
+L 880.085515 179.150922 
+L 882.397869 184.506144 
+L 882.397869 184.506144 
+" style="fill:none;stroke:#808080;stroke-linecap:square;stroke-width:1.5;"/&gt;
    &lt;/g&gt;
    &lt;g id="patch_7"&gt;
     &lt;path d="M 30.179688 506.2 
@@ -11367,7 +11711,7 @@ z
   &lt;/g&gt;
  &lt;/g&gt;
  &lt;defs&gt;
-  &lt;clipPath id="p2905eb5eac"&gt;
+  &lt;clipPath id="p00cd7268d2"&gt;
    &lt;rect height="434.88" width="892.8" x="30.179688" y="71.32"/&gt;
   &lt;/clipPath&gt;
  &lt;/defs&gt;
@@ -11430,7 +11774,7 @@ z
 割合で見てもやっぱり人が多い区の方が割り合いが高い雰囲気だけどそもそも計算があってるのかな  &lt;/p&gt;
 &lt;h3&gt;迷ったところ&lt;/h3&gt;
 &lt;p&gt;pandasのpivot_tableとdf.applyの使い方&lt;br&gt;
-前回と同じく「絶対できるはずだけどこの世界の言葉でどう呼ばれているのかわからない」で手間取った  &lt;/p&gt;
+前回と同じく「できるはずだけどこの世界の言葉でどう呼ばれているのかがわからない」で手間取った  &lt;/p&gt;
 &lt;h3&gt;リンク&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;東京都福祉保健局のオープンデータ&lt;a href="https://catalog.data.metro.tokyo.lg.jp/dataset/t000010d0000000085" rel="nofollow"&gt;陽性者数（区市町村別）&lt;/a&gt;&lt;/li&gt;
@@ -25648,7 +25992,7 @@ z
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;19日単位のウインドウで実行再生算数を計算している&lt;br&gt;
-「絶対できるはずだけどこの世界の言葉でどう呼ばれているのか」で手間取った  &lt;/p&gt;
+「できるはずだけどこの世界の言葉でどう呼ばれているのかがわからない」で手間取った  &lt;/p&gt;
 &lt;h3&gt;リンク&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;簡易的な実行再生算数の計算方法&lt;a href="https://www.niid.go.jp/niid/ja/diseases/ka/corona-virus/2019-ncov/2502-idsc/iasr-in/10465-496d04.html" rel="nofollow"&gt;COVID-19感染報告者数に基づく簡易実効再生産数推定方法&lt;/a&gt;  &lt;/li&gt;
