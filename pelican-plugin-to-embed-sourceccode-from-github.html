@@ -6,15 +6,15 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>    plugin to embed sourcecode from github
+        <title>    pelican plugin to embed sourcecode from github
 </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
             <meta property="og:site_name" content="nkm3" />
                 <meta property="og:type" content="article" />
-                <meta property="og:title" content="plugin to embed sourcecode from github" />
-                <meta property="og:url" content="https://nkm3.org/drafts/plugin-to-embed-sourceccode-from-github.html" />
-                <meta property="og:description" content="githubのソースコードを埋め込めるようにした" />
+                <meta property="og:title" content="pelican plugin to embed sourcecode from github" />
+                <meta property="og:url" content="https://nkm3.org/pelican-plugin-to-embed-sourceccode-from-github.html" />
+                <meta property="og:description" content="pelicanのページにgithubのソースコードを埋め込めるようにしてみた" />
                     <meta property="article:tag" content="note" />
                     <meta property="article:tag" content="software" />
             <link rel="stylesheet" href="https://nkm3.org/theme/css/normalize.css">
@@ -58,22 +58,39 @@
             <li>
                 <article class="post-entry">
                     <header class="entry-header">
-                        <time class="post-time" datetime="2021-09-20T00:00:00+09:00" pubdate>
-                            2021-09-20
+                        <time class="post-time" datetime="2021-09-21T00:00:00+09:00" pubdate>
+                            2021-09-21
                         </time>
-                        <a href="https://nkm3.org/drafts/plugin-to-embed-sourceccode-from-github.html" rel="bookmark"><h1>plugin to embed sourcecode from github</h1></a>
+                        <a href="https://nkm3.org/pelican-plugin-to-embed-sourceccode-from-github.html" rel="bookmark"><h1>pelican plugin to embed sourcecode from github</h1></a>
                     </header>
 
                     <section class="post-content">
-                        <p>gistみたいにgithubのソースコードをpelicanのページに埋め込めるようにしてみた  </p>
+                        <h2>pelicanのページにgithubのソースコードを埋め込めるようにしてみた</h2>
 <p>ソースコードの埋め込み表示にはEmbed Like Gistを使って、jsへ値を渡すためのMarkdownエクステンションをmdx_embedlyを元にして書いた感じ  </p>
-<p>さっそく埋め込んでみる<br>
-埋め込みたいところで[https://github.com/{user}/{repo}/blob/main/{path-to-file}:embed-github]と書くと以下のようにソースコードが埋め込まれる</p>
+<h3>さっそく埋め込んでみる</h3>
+<p>埋め込みたいところで[https://github.com/{user}/{repo}/blob/main/{path-to-file}:embed-github]と書くと以下のようにソースコードが埋め込まれる<br>
+実際のエクステンションのソースも動作もこれだけ、というかそれだけ、という感じ</p>
 <p><script src="/javascripts/embed.js?target=https%3A%2F%2Fgithub.com%2Fsonkm3%2Fsonkm3.github.io%2Fblob%2Fmain%2Fplugins%2Fembed_github.py&style=github&showBorder=on&showLineNumbers=on&showFileMeta=on"></script></p>
-<p>行番号で範囲指定もできる<br>
-例えばこんな感じに書くと [\https://github.com/sonkm3/sonkm3.github.io/blob/main/plugins/embed_github.py#L8-L11:embed-github] 下のように表示される(<code>\</code>は消してねおねがい)</p>
+<h3>行番号で範囲指定もできる</h3>
+<p>例えばこんな感じに書くと [\https://github.com/sonkm3/sonkm3.github.io/blob/main/plugins/embed_github.py#L8-L11:embed-github] 下のように表示される(<code>\</code>は消してねおねがい)</p>
 <p><script src="/javascripts/embed.js?target=https%3A%2F%2Fgithub.com%2Fsonkm3%2Fsonkm3.github.io%2Fblob%2Fmain%2Fplugins%2Fembed_github.py%23L8-L11&style=github&showBorder=on&showLineNumbers=on&showFileMeta=on"></script></p>
-<p>Markdownのエクステンションを書く時はPelicannからではなくmarkdownモジュールを直接使うと動作の確認がしやすかった<br>
+<h3>おまけ:MarkdownモジュールはEmbedGithubExtensionを自動で使えるようにしてくれない</h3>
+<p><code>pelican.conf</code>の<code>MARKDOWN</code>に<code>'plugins.embed_github:EmbedGithubExtension': {},</code>のように追加すると使えるようになる<br>
+例えばこんな感じ<br>
+以前の<code>Pelican</code>と書き方が変わったのかな？使っているのは<code>Pelican 4.6</code>です  </p>
+<div class="highlight"><pre><span></span><code>MARKDOWN = {
+    &#39;extension_configs&#39;: {
+        &#39;markdown.extensions.codehilite&#39;: {&#39;css_class&#39;: &#39;highlight&#39;},
+        &#39;markdown.extensions.extra&#39;: {},
+        &#39;markdown.extensions.meta&#39;: {},
+        &#39;plugins.embed_github:EmbedGithubExtension&#39;: {},
+    },
+    &#39;output_format&#39;: &#39;html5&#39;,
+}
+</code></pre></div>
+
+<h3>おまけ:Markdownエクステンションの動作確認</h3>
+<p>Markdownのエクステンションを書く時はPelicanからではなくmarkdownモジュールを直接使うと動作の確認がしやすかった<br>
 以下が確認で使ったReplのログ<br>
 ここのURLの箇所も展開されてしまうのでembed-githubのところはembed-github-dummyに置き換えている  </p>
 <div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">python</span>
@@ -88,7 +105,7 @@
 <span class="o">&gt;&gt;&gt;</span> <span class="o">^</span><span class="n">D</span>
 </code></pre></div>
 
-<p>リンク</p>
+<h3>リンク</h3>
 <ul>
 <li>Embed Like Gist <a href="https://emgithub.com">https://emgithub.com</a></li>
 <li>Embedly Extension for Python-Markdown(mdx_embedly) <a href="https://github.com/yymm/mdx_embedly">https://github.com/yymm/mdx_embedly</a></li>
