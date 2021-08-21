@@ -1,6 +1,6 @@
 Title: pelican plugin to embed sourcecode from github
-Date: 2021-09-20 00:00
-Modified: 2021-09-20 00:00
+Date: 2021-09-21 00:00
+Modified: 2021-09-21 00:00
 Category: note
 Tags: note, software
 Slug: pelican-plugin-to-embed-sourceccode-from-github
