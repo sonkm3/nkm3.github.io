@@ -1,13 +1,13 @@
-Title: setup scikit-learn and tensorflow-macos with macports on M1 mac
+Title: setup scikit-learn and tensorflow-macos with macports
 Date: 2021-09-21 00:00
 Modified: 2021-09-21 00:00
 Category: note
 Tags: note, software
-Slug: setup_scikit-learn_and_tensorflow-macos_with_macports_on_M1_mac
+Slug: setup_scikit-learn_and_tensorflow-macos_with_macports
 Authors: sonkmr
-Summary: M1 macでmacports上のPython virtualenvにpip installしづらいscikit-learnやtensorflow-macosをインストールする流れ
+Summary: macports上のPython virtualenvにpip installしづらいscikit-learnやtensorflow-macosをインストールする流れ
 
-## M1 macでmacports上のPython virtualenvにpip installしづらいscikit-learnやtensorflow-macosをインストールする流れ
+## macports上のPython virtualenvにpip installしづらいscikit-learnやtensorflow-macosをインストールする流れ
 
 ### scikit-learn
 依存するライブラリとfortranをインストールする必要がある  
