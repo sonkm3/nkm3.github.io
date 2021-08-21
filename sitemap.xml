@@ -5,79 +5,79 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://nkm3.org/</loc>
-<lastmod>2021-08-21T12:37:52-00:00</lastmod>
+<lastmod>2021-08-21T13:02:40-00:00</lastmod>
 <changefreq>daily</changefreq>
-<priority>0.1</priority>
+<priority>0.3</priority>
 </url>
 
 <url>
 <loc>https://nkm3.org/pages/about.html</loc>
 <lastmod>2021-05-22T00:00:00+09:00</lastmod>
 <changefreq>daily</changefreq>
-<priority>0.2</priority>
+<priority>0.3</priority>
 </url>
 
 <url>
 <loc>https://nkm3.org/pelican-plugin-to-embed-sourceccode-from-github.html</loc>
 <lastmod>2021-09-21T00:00:00+09:00</lastmod>
 <changefreq>daily</changefreq>
-<priority>0.7</priority>
+<priority>0.6</priority>
 </url>
 
 <url>
 <loc>https://nkm3.org/setup_scikit-learn_and_tensorflow-macos_with_macports_on_M1_mac.html</loc>
 <lastmod>2021-09-21T00:00:00+09:00</lastmod>
 <changefreq>daily</changefreq>
-<priority>0.7</priority>
+<priority>0.6</priority>
 </url>
 
 <url>
 <loc>https://nkm3.org/visualize-per-generation-positive-share.html</loc>
 <lastmod>2021-08-17T00:00:00+09:00</lastmod>
 <changefreq>daily</changefreq>
-<priority>0.7</priority>
+<priority>0.6</priority>
 </url>
 
 <url>
 <loc>https://nkm3.org/calculate-positive-count-and-rate-by-ward.html</loc>
 <lastmod>2021-08-15T01:00:00+09:00</lastmod>
 <changefreq>daily</changefreq>
-<priority>0.7</priority>
+<priority>0.6</priority>
 </url>
 
 <url>
 <loc>https://nkm3.org/calculate-effective-reproduction-number.html</loc>
 <lastmod>2021-08-15T00:00:00+09:00</lastmod>
 <changefreq>daily</changefreq>
-<priority>0.7</priority>
+<priority>0.6</priority>
 </url>
 
 <url>
 <loc>https://nkm3.org/flashcard-with-django-nuxtjs-vuetify-pt3.html</loc>
 <lastmod>2021-08-12T00:00:00+09:00</lastmod>
 <changefreq>daily</changefreq>
-<priority>0.7</priority>
+<priority>0.6</priority>
 </url>
 
 <url>
 <loc>https://nkm3.org/flashcard-with-django-nuxtjs-vuetify-pt2.html</loc>
 <lastmod>2021-08-11T00:00:00+09:00</lastmod>
 <changefreq>daily</changefreq>
-<priority>0.7</priority>
+<priority>0.6</priority>
 </url>
 
 <url>
 <loc>https://nkm3.org/flashcard-with-django-nuxtjs-vuetify-pt1.html</loc>
 <lastmod>2021-08-10T00:00:00+09:00</lastmod>
 <changefreq>daily</changefreq>
-<priority>0.7</priority>
+<priority>0.6</priority>
 </url>
 
 <url>
 <loc>https://nkm3.org/author/sonkmr.html</loc>
 <lastmod>2021-09-21T00:00:00+09:19</lastmod>
 <changefreq>daily</changefreq>
-<priority>0.1</priority>
+<priority>0.3</priority>
 </url>
 
 </urlset>
