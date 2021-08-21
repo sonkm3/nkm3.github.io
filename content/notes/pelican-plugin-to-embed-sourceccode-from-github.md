@@ -1,13 +1,13 @@
-Title: plugin to embed sourcecode from github
+Title: pelican plugin to embed sourcecode from github
 Date: 2021-09-20 00:00
 Modified: 2021-09-20 00:00
 Category: note
 Tags: note, software
-Slug: plugin-to-embed-sourceccode-from-github
+Slug: pelican-plugin-to-embed-sourceccode-from-github
 Authors: sonkmr
-Summary: githubのソースコードを埋め込めるようにした
+Summary: pelicanのページにgithubのソースコードを埋め込めるようにしてみた
 
-## gistみたいにgithubのソースコードをpelicanのページに埋め込めるようにしてみた  
+## pelicanのページにgithubのソースコードを埋め込めるようにしてみた  
 
 ソースコードの埋め込み表示にはEmbed Like Gistを使って、jsへ値を渡すためのMarkdownエクステンションをmdx_embedlyを元にして書いた感じ  
 
