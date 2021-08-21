@@ -43,7 +43,82 @@
 &lt;ul&gt;
 &lt;li&gt;Embed Like Gist &lt;a href="https://emgithub.com"&gt;https://emgithub.com&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Embedly Extension for Python-Markdown(mdx_embedly) &lt;a href="https://github.com/yymm/mdx_embedly"&gt;https://github.com/yymm/mdx_embedly&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><category term="note"></category><category term="note"></category><category term="software"></category></entry><entry><title>visualize per generation positive share</title><link href="https://nkm3.org/visualize-per-generation-positive-share.html" rel="alternate"></link><published>2021-08-17T00:00:00+09:00</published><updated>2021-08-17T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-08-17:/visualize-per-generation-positive-share.html</id><summary type="html">&lt;p&gt;陽性者の年代別シェアを可視化してみた&lt;/p&gt;</summary><content type="html">&lt;h2&gt;陽性者の年代別シェアを可視化してみた&lt;/h2&gt;
+&lt;/ul&gt;</content><category term="note"></category><category term="note"></category><category term="software"></category></entry><entry><title>setup scikit-learn and tensorflow-macos with macports on M1 mac</title><link href="https://nkm3.org/setup_scikit-learn_and_tensorflow-macos_with_macports_on_M1_mac.html" rel="alternate"></link><published>2021-09-21T00:00:00+09:00</published><updated>2021-09-21T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-09-21:/setup_scikit-learn_and_tensorflow-macos_with_macports_on_M1_mac.html</id><summary type="html">&lt;p&gt;M1 macでmacports上のPython virtualenvにpip installしづらいscikit-learnやtensorflow-macosをインストールする流れ&lt;/p&gt;</summary><content type="html">&lt;h2&gt;M1 macでmacports上のPython virtualenvにpip installしづらいscikit-learnやtensorflow-macosをインストールする流れ&lt;/h2&gt;
+&lt;h3&gt;scikit-learn&lt;/h3&gt;
+&lt;p&gt;依存するライブラリとfortranをインストールする必要がある  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;port install OpenBLAS boost171 gcc11 +gfortran
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;fortranコンパイラ&lt;code&gt;port search fortran&lt;/code&gt;で出てくるg95かなー？と思ったけどインストールできないしメンテもされていなくて詰んだかと思ったけど&lt;code&gt;port install gcc11 +gfortran&lt;/code&gt;でいける&lt;br&gt;
+あとはpipでインストールする  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip install scikit-learn
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;tensorflow-macos&lt;/h3&gt;
+&lt;p&gt;依存するライブラリ、ソフトウェアは以下のもの&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ports install pkgconfig clang-9.0 hdf5
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;pipでPythonモジュールをインストールする際にいくつか環境変数を設定する必要がある&lt;/p&gt;
+&lt;p&gt;grpcioのインストール&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;export&lt;/span&gt; &lt;span class="n"&gt;GRPC_PYTHON_BUILD_SYSTEM_OPENSSL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="k"&gt;export&lt;/span&gt; &lt;span class="n"&gt;GRPC_PYTHON_BUILD_SYSTEM_ZLIB&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="k"&gt;export&lt;/span&gt; &lt;span class="n"&gt;LDFLAGS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;-L/opt/local/lib&amp;quot;&lt;/span&gt;   
+&lt;span class="k"&gt;export&lt;/span&gt; &lt;span class="n"&gt;CPPFLAGS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;-I/opt/local/include&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;grpcio&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;h5pyのインストール&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;export&lt;/span&gt; &lt;span class="n"&gt;HDF5_DIR&lt;/span&gt;&lt;span class="o"&gt;=/&lt;/span&gt;&lt;span class="n"&gt;opt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;
+&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;h5py&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;これで&lt;code&gt;tensorflow-macos&lt;/code&gt;のインストールができるようになる&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip install tensorflow-macos
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;実際に使ってみると&lt;code&gt;ValueError: numpy.ndarray size changed, may indicate binary incompatibility. Expected 88 from C header, got 80 from PyObject&lt;/code&gt;みたいなエラーが出しまうので&lt;code&gt;numpy&lt;/code&gt;のバージョンを上げる必要がある  &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;tensorflow-macos&lt;/code&gt;の依存は以下の方法で無視して新しいバージョンの&lt;code&gt;numpy&lt;/code&gt;をインストールできる&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip install --no-deps numpy
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;そして&lt;code&gt;tensorflow-metal&lt;/code&gt;をインストールする&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip install tensorflow-metal
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;これで&lt;code&gt;tensorflow-macos&lt;/code&gt;が使えるようになる&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt;
+&lt;span class="n"&gt;Python&lt;/span&gt; &lt;span class="mf"&gt;3.8.11&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Jul&lt;/span&gt;  &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="mi"&gt;2021&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;01&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Clang&lt;/span&gt; &lt;span class="mf"&gt;12.0.5&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;clang&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1205.0.22.9&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="n"&gt;darwin&lt;/span&gt;
+&lt;span class="n"&gt;Type&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;help&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;copyright&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;credits&amp;quot;&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;license&amp;quot;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;more&lt;/span&gt; &lt;span class="n"&gt;information&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;tensorflow.python.client&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;device_lib&lt;/span&gt;
+&lt;span class="n"&gt;Init&lt;/span&gt; &lt;span class="n"&gt;Plugin&lt;/span&gt;
+&lt;span class="n"&gt;Init&lt;/span&gt; &lt;span class="n"&gt;Graph&lt;/span&gt; &lt;span class="n"&gt;Optimizer&lt;/span&gt;
+&lt;span class="n"&gt;Init&lt;/span&gt; &lt;span class="n"&gt;Kernel&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;device_lib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;list_local_devices&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;Metal&lt;/span&gt; &lt;span class="n"&gt;device&lt;/span&gt; &lt;span class="nb"&gt;set&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Apple&lt;/span&gt; &lt;span class="n"&gt;M1&lt;/span&gt;
+
+&lt;span class="n"&gt;systemMemory&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;16.00&lt;/span&gt; &lt;span class="n"&gt;GB&lt;/span&gt;
+&lt;span class="n"&gt;maxCacheSize&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;5.33&lt;/span&gt; &lt;span class="n"&gt;GB&lt;/span&gt;
+
+&lt;span class="mi"&gt;2021&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mf"&gt;12.586804&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;tensorflow&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;core&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;common_runtime&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pluggable_device&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pluggable_device_factory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;305&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;Could&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;identify&lt;/span&gt; &lt;span class="n"&gt;NUMA&lt;/span&gt; &lt;span class="n"&gt;node&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;platform&lt;/span&gt; &lt;span class="n"&gt;GPU&lt;/span&gt; &lt;span class="n"&gt;ID&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;defaulting&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="mf"&gt;0.&lt;/span&gt; &lt;span class="n"&gt;Your&lt;/span&gt; &lt;span class="n"&gt;kernel&lt;/span&gt; &lt;span class="n"&gt;may&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;have&lt;/span&gt; &lt;span class="n"&gt;been&lt;/span&gt; &lt;span class="n"&gt;built&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;NUMA&lt;/span&gt; &lt;span class="n"&gt;support&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="mi"&gt;2021&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mf"&gt;12.587071&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;tensorflow&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;core&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;common_runtime&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pluggable_device&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pluggable_device_factory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;271&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;Created&lt;/span&gt; &lt;span class="n"&gt;TensorFlow&lt;/span&gt; &lt;span class="n"&gt;device&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;device&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;GPU&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;MB&lt;/span&gt; &lt;span class="n"&gt;memory&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;physical&lt;/span&gt; &lt;span class="n"&gt;PluggableDevice&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;device&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;METAL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pci&lt;/span&gt; &lt;span class="n"&gt;bus&lt;/span&gt; &lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;undefined&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/device:CPU:0&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;device_type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;CPU&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;memory_limit&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;268435456&lt;/span&gt;
+&lt;span class="n"&gt;locality&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;incarnation&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;6684442442338290487&lt;/span&gt;
+&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/device:GPU:0&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;device_type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;GPU&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;locality&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;bus_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;incarnation&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;14382550646620981992&lt;/span&gt;
+&lt;span class="n"&gt;physical_device_desc&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;device: 0, name: METAL, pci bus id: &amp;lt;undefined&amp;gt;&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="note"></category><category term="note"></category><category term="software"></category></entry><entry><title>visualize per generation positive share</title><link href="https://nkm3.org/visualize-per-generation-positive-share.html" rel="alternate"></link><published>2021-08-17T00:00:00+09:00</published><updated>2021-08-17T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-08-17:/visualize-per-generation-positive-share.html</id><summary type="html">&lt;p&gt;陽性者の年代別シェアを可視化してみた&lt;/p&gt;</summary><content type="html">&lt;h2&gt;陽性者の年代別シェアを可視化してみた&lt;/h2&gt;
 &lt;p&gt;今回はやろうと思っていたけどやり方がわからず詰まっていたプログラムです&lt;/p&gt;
 &lt;p&gt;年代ごとの陽性者数のデータはあるけど日毎の偏りはわかりにくいので計算して画像かしてみたのがこちら&lt;br&gt;
 「若者の感染が増えてます」みたいな煽りを見た気がするけど2月から4月が比較的少なく、シェアで見ると全体的に20代、30代が占めている割合は多いように見える&lt;br&gt;
