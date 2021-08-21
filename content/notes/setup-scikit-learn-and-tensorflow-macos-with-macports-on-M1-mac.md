@@ -4,7 +4,6 @@ Modified: 2021-09-21 00:00
 Category: note
 Tags: note, software
 Slug: setup_scikit-learn_and_tensorflow-macos_with_macports_on_M1_mac
-Status: draft
 Authors: sonkmr
 Summary: M1 macでmacports上のPython virtualenvにpip installしづらいscikit-learnやtensorflow-macosをインストールする流れ
 
