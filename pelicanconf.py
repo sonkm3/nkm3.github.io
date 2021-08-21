@@ -83,9 +83,9 @@ SITEMAP = {
     "exclude": ["tag/", "category/"],
     "format": "xml",
     "priorities": {
-        "articles": 0.7,
-        "indexes": 0.1,
-        "pages": 0.2
+        "articles": 0.6,
+        "indexes": 0.3,
+        "pages": 0.3
     },
     "changefreqs": {
         "articles": "daily",
