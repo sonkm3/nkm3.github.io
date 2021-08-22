@@ -54,9 +54,10 @@ pip install h5py
 pip install tensorflow-macos
 ```
 
-実際に使ってみると`ValueError: numpy.ndarray size changed, may indicate binary incompatibility. Expected 88 from C header, got 80 from PyObject`みたいなエラーが出しまうので`numpy`のバージョンを上げる必要がある  
+実際に使ってみると`ValueError: numpy.ndarray size changed, may indicate binary incompatibility. Expected 88 from C header, got 80 from PyObject`みたいなエラーが出てしまう  
+これは`numpy`のバージョンを上げたら解消できる  
 
-`tensorflow-macos`の依存は以下の方法で無視して新しいバージョンの`numpy`をインストールできる
+`tensorflow-macos`が依存するバージョンの指定は以下の方法で無視して新しいバージョンの`numpy`をインストールできる
 ```
 pip install --no-deps numpy
 ```
