@@ -33,8 +33,9 @@
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip install tensorflow-macos
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;実際に使ってみると&lt;code&gt;ValueError: numpy.ndarray size changed, may indicate binary incompatibility. Expected 88 from C header, got 80 from PyObject&lt;/code&gt;みたいなエラーが出しまうので&lt;code&gt;numpy&lt;/code&gt;のバージョンを上げる必要がある  &lt;/p&gt;
-&lt;p&gt;&lt;code&gt;tensorflow-macos&lt;/code&gt;の依存は以下の方法で無視して新しいバージョンの&lt;code&gt;numpy&lt;/code&gt;をインストールできる&lt;/p&gt;
+&lt;p&gt;実際に使ってみると&lt;code&gt;ValueError: numpy.ndarray size changed, may indicate binary incompatibility. Expected 88 from C header, got 80 from PyObject&lt;/code&gt;みたいなエラーが出てしまう&lt;br&gt;
+これは&lt;code&gt;numpy&lt;/code&gt;のバージョンを上げたら解消できる  &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;tensorflow-macos&lt;/code&gt;が依存するバージョンの指定は以下の方法で無視して新しいバージョンの&lt;code&gt;numpy&lt;/code&gt;をインストールできる&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip install --no-deps numpy
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
