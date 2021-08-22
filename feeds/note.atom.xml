@@ -1,49 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>nkm3 - note</title><link href="https://nkm3.org/" rel="alternate"></link><link href="https://nkm3.org/feeds/note.atom.xml" rel="self"></link><id>https://nkm3.org/</id><updated>2021-09-21T00:00:00+09:00</updated><entry><title>pelican plugin to embed sourcecode from github</title><link href="https://nkm3.org/pelican-plugin-to-embed-sourceccode-from-github.html" rel="alternate"></link><published>2021-09-21T00:00:00+09:00</published><updated>2021-09-21T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-09-21:/pelican-plugin-to-embed-sourceccode-from-github.html</id><summary type="html">&lt;p&gt;pelicanのページにgithubのソースコードを埋め込めるようにしてみた&lt;/p&gt;</summary><content type="html">&lt;h2&gt;pelicanのページにgithubのソースコードを埋め込めるようにしてみた&lt;/h2&gt;
-&lt;p&gt;ソースコードの埋め込み表示にはEmbed Like Gistを使って、jsへ値を渡すためのMarkdownエクステンションをmdx_embedlyを元にして書いた感じ  &lt;/p&gt;
-&lt;h3&gt;さっそく埋め込んでみる&lt;/h3&gt;
-&lt;p&gt;埋め込みたいところで[https://github.com/{user}/{repo}/blob/main/{path-to-file}:embed-github]と書くと以下のようにソースコードが埋め込まれる&lt;br&gt;
-実際のエクステンションのソースも動作もこれだけ、というかそれだけ、という感じ&lt;/p&gt;
-&lt;p&gt;&lt;script src="/javascripts/embed.js?target=https%3A%2F%2Fgithub.com%2Fsonkm3%2Fsonkm3.github.io%2Fblob%2Fmain%2Fplugins%2Fembed_github.py&amp;style=github&amp;showBorder=on&amp;showLineNumbers=on&amp;showFileMeta=on"&gt;&lt;/script&gt;&lt;/p&gt;
-&lt;h3&gt;行番号で範囲指定もできる&lt;/h3&gt;
-&lt;p&gt;例えばこんな感じに書くと [\https://github.com/sonkm3/sonkm3.github.io/blob/main/plugins/embed_github.py#L8-L11:embed-github] 下のように表示される(&lt;code&gt;\&lt;/code&gt;は消してねおねがい)&lt;/p&gt;
-&lt;p&gt;&lt;script src="/javascripts/embed.js?target=https%3A%2F%2Fgithub.com%2Fsonkm3%2Fsonkm3.github.io%2Fblob%2Fmain%2Fplugins%2Fembed_github.py%23L8-L11&amp;style=github&amp;showBorder=on&amp;showLineNumbers=on&amp;showFileMeta=on"&gt;&lt;/script&gt;&lt;/p&gt;
-&lt;h3&gt;おまけ:MarkdownモジュールはEmbedGithubExtensionを自動で使えるようにしてくれない&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;pelican.conf&lt;/code&gt;の&lt;code&gt;MARKDOWN&lt;/code&gt;に&lt;code&gt;'plugins.embed_github:EmbedGithubExtension': {},&lt;/code&gt;のように追加すると使えるようになる&lt;br&gt;
-例えばこんな感じ&lt;br&gt;
-以前の&lt;code&gt;Pelican&lt;/code&gt;と書き方が変わったのかな？使っているのは&lt;code&gt;Pelican 4.6&lt;/code&gt;です  &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;MARKDOWN = {
-    &amp;#39;extension_configs&amp;#39;: {
-        &amp;#39;markdown.extensions.codehilite&amp;#39;: {&amp;#39;css_class&amp;#39;: &amp;#39;highlight&amp;#39;},
-        &amp;#39;markdown.extensions.extra&amp;#39;: {},
-        &amp;#39;markdown.extensions.meta&amp;#39;: {},
-        &amp;#39;plugins.embed_github:EmbedGithubExtension&amp;#39;: {},
-    },
-    &amp;#39;output_format&amp;#39;: &amp;#39;html5&amp;#39;,
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3&gt;おまけ:Markdownエクステンションの動作確認&lt;/h3&gt;
-&lt;p&gt;Markdownのエクステンションを書く時はPelicanからではなくmarkdownモジュールを直接使うと動作の確認がしやすかった&lt;br&gt;
-以下が確認で使ったReplのログ&lt;br&gt;
-ここのURLの箇所も展開されてしまうのでembed-githubのところはembed-github-dummyに置き換えている  &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt;
-&lt;span class="n"&gt;Python&lt;/span&gt; &lt;span class="mf"&gt;3.8.11&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Jul&lt;/span&gt;  &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="mi"&gt;2021&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;01&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
-&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Clang&lt;/span&gt; &lt;span class="mf"&gt;12.0.5&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;clang&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1205.0.22.9&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="n"&gt;darwin&lt;/span&gt;
-&lt;span class="n"&gt;Type&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;help&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;copyright&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;credits&amp;quot;&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;license&amp;quot;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;more&lt;/span&gt; &lt;span class="n"&gt;information&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;markdown&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;[https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/serializers.py#L6-L16:embed-github-dummy]&amp;#39;&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;html&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;markdown&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;markdown&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;extensions&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;plugins.embed_github&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;html&lt;/span&gt;
-&lt;span class="s1"&gt;&amp;#39;&amp;lt;p&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;lt;script src=&amp;quot;https://emgithub.com/embed.js?target=%5Bhttps%3A//github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/serializers.py%23L6-L16%3Aembed-github%5D&amp;amp;style=github&amp;amp;showBorder=on&amp;amp;showLineNumbers=on&amp;amp;showFileMeta=on&amp;amp;showCopy=on&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;lt;/p&amp;gt;&amp;#39;&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3&gt;リンク&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Embed Like Gist &lt;a href="https://emgithub.com"&gt;https://emgithub.com&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Embedly Extension for Python-Markdown(mdx_embedly) &lt;a href="https://github.com/yymm/mdx_embedly"&gt;https://github.com/yymm/mdx_embedly&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><category term="note"></category><category term="note"></category><category term="software"></category></entry><entry><title>setup scikit-learn and tensorflow-macos with macports</title><link href="https://nkm3.org/setup_scikit-learn_and_tensorflow-macos_with_macports.html" rel="alternate"></link><published>2021-09-21T00:00:00+09:00</published><updated>2021-09-21T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-09-21:/setup_scikit-learn_and_tensorflow-macos_with_macports.html</id><summary type="html">&lt;p&gt;macports上のPython virtualenvにpip installしづらいscikit-learnやtensorflow-macosをインストールする流れ&lt;/p&gt;</summary><content type="html">&lt;h2&gt;macports上のPython virtualenvにpip installしづらいscikit-learnやtensorflow-macosをインストールする流れ&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>nkm3 - note</title><link href="https://nkm3.org/" rel="alternate"></link><link href="https://nkm3.org/feeds/note.atom.xml" rel="self"></link><id>https://nkm3.org/</id><updated>2021-09-22T00:00:00+09:00</updated><entry><title>setup scikit-learn and tensorflow-macos with macports</title><link href="https://nkm3.org/setup_scikit-learn_and_tensorflow-macos_with_macports.html" rel="alternate"></link><published>2021-09-22T00:00:00+09:00</published><updated>2021-09-22T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-09-22:/setup_scikit-learn_and_tensorflow-macos_with_macports.html</id><summary type="html">&lt;p&gt;macports上のPython virtualenvにpip installしづらいscikit-learnやtensorflow-macosをインストールする流れ&lt;/p&gt;</summary><content type="html">&lt;h2&gt;macports上のPython virtualenvにpip installしづらいscikit-learnやtensorflow-macosをインストールする流れ&lt;/h2&gt;
 &lt;h3&gt;scikit-learn&lt;/h3&gt;
 &lt;p&gt;依存するライブラリとfortranをインストールする必要がある  &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;port install OpenBLAS boost171 gcc11 +gfortran
@@ -118,7 +74,51 @@
 &lt;span class="n"&gt;physical_device_desc&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;device: 0, name: METAL, pci bus id: &amp;lt;undefined&amp;gt;&amp;quot;&lt;/span&gt;
 &lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="note"></category><category term="note"></category><category term="software"></category></entry><entry><title>visualize per generation positive share</title><link href="https://nkm3.org/visualize-per-generation-positive-share.html" rel="alternate"></link><published>2021-08-17T00:00:00+09:00</published><updated>2021-08-17T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-08-17:/visualize-per-generation-positive-share.html</id><summary type="html">&lt;p&gt;陽性者の年代別シェアを可視化してみた&lt;/p&gt;</summary><content type="html">&lt;h2&gt;陽性者の年代別シェアを可視化してみた&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="note"></category><category term="note"></category><category term="software"></category></entry><entry><title>pelican plugin to embed sourcecode from github</title><link href="https://nkm3.org/pelican-plugin-to-embed-sourceccode-from-github.html" rel="alternate"></link><published>2021-09-21T00:00:00+09:00</published><updated>2021-09-21T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-09-21:/pelican-plugin-to-embed-sourceccode-from-github.html</id><summary type="html">&lt;p&gt;pelicanのページにgithubのソースコードを埋め込めるようにしてみた&lt;/p&gt;</summary><content type="html">&lt;h2&gt;pelicanのページにgithubのソースコードを埋め込めるようにしてみた&lt;/h2&gt;
+&lt;p&gt;ソースコードの埋め込み表示にはEmbed Like Gistを使って、jsへ値を渡すためのMarkdownエクステンションをmdx_embedlyを元にして書いた感じ  &lt;/p&gt;
+&lt;h3&gt;さっそく埋め込んでみる&lt;/h3&gt;
+&lt;p&gt;埋め込みたいところで[https://github.com/{user}/{repo}/blob/main/{path-to-file}:embed-github]と書くと以下のようにソースコードが埋め込まれる&lt;br&gt;
+実際のエクステンションのソースも動作もこれだけ、というかそれだけ、という感じ&lt;/p&gt;
+&lt;p&gt;&lt;script src="/javascripts/embed.js?target=https%3A%2F%2Fgithub.com%2Fsonkm3%2Fsonkm3.github.io%2Fblob%2Fmain%2Fplugins%2Fembed_github.py&amp;style=github&amp;showBorder=on&amp;showLineNumbers=on&amp;showFileMeta=on"&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;h3&gt;行番号で範囲指定もできる&lt;/h3&gt;
+&lt;p&gt;例えばこんな感じに書くと [\https://github.com/sonkm3/sonkm3.github.io/blob/main/plugins/embed_github.py#L8-L11:embed-github] 下のように表示される(&lt;code&gt;\&lt;/code&gt;は消してねおねがい)&lt;/p&gt;
+&lt;p&gt;&lt;script src="/javascripts/embed.js?target=https%3A%2F%2Fgithub.com%2Fsonkm3%2Fsonkm3.github.io%2Fblob%2Fmain%2Fplugins%2Fembed_github.py%23L8-L11&amp;style=github&amp;showBorder=on&amp;showLineNumbers=on&amp;showFileMeta=on"&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;h3&gt;おまけ:MarkdownモジュールはEmbedGithubExtensionを自動で使えるようにしてくれない&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;pelican.conf&lt;/code&gt;の&lt;code&gt;MARKDOWN&lt;/code&gt;に&lt;code&gt;'plugins.embed_github:EmbedGithubExtension': {},&lt;/code&gt;のように追加すると使えるようになる&lt;br&gt;
+例えばこんな感じ&lt;br&gt;
+以前の&lt;code&gt;Pelican&lt;/code&gt;と書き方が変わったのかな？使っているのは&lt;code&gt;Pelican 4.6&lt;/code&gt;です  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;MARKDOWN = {
+    &amp;#39;extension_configs&amp;#39;: {
+        &amp;#39;markdown.extensions.codehilite&amp;#39;: {&amp;#39;css_class&amp;#39;: &amp;#39;highlight&amp;#39;},
+        &amp;#39;markdown.extensions.extra&amp;#39;: {},
+        &amp;#39;markdown.extensions.meta&amp;#39;: {},
+        &amp;#39;plugins.embed_github:EmbedGithubExtension&amp;#39;: {},
+    },
+    &amp;#39;output_format&amp;#39;: &amp;#39;html5&amp;#39;,
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;おまけ:Markdownエクステンションの動作確認&lt;/h3&gt;
+&lt;p&gt;Markdownのエクステンションを書く時はPelicanからではなくmarkdownモジュールを直接使うと動作の確認がしやすかった&lt;br&gt;
+以下が確認で使ったReplのログ&lt;br&gt;
+ここのURLの箇所も展開されてしまうのでembed-githubのところはembed-github-dummyに置き換えている  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt;
+&lt;span class="n"&gt;Python&lt;/span&gt; &lt;span class="mf"&gt;3.8.11&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Jul&lt;/span&gt;  &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="mi"&gt;2021&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;01&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Clang&lt;/span&gt; &lt;span class="mf"&gt;12.0.5&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;clang&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1205.0.22.9&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="n"&gt;darwin&lt;/span&gt;
+&lt;span class="n"&gt;Type&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;help&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;copyright&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;credits&amp;quot;&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;license&amp;quot;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;more&lt;/span&gt; &lt;span class="n"&gt;information&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;markdown&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;[https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/serializers.py#L6-L16:embed-github-dummy]&amp;#39;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;html&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;markdown&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;markdown&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;extensions&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;plugins.embed_github&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;html&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;&amp;lt;p&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;lt;script src=&amp;quot;https://emgithub.com/embed.js?target=%5Bhttps%3A//github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/serializers.py%23L6-L16%3Aembed-github%5D&amp;amp;style=github&amp;amp;showBorder=on&amp;amp;showLineNumbers=on&amp;amp;showFileMeta=on&amp;amp;showCopy=on&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;lt;/p&amp;gt;&amp;#39;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;リンク&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Embed Like Gist &lt;a href="https://emgithub.com"&gt;https://emgithub.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Embedly Extension for Python-Markdown(mdx_embedly) &lt;a href="https://github.com/yymm/mdx_embedly"&gt;https://github.com/yymm/mdx_embedly&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="note"></category><category term="note"></category><category term="software"></category></entry><entry><title>visualize per generation positive share</title><link href="https://nkm3.org/visualize-per-generation-positive-share.html" rel="alternate"></link><published>2021-08-17T00:00:00+09:00</published><updated>2021-08-17T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-08-17:/visualize-per-generation-positive-share.html</id><summary type="html">&lt;p&gt;陽性者の年代別シェアを可視化してみた&lt;/p&gt;</summary><content type="html">&lt;h2&gt;陽性者の年代別シェアを可視化してみた&lt;/h2&gt;
 &lt;p&gt;今回はやろうと思っていたけどやり方がわからず詰まっていたプログラムです&lt;/p&gt;
 &lt;p&gt;年代ごとの陽性者数のデータはあるけど日毎の偏りはわかりにくいので計算して画像かしてみたのがこちら&lt;br&gt;
 「若者の感染が増えてます」みたいな煽りを見た気がするけど2月から4月が比較的少なく、シェアで見ると全体的に20代、30代が占めている割合は多いように見える&lt;br&gt;
