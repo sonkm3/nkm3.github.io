@@ -35,4 +35,4 @@ cross_df = cross_df.reindex(columns=['10歳未満', '10代', '20代', '30代', '
 
 - github [tokyo_covid19_effective_reproduction_number.ipynb](https://github.com/sonkm3/sonkm3.github.io/blob/main/content/ipynb/tokyo_covid19_per_generation_daily_graph.ipynb)
 
-{% notebook ipynb/tokyo_covid19_per_generation_daily_graph.ipynb %}
+{% notebook ipynb/tokyo_covid19/tokyo_covid19_per_generation_daily_graph.ipynb %}

@@ -5,6 +5,7 @@ Tags: note, software
 Slug: calculate-positive-count-and-rate-by-ward
 Authors: sonkmr
 Summary: 23区ごとの陽性者数と人口割合を可視化してみた
+Status: draft
 
 ## 23区ごとの陽性者数と人口割合を可視化してみた
 前回のプログラム合わせて書いてみたプログラムです  
@@ -23,4 +24,4 @@ pandasのpivot_tableとdf.applyの使い方
 ### notebook
 github [tokyo_covid19_daily_positive_count_and_rate_graph_by_ward.ipynb](https://github.com/sonkm3/sonkm3.github.io/blob/main/content/ipynb/tokyo_covid19_daily_positive_count_and_rate_graph_by_ward.ipynb)
 
-{% notebook ipynb/tokyo_covid19_daily_positive_count_and_rate_graph_by_ward.ipynb %}
+{% notebook ipynb/tokyo_covid19/tokyo_covid19_daily_positive_count_and_rate_graph_by_ward.ipynb %}

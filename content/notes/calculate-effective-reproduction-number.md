@@ -27,4 +27,4 @@ daily['ern'] = daily['count'].rolling(window='19D').apply(calc_ern)
 - github [tokyo_covid19_effective_reproduction_number.ipynb](https://github.com/sonkm3/sonkm3.github.io/blob/main/content/ipynb/tokyo_covid19_effective_reproduction_number.ipynb)
 
 
-{% notebook ipynb/tokyo_covid19_effective_reproduction_number.ipynb %}
+{% notebook ipynb/tokyo_covid19/tokyo_covid19_effective_reproduction_number.ipynb %}
