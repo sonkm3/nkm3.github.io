@@ -44,6 +44,15 @@ daily_diff_rate = daily_diff.div(population_dict.values(), axis='columns').mul(1
 _ = ax1.boxplot(plot_df, vert=True, labels=plot_df.columns)
 ```
 
+### まだやってないところ
+- `集計区分`フィールドの`都外`の扱いがわからない
+    - `調査中`は除外した方が良さそう
+    - `都外`はどうすればよいのか！？
+```
+data['集計区分'].unique()
+array(['市区町村', '都外', '調査中'], dtype=object)
+```
+
 ### リンク
 - 東京都福祉保健局のオープンデータ[陽性者数（区市町村別）](https://catalog.data.metro.tokyo.lg.jp/dataset/t000010d0cro000000085)
 - 東京都の統計[住民基本台帳による東京都の世帯と人口（町丁別・年齢別）](https://www.toukei.metro.tokyo.lg.jp/juukiy/2021/jy21000001.htm)
