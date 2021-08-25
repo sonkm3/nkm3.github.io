@@ -11936,6 +11936,18 @@ z
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;_ = ax1.boxplot(plot_df, vert=True, labels=plot_df.columns)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
+&lt;h3&gt;まだやってないところ&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;集計区分&lt;/code&gt;フィールドの&lt;code&gt;都外&lt;/code&gt;の扱いがわからない&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;調査中&lt;/code&gt;は除外した方が良さそう&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;都外&lt;/code&gt;はどうすればよいのか！？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;data[&amp;#39;集計区分&amp;#39;].unique()
+array([&amp;#39;市区町村&amp;#39;, &amp;#39;都外&amp;#39;, &amp;#39;調査中&amp;#39;], dtype=object)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;h3&gt;リンク&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;東京都福祉保健局のオープンデータ&lt;a href="https://catalog.data.metro.tokyo.lg.jp/dataset/t000010d0cro000000085"&gt;陽性者数（区市町村別）&lt;/a&gt;&lt;/li&gt;

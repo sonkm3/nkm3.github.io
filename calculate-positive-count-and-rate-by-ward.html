@@ -113,6 +113,18 @@
 <div class="highlight"><pre><span></span><code>_ = ax1.boxplot(plot_df, vert=True, labels=plot_df.columns)
 </code></pre></div>
 
+<h3>まだやってないところ</h3>
+<ul>
+<li><code>集計区分</code>フィールドの<code>都外</code>の扱いがわからない<ul>
+<li><code>調査中</code>は除外した方が良さそう</li>
+<li><code>都外</code>はどうすればよいのか！？</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>data[&#39;集計区分&#39;].unique()
+array([&#39;市区町村&#39;, &#39;都外&#39;, &#39;調査中&#39;], dtype=object)
+</code></pre></div>
+
 <h3>リンク</h3>
 <ul>
 <li>東京都福祉保健局のオープンデータ<a href="https://catalog.data.metro.tokyo.lg.jp/dataset/t000010d0cro000000085">陽性者数（区市町村別）</a></li>
