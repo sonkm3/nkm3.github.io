@@ -50,8 +50,11 @@ CUSTOM_MENUITEMS = (
 
 DISPLAY_PAGES_ON_MENU = False
 
-STATIC_PATHS = ['images', 'extra/CNAME', 'javascripts']
-EXTRA_PATH_METADATA = {'extra/CNAME': {'path': 'CNAME'},}
+STATIC_PATHS = ['images', 'extra/CNAME', 'extra/robots.txt', 'javascripts']
+EXTRA_PATH_METADATA = {
+    'extra/CNAME': {'path': 'CNAME'},
+    'extra/robots.txt': {'path': 'robots.txt'},
+}
 
 MARKDOWN = {
     'extension_configs': {
