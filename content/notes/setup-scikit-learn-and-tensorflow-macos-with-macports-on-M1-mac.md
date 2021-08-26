@@ -1,6 +1,6 @@
 Title: setup scikit-learn and tensorflow-macos with macports
-Date: 2021-09-22 00:00
-Modified: 2021-09-22 00:00
+Date: 2021-08-22 00:00
+Modified: 2021-08-22 00:00
 Category: note
 Tags: note, software
 Slug: setup_scikit-learn_and_tensorflow-macos_with_macports
