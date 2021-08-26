@@ -4,13 +4,14 @@ Modified: 2021-09-01 00:00
 Category: note
 Tags: note
 Slug: pands-basics-memo-pt2
-Status: draft
 Authors: sonkmr
-Summary: 東京都が出してるコロナのデータを扱ってみて覚えたpandasの基本的な使い方たちを忘れたくないのでメモしてみた part2
+Summary: 東京都が出してるコロナのデータを扱って覚えたpandasの基本的な使い方たちを忘れたくないのでメモしてみた part2
+Status: draft
 
-## 東京都が出してるコロナのデータを扱ってみて覚えたpandasの基本的な使い方たちを忘れたくないのでメモしてみた part2
+## pandasの基本的な使い方たちを忘れないようにメモしてみる part2
+データへの計算の方法について
 
-### まずデータの読み込み  
+### まずデータを読み込む  
 実際はファイルを読み込んでいるけれどここでは文字列から読み込んでいる  
 ファイルから読み込む場合は`pd.read_csv(filepath, 他の引数)`でいける  
 ``` python
@@ -211,11 +212,3 @@ axis引数は多くのDataframeのメソッドに有る引数で、indexもし�
 8 2021-04-09   9     27   10         37
 9 2021-04-10  10     30   11         41
 ```
-
-
-{%jupyter %}
-
-
-
-
-[https://github.com/sonkm3/wordbook/blob/main/wordbook-backend/app/serializers.py#L6-L16:embed-github]
