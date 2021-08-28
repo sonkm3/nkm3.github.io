@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>    pands basics memo part2
+</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+            <meta property="og:site_name" content="nkm3" />
+                <meta property="og:type" content="article" />
+                <meta property="og:title" content="pands basics memo part2" />
+                <meta property="og:url" content="https://nkm3.org/drafts/pands-basics-memo-pt2.html" />
+                <meta property="og:description" content="東京都が出してるコロナのデータを扱って覚えたpandasの基本的な使い方たちを忘れたくないのでメモしてみた part2" />
+                    <meta property="article:tag" content="note" />
+            <link rel="stylesheet" href="https://nkm3.org/theme/css/normalize.css">
+        <link href='//fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://nkm3.org/theme/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://nkm3.org/theme/css/main.css">
+
+    <link rel="stylesheet" href="https://nkm3.org/theme/css/blog.css">
+    <link rel="stylesheet" href="https://nkm3.org/theme/css/github.css">
+        <link href="https://nkm3.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="nkm3 Atom Feed" />
+        <script src="https://nkm3.org/theme/js/vendor/modernizr-2.6.2.min.js"></script>
+        <meta name="google-site-verification" content="DpqlLQbMCcABYeNKp2A06sMQTxLp3Cjn0E4JdR3wLGA" />
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div id="wrapper">
+<header id="sidebar" class="side-shadow">
+    <hgroup id="site-header">
+        <a id="site-title" href="https://nkm3.org"><h1><i class="icon-double-angle-right"></i> nkm3</h1></a>
+        <p id="site-desc"></p>
+    </hgroup>
+    <nav>
+        <ul id="nav-links">
+                <li><a href="https://nkm3.org//pages/about.html">About</a></li>
+        </ul>
+    </nav>
+<footer id="site-info">
+    <p>
+        Proudly powered by <a href="http://getpelican.com/" target="pelican">Pelican</a> and <a href="http://python.org/" target="python">Python</a>. Theme by <a href="https://github.com/hdra/pelican-cait" target="github">hndr</a>.
+    </p>
+    <p>
+        Textures by <a href="http://subtlepatterns.com/" target="subtlepatterns">Subtle Pattern</a>. Font Awesome by <a href="http://fortawesome.github.io/Font-Awesome/" target="github">Dave Grandy</a>.
+    </p>
+</footer></header>
+    <div id="post-container">
+        <ol id="post-list">
+            <li>
+                <article class="post-entry">
+                    <header class="entry-header">
+                        <time class="post-time" datetime="2021-09-01T00:00:00+09:00" pubdate>
+                            2021-09-01
+                        </time>
+                        <a href="https://nkm3.org/drafts/pands-basics-memo-pt2.html" rel="bookmark"><h1>pands basics memo part2</h1></a>
+                    </header>
+
+                    <section class="post-content">
+                        <h2>pandasの基本的な使い方たちを忘れないようにメモしてみる part2</h2>
+<p>データへの計算の方法について</p>
+<h3>まずデータを読み込む</h3>
+<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">python</span>
+<span class="n">Python</span> <span class="mf">3.8.11</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">Jul</span>  <span class="mi">3</span> <span class="mi">2021</span><span class="p">,</span> <span class="mi">08</span><span class="p">:</span><span class="mi">42</span><span class="p">:</span><span class="mi">01</span><span class="p">)</span>
+<span class="p">[</span><span class="n">Clang</span> <span class="mf">12.0.5</span> <span class="p">(</span><span class="n">clang</span><span class="o">-</span><span class="mf">1205.0.22.9</span><span class="p">)]</span> <span class="n">on</span> <span class="n">darwin</span>
+<span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">io</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">csv</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;date,id,data,count,xyz</span>
+<span class="s1">... 2021-04-01, 1, data1, 1, 2</span>
+<span class="s1">... 2021-04-02, 2, data2, 2, 3</span>
+<span class="s1">... 2021-04-03, 3, data3, 3, 4</span>
+<span class="s1">... 2021-04-04, 4, data4, 4, 5</span>
+<span class="s1">... 2021-04-05, 5, data5, 5, 6</span>
+<span class="s1">... 2021-04-06, 6, data6, 6, 7</span>
+<span class="s1">... 2021-04-07, 7, data7, 7, 8</span>
+<span class="s1">... 2021-04-08, 8, data8, 8, 9</span>
+<span class="s1">... 2021-04-09, 9, data9, 9, 10</span>
+<span class="s1">... 2021-04-10, 10, data10, 10, 11</span>
+<span class="s1">...</span>
+<span class="s1">... &#39;&#39;&#39;</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">csv</span><span class="p">),</span> <span class="n">parse_dates</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="p">],</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span>
+        <span class="n">date</span>  <span class="nb">id</span>     <span class="n">data</span>  <span class="n">count</span>  <span class="n">xyz</span>
+<span class="mi">0</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">01</span>   <span class="mi">1</span>    <span class="n">data1</span>      <span class="mi">1</span>    <span class="mi">2</span>
+<span class="mi">1</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">02</span>   <span class="mi">2</span>    <span class="n">data2</span>      <span class="mi">2</span>    <span class="mi">3</span>
+<span class="mi">2</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">03</span>   <span class="mi">3</span>    <span class="n">data3</span>      <span class="mi">3</span>    <span class="mi">4</span>
+<span class="mi">3</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">04</span>   <span class="mi">4</span>    <span class="n">data4</span>      <span class="mi">4</span>    <span class="mi">5</span>
+<span class="mi">4</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">05</span>   <span class="mi">5</span>    <span class="n">data5</span>      <span class="mi">5</span>    <span class="mi">6</span>
+<span class="mi">5</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">06</span>   <span class="mi">6</span>    <span class="n">data6</span>      <span class="mi">6</span>    <span class="mi">7</span>
+<span class="mi">6</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">07</span>   <span class="mi">7</span>    <span class="n">data7</span>      <span class="mi">7</span>    <span class="mi">8</span>
+<span class="mi">7</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">08</span>   <span class="mi">8</span>    <span class="n">data8</span>      <span class="mi">8</span>    <span class="mi">9</span>
+<span class="mi">8</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">09</span>   <span class="mi">9</span>    <span class="n">data9</span>      <span class="mi">9</span>   <span class="mi">10</span>
+<span class="mi">9</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">10</span>  <span class="mi">10</span>   <span class="n">data10</span>     <span class="mi">10</span>   <span class="mi">11</span>
+</code></pre></div>
+
+<h3>フィルタしてみる</h3>
+<p><code>data[data['date'] &gt; '2021-04-05']</code>とするとdate列が<code>2021/4/5</code>より大きい、あとの列のみのDataFrameが返ってくる</p>
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; # date列でフィルタする
+&gt;&gt;&gt; data[data[&#39;date&#39;] &gt; &#39;2021-04-05&#39;]
+        date  id     data  count  xyz
+5 2021-04-06   6    data6      6    7
+6 2021-04-07   7    data7      7    8
+7 2021-04-08   8    data8      8    9
+8 2021-04-09   9    data9      9   10
+9 2021-04-10  10   data10     10   11
+</code></pre></div>
+
+<h3>DataFrameに対しての計算</h3>
+<p><code>data['count'] + 3</code>とするとcount列のすべての値に3を足した結果がSeriesで返ってくる</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="c1"># count列の値すべてを+3した結果を受け取る</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">3</span>
+<span class="mi">0</span>     <span class="mi">4</span>
+<span class="mi">1</span>     <span class="mi">5</span>
+<span class="mi">2</span>     <span class="mi">6</span>
+<span class="mi">3</span>     <span class="mi">7</span>
+<span class="mi">4</span>     <span class="mi">8</span>
+<span class="mi">5</span>     <span class="mi">9</span>
+<span class="mi">6</span>    <span class="mi">10</span>
+<span class="mi">7</span>    <span class="mi">11</span>
+<span class="mi">8</span>    <span class="mi">12</span>
+<span class="mi">9</span>    <span class="mi">13</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">count</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
+</code></pre></div>
+
+<h3>計算結果をDataFrameに保存する</h3>
+<p><code>data['count_minus_1'] = data['count'] - 1</code>とするとcount列全体を−1したSeriesを作ってその結果をdata['count_minus_1']列に代入する<br>
+その結果、data DataFrameには新しいcount_minus_1列ができ、count列から1を引いた値が保存されている</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="c1"># count列の値すべてを-1した結果を新しい列にする</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;count_minus_1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span>
+        <span class="n">date</span>  <span class="nb">id</span>     <span class="n">data</span>  <span class="n">count</span>  <span class="n">xyz</span>  <span class="n">count_minus_1</span>
+<span class="mi">0</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">01</span>   <span class="mi">1</span>    <span class="n">data1</span>      <span class="mi">1</span>    <span class="mi">2</span>              <span class="mi">0</span>
+<span class="mi">1</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">02</span>   <span class="mi">2</span>    <span class="n">data2</span>      <span class="mi">2</span>    <span class="mi">3</span>              <span class="mi">1</span>
+<span class="mi">2</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">03</span>   <span class="mi">3</span>    <span class="n">data3</span>      <span class="mi">3</span>    <span class="mi">4</span>              <span class="mi">2</span>
+<span class="mi">3</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">04</span>   <span class="mi">4</span>    <span class="n">data4</span>      <span class="mi">4</span>    <span class="mi">5</span>              <span class="mi">3</span>
+<span class="mi">4</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">05</span>   <span class="mi">5</span>    <span class="n">data5</span>      <span class="mi">5</span>    <span class="mi">6</span>              <span class="mi">4</span>
+<span class="mi">5</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">06</span>   <span class="mi">6</span>    <span class="n">data6</span>      <span class="mi">6</span>    <span class="mi">7</span>              <span class="mi">5</span>
+<span class="mi">6</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">07</span>   <span class="mi">7</span>    <span class="n">data7</span>      <span class="mi">7</span>    <span class="mi">8</span>              <span class="mi">6</span>
+<span class="mi">7</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">08</span>   <span class="mi">8</span>    <span class="n">data8</span>      <span class="mi">8</span>    <span class="mi">9</span>              <span class="mi">7</span>
+<span class="mi">8</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">09</span>   <span class="mi">9</span>    <span class="n">data9</span>      <span class="mi">9</span>   <span class="mi">10</span>              <span class="mi">8</span>
+<span class="mi">9</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">10</span>  <span class="mi">10</span>   <span class="n">data10</span>     <span class="mi">10</span>   <span class="mi">11</span>              <span class="mi">9</span>
+</code></pre></div>
+
+<h3>DataFrameから列(など)を削除する</h3>
+<p>count_minus_1列はもういらないので<code>data = data.drop('count_minus_1', axis='columns')</code>として列を削除する<br>
+axis引数は多くのDataFrameのメソッドに有る引数で、indexもしくはcolumnsが指定できる(メソッドごとによく使われる方向がデフォルト指定されているので指定しないでもなんとなく動くほか、0/1でも指定できる)<br>
+指定した処理をそれぞれ行方向(横)、列方向(縦)のどちらに対して実行するかを指定できる  </p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="c1"># count_minus_1列を削除する</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;count_minus_1&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span>
+        <span class="n">date</span>  <span class="nb">id</span>     <span class="n">data</span>  <span class="n">count</span>  <span class="n">xyz</span>
+<span class="mi">0</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">01</span>   <span class="mi">1</span>    <span class="n">data1</span>      <span class="mi">1</span>    <span class="mi">2</span>
+<span class="mi">1</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">02</span>   <span class="mi">2</span>    <span class="n">data2</span>      <span class="mi">2</span>    <span class="mi">3</span>
+<span class="mi">2</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">03</span>   <span class="mi">3</span>    <span class="n">data3</span>      <span class="mi">3</span>    <span class="mi">4</span>
+<span class="mi">3</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">04</span>   <span class="mi">4</span>    <span class="n">data4</span>      <span class="mi">4</span>    <span class="mi">5</span>
+<span class="mi">4</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">05</span>   <span class="mi">5</span>    <span class="n">data5</span>      <span class="mi">5</span>    <span class="mi">6</span>
+<span class="mi">5</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">06</span>   <span class="mi">6</span>    <span class="n">data6</span>      <span class="mi">6</span>    <span class="mi">7</span>
+<span class="mi">6</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">07</span>   <span class="mi">7</span>    <span class="n">data7</span>      <span class="mi">7</span>    <span class="mi">8</span>
+<span class="mi">7</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">08</span>   <span class="mi">8</span>    <span class="n">data8</span>      <span class="mi">8</span>    <span class="mi">9</span>
+<span class="mi">8</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">09</span>   <span class="mi">9</span>    <span class="n">data9</span>      <span class="mi">9</span>   <span class="mi">10</span>
+<span class="mi">9</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">10</span>  <span class="mi">10</span>   <span class="n">data10</span>     <span class="mi">10</span>   <span class="mi">11</span>
+</code></pre></div>
+
+<h3>既存の列を新たな値で更新する場合はDataFrame.update()が使える</h3>
+<p>ここまでの通り<code>data['count'] * 3</code>はSeriesを返すので<code>data.update(data['count'] * 3)</code>はcount列を返ってきたSeriesで更新する形になる  </p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="c1"># count列の値すべてを3倍してcount列を上書きする</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span>
+        <span class="n">date</span>  <span class="nb">id</span>     <span class="n">data</span>  <span class="n">count</span>  <span class="n">xyz</span>
+<span class="mi">0</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">01</span>   <span class="mi">1</span>    <span class="n">data1</span>      <span class="mi">3</span>    <span class="mi">2</span>
+<span class="mi">1</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">02</span>   <span class="mi">2</span>    <span class="n">data2</span>      <span class="mi">6</span>    <span class="mi">3</span>
+<span class="mi">2</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">03</span>   <span class="mi">3</span>    <span class="n">data3</span>      <span class="mi">9</span>    <span class="mi">4</span>
+<span class="mi">3</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">04</span>   <span class="mi">4</span>    <span class="n">data4</span>     <span class="mi">12</span>    <span class="mi">5</span>
+<span class="mi">4</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">05</span>   <span class="mi">5</span>    <span class="n">data5</span>     <span class="mi">15</span>    <span class="mi">6</span>
+<span class="mi">5</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">06</span>   <span class="mi">6</span>    <span class="n">data6</span>     <span class="mi">18</span>    <span class="mi">7</span>
+<span class="mi">6</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">07</span>   <span class="mi">7</span>    <span class="n">data7</span>     <span class="mi">21</span>    <span class="mi">8</span>
+<span class="mi">7</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">08</span>   <span class="mi">8</span>    <span class="n">data8</span>     <span class="mi">24</span>    <span class="mi">9</span>
+<span class="mi">8</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">09</span>   <span class="mi">9</span>    <span class="n">data9</span>     <span class="mi">27</span>   <span class="mi">10</span>
+<span class="mi">9</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">10</span>  <span class="mi">10</span>   <span class="n">data10</span>     <span class="mi">30</span>   <span class="mi">11</span>
+</code></pre></div>
+
+<h3>違う列の値同士を計算してその結果を新しい列に保存したい場合</h3>
+<p>例えば足し算や掛け算はこのようにできる  </p>
+<ul>
+<li><code>data['count_xyz'] = data['count'].add(data['xyz'], axis=0)</code></li>
+<li><code>data['count_xyz'] = data['count'].mul(data['xyz'], axis=0)</code></li>
+</ul>
+<p>少し込み入った計算やpandasのDataFrameで提供されていない関数で処理をしたい場合はapplyが使える  </p>
+<ul>
+<li><code>data['count_xyz'] = data['count'].apply(math.sqrt)</code></li>
+</ul>
+<p>定義された関数を使う他に、lambdaで定義した関数を使うこともできる</p>
+<ul>
+<li><code>data.loc[:, 'count':'xyz'].apply(lambda x: x[0] + x[1], axis='columns' )</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="c1"># count列とxyz列を行ごとに足し合わせてcount_xyz列を作る</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;count_xyz&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;xyz&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span>
+        <span class="n">date</span>  <span class="nb">id</span>     <span class="n">data</span>  <span class="n">count</span>  <span class="n">xyz</span>  <span class="n">count_xyz</span>
+<span class="mi">0</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">01</span>   <span class="mi">1</span>    <span class="n">data1</span>      <span class="mi">3</span>    <span class="mi">2</span>          <span class="mi">5</span>
+<span class="mi">1</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">02</span>   <span class="mi">2</span>    <span class="n">data2</span>      <span class="mi">6</span>    <span class="mi">3</span>          <span class="mi">9</span>
+<span class="mi">2</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">03</span>   <span class="mi">3</span>    <span class="n">data3</span>      <span class="mi">9</span>    <span class="mi">4</span>         <span class="mi">13</span>
+<span class="mi">3</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">04</span>   <span class="mi">4</span>    <span class="n">data4</span>     <span class="mi">12</span>    <span class="mi">5</span>         <span class="mi">17</span>
+<span class="mi">4</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">05</span>   <span class="mi">5</span>    <span class="n">data5</span>     <span class="mi">15</span>    <span class="mi">6</span>         <span class="mi">21</span>
+<span class="mi">5</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">06</span>   <span class="mi">6</span>    <span class="n">data6</span>     <span class="mi">18</span>    <span class="mi">7</span>         <span class="mi">25</span>
+<span class="mi">6</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">07</span>   <span class="mi">7</span>    <span class="n">data7</span>     <span class="mi">21</span>    <span class="mi">8</span>         <span class="mi">29</span>
+<span class="mi">7</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">08</span>   <span class="mi">8</span>    <span class="n">data8</span>     <span class="mi">24</span>    <span class="mi">9</span>         <span class="mi">33</span>
+<span class="mi">8</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">09</span>   <span class="mi">9</span>    <span class="n">data9</span>     <span class="mi">27</span>   <span class="mi">10</span>         <span class="mi">37</span>
+<span class="mi">9</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">10</span>  <span class="mi">10</span>   <span class="n">data10</span>     <span class="mi">30</span>   <span class="mi">11</span>         <span class="mi">41</span>
+</code></pre></div>
+                    </section>
+                    <hr/>
+                    <aside class="post-meta">
+                        <p>Tags: <a href="https://nkm3.org/tag/note.html">note</a>, </p>
+                    </aside>
+                    <hr/>
+                </article>
+            </li>
+        </ol>
+    </div>
+        </div>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-1928342-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-1928342-2');
+</script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#000"
+    },
+    "button": {
+      "background": "#ffffff"
+    }
+  },
+  "theme": "edgeless",
+  "position": "bottom-left"
+});
+</script>
+        <script src="https://nkm3.org/theme/js/main.js"></script>
+    </body>
+</html>
