@@ -5,7 +5,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://nkm3.org/</loc>
-<lastmod>2021-08-28T12:16:19-00:00</lastmod>
+<lastmod>2021-08-31T19:41:15-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.3</priority>
 </url>
@@ -48,20 +48,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://nkm3.org/calculate-effective-reproduction-number.html</loc>
 <lastmod>2021-08-15T00:00:00+09:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.6</priority>
-</url>
-
-<url>
-<loc>https://nkm3.org/flashcard-with-django-nuxtjs-vuetify-pt3.html</loc>
-<lastmod>2021-08-12T00:00:00+09:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.6</priority>
-</url>
-
-<url>
-<loc>https://nkm3.org/flashcard-with-django-nuxtjs-vuetify-pt2.html</loc>
-<lastmod>2021-08-11T00:00:00+09:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.6</priority>
 </url>
