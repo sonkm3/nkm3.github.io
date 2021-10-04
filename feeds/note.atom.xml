@@ -2,9 +2,15 @@
 <feed xmlns="http://www.w3.org/2005/Atom"><title>nkm3 - note</title><link href="https://nkm3.org/" rel="alternate"></link><link href="https://nkm3.org/feeds/note.atom.xml" rel="self"></link><id>https://nkm3.org/</id><updated>2021-10-04T00:00:00+09:00</updated><entry><title>Raspberry Piで自然を手元に持ってくる方法について</title><link href="https://nkm3.org/bring_your_own_nature_with_raspberry_pi.html" rel="alternate"></link><published>2021-10-04T00:00:00+09:00</published><updated>2021-10-04T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-10-04:/bring_your_own_nature_with_raspberry_pi.html</id><summary type="html">&lt;p&gt;Raspberry Piで自然を手元に持ってくる方法について&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Raspberry Piで自然を手元に持ってくる方法について&lt;/h1&gt;
 &lt;p&gt;&lt;img alt="Screen Shot 2021-09-26 at 9.05.02.png" src="https://nkm3.org/images/Screen Shot 2021-09-26 at 9.05.02.png"&gt;
 映像と音声で都会にいても自然環境を楽しめる仕組みをRaspberry Piとオープンソースのソフトを使って作りました&lt;br&gt;
-朝から昼の間の鳥のさえずりから夕方から夜にかけての虫の音まで一日中自然の音を聞くことができて都会での居心地が少しよくなりました  &lt;/p&gt;
+朝から昼の間の鳥のさえずりから夕方から夜にかけての虫の音まで一日中自然の音を聞くことができて都会での居心地が少しよくなりました&lt;br&gt;
+自然を手元に、とか言っていますがやっていることはライブ配信サイトとおなじことです&lt;br&gt;
+実は使い慣れた？オープンソースのソフトウェアを組み合わせれば、自分用のライブ配信サイトを作ることができるのでざっくり紹介してみます  &lt;/p&gt;
 &lt;h1&gt;仕組み&lt;/h1&gt;
 &lt;p&gt;&lt;img alt="Screen Shot 2021-09-26 at 9.05.02.png" src="https://nkm3.org/images/bring_your_own_nature_with_raspberry_pi.001.png"&gt;&lt;/p&gt;
+&lt;p&gt;映像配信の方法はいくつかありますが、今回はHLSという方式を使ってみました&lt;br&gt;
+HLSは連続する映像、音声を短い映像、音声ファイルに分割(フラグメント)し、そのリスト(プレイリスト)と合わせて扱いやすいHTTPで配信する方式です&lt;br&gt;
+ブラウザーはプレイリストをダウンロードしてから分割されたファイルを逐一ダウンロードする形になるため、遅延がフラグメントの長さより長い時間幅で発生します&lt;br&gt;
+配信を見ながらコメントをしたりするサービスの場合は遅延を減らすよう、他の方式も含めて検討すると思いますが、今回は「ただ雰囲気を楽しむ」だけなのであまり細かく追求していません&lt;/p&gt;
 &lt;h2&gt;Raspberry Piとクラウドの役割分担&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Raspberry Pi(FFmpeg)&lt;ul&gt;
@@ -173,7 +179,10 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1&gt;クラウド側のサーバーについて&lt;/h1&gt;
-&lt;p&gt;クラウド側のサーバーはOracle CloudがAlways freeで提供しているCompute Instance VM.Standard.E2.1.Microを使っています &lt;a href="https://cloud.oracle.com/"&gt;Oracle Cloud&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="note"></category></entry><entry><title>setup scikit-learn and tensorflow-macos with macports</title><link href="https://nkm3.org/setup_scikit-learn_and_tensorflow-macos_with_macports.html" rel="alternate"></link><published>2021-08-22T00:00:00+09:00</published><updated>2021-08-22T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-08-22:/setup_scikit-learn_and_tensorflow-macos_with_macports.html</id><summary type="html">&lt;p&gt;macports上のPython virtualenvにpip installしづらいscikit-learnやtensorflow-macosをインストールする流れ&lt;/p&gt;</summary><content type="html">&lt;h2&gt;macports上のPython virtualenvにpip installしづらいscikit-learnやtensorflow-macosをインストールする流れ&lt;/h2&gt;
+&lt;p&gt;クラウド側のサーバーはOracle CloudがAlways freeで提供しているCompute Instance VM.Standard.E2.1.Microを使っています &lt;a href="https://cloud.oracle.com/"&gt;Oracle Cloud&lt;/a&gt;&lt;/p&gt;
+&lt;h1&gt;終わりに&lt;/h1&gt;
+&lt;p&gt;自然をなんとかと言って結局ただのライブ配信じゃないか、という話ではあるのですが、それはそれとさせてください&lt;br&gt;
+実はオープンソースのソフトウェアの組み合わせて結構作れてしまうということが雰囲気だけでもお伝えできたかなと思っています&lt;/p&gt;</content><category term="note"></category><category term="note"></category></entry><entry><title>setup scikit-learn and tensorflow-macos with macports</title><link href="https://nkm3.org/setup_scikit-learn_and_tensorflow-macos_with_macports.html" rel="alternate"></link><published>2021-08-22T00:00:00+09:00</published><updated>2021-08-22T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-08-22:/setup_scikit-learn_and_tensorflow-macos_with_macports.html</id><summary type="html">&lt;p&gt;macports上のPython virtualenvにpip installしづらいscikit-learnやtensorflow-macosをインストールする流れ&lt;/p&gt;</summary><content type="html">&lt;h2&gt;macports上のPython virtualenvにpip installしづらいscikit-learnやtensorflow-macosをインストールする流れ&lt;/h2&gt;
 &lt;h3&gt;scikit-learn&lt;/h3&gt;
 &lt;p&gt;依存するライブラリとfortranをインストールする必要がある  &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;port install OpenBLAS boost171 gcc11 +gfortran
