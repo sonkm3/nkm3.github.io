@@ -1,5 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>nkm3 - note</title><link href="https://nkm3.org/" rel="alternate"></link><link href="https://nkm3.org/feeds/note.atom.xml" rel="self"></link><id>https://nkm3.org/</id><updated>2021-08-25T01:00:00+09:00</updated><entry><title>setup scikit-learn and tensorflow-macos with macports</title><link href="https://nkm3.org/setup_scikit-learn_and_tensorflow-macos_with_macports.html" rel="alternate"></link><published>2021-08-22T00:00:00+09:00</published><updated>2021-08-22T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-08-22:/setup_scikit-learn_and_tensorflow-macos_with_macports.html</id><summary type="html">&lt;p&gt;macports上のPython virtualenvにpip installしづらいscikit-learnやtensorflow-macosをインストールする流れ&lt;/p&gt;</summary><content type="html">&lt;h2&gt;macports上のPython virtualenvにpip installしづらいscikit-learnやtensorflow-macosをインストールする流れ&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>nkm3 - note</title><link href="https://nkm3.org/" rel="alternate"></link><link href="https://nkm3.org/feeds/note.atom.xml" rel="self"></link><id>https://nkm3.org/</id><updated>2021-10-04T00:00:00+09:00</updated><entry><title>Raspberry Piで自然を手元に持ってくる方法について</title><link href="https://nkm3.org/bring_your_own_nature_with_raspberry_pi.html" rel="alternate"></link><published>2021-10-04T00:00:00+09:00</published><updated>2021-10-04T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-10-04:/bring_your_own_nature_with_raspberry_pi.html</id><summary type="html">&lt;p&gt;Raspberry Piで自然を手元に持ってくる方法について&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Raspberry Piで自然を手元に持ってくる方法について&lt;/h1&gt;
+&lt;p&gt;&lt;img alt="Screen Shot 2021-09-26 at 9.05.02.png" src="https://nkm3.org/images/Screen Shot 2021-09-26 at 9.05.02.png"&gt;
+映像と音声で都会にいても自然環境を楽しめる仕組みをRaspberry Piとオープンソースのソフトを使って作りました&lt;br&gt;
+朝から昼の間の鳥のさえずりから夕方から夜にかけての虫の音まで一日中自然の音を聞くことができて都会での居心地が少しよくなりました  &lt;/p&gt;
+&lt;h1&gt;仕組み&lt;/h1&gt;
+&lt;p&gt;&lt;img alt="Screen Shot 2021-09-26 at 9.05.02.png" src="https://nkm3.org/images/bring_your_own_nature_with_raspberry_pi.001.png"&gt;&lt;/p&gt;
+&lt;h2&gt;Raspberry Piとクラウドの役割分担&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Raspberry Pi(FFmpeg)&lt;ul&gt;
+&lt;li&gt;Webカメラから映像と音声をRTMPプロトコルに乗せます&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;クラウド上の配信サーバー(nginx-rtmp-module)&lt;ul&gt;
+&lt;li&gt;RTMPプロトコルで送られて来たストリームを分割します&lt;/li&gt;
+&lt;li&gt;分割したファイルを並べたプレイリストを更新します&lt;/li&gt;
+&lt;li&gt;プレイリストと分割したファイルをHTTPで公開します&lt;/li&gt;
+&lt;li&gt;APIサーバー(bottlepy)&lt;ul&gt;
+&lt;li&gt;Raspberry Piからの配信開始、終了時にslack通知します&lt;/li&gt;
+&lt;li&gt;Raspberry Piからの配信状態を表示します&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;ブラウザー(hls.js)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;使ったソフトウェア、サービスなど&lt;/h2&gt;
+&lt;h3&gt;撮影部分&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Webカメラ&lt;ul&gt;
+&lt;li&gt;Logicool C922n&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Raspberry Pi&lt;ul&gt;
+&lt;li&gt;Raspberry Pi 3 Model A+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ffmpeg.org"&gt;FFmpeg&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;配信部分&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/arut/nginx-rtmp-module/"&gt;nginx-rtmp-module&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://unit.nginx.org"&gt;nginx-unit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://bottlepy.org/docs/dev/"&gt;bottlepy&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;表示部分&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/video-dev/hls.js/"&gt;hls.js&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;ポイント&lt;/h1&gt;
+&lt;h2&gt;FFmpegの設定&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;ffmpeg&lt;/span&gt; \
+  &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;y&lt;/span&gt; \
+  &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;f&lt;/span&gt; &lt;span class="nv"&gt;alsa&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;ac&lt;/span&gt; &lt;span class="mh"&gt;$C&lt;/span&gt;&lt;span class="nv"&gt;HANNELS&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;thread_queue_size&lt;/span&gt; &lt;span class="mi"&gt;16384&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;r&lt;/span&gt; &lt;span class="mi"&gt;15&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;re&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;t&lt;/span&gt; &lt;span class="mh"&gt;$D&lt;/span&gt;&lt;span class="nv"&gt;URATION&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;i&lt;/span&gt; &lt;span class="mh"&gt;$A&lt;/span&gt;&lt;span class="nv"&gt;UDIO_DEVICE&lt;/span&gt;\
+  &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;f&lt;/span&gt; &lt;span class="nv"&gt;v4l2&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;thread_queue_size&lt;/span&gt; &lt;span class="mi"&gt;16384&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="mi"&gt;640&lt;/span&gt;&lt;span class="nv"&gt;x360&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;r&lt;/span&gt; &lt;span class="mi"&gt;15&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;t&lt;/span&gt; &lt;span class="mh"&gt;$D&lt;/span&gt;&lt;span class="nv"&gt;URATION&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;i&lt;/span&gt; $&lt;span class="nv"&gt;VIDEO_DEVICE&lt;/span&gt; \
+  &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;c&lt;/span&gt;:&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;aac&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;b&lt;/span&gt;:&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="mi"&gt;128&lt;/span&gt;&lt;span class="nv"&gt;k&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;ar&lt;/span&gt; $&lt;span class="nv"&gt;SAMPLING_RATE&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;bufsize&lt;/span&gt; &lt;span class="mi"&gt;128&lt;/span&gt;&lt;span class="nv"&gt;k&lt;/span&gt; \
+  &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;c&lt;/span&gt;:&lt;span class="nv"&gt;v&lt;/span&gt; &lt;span class="nv"&gt;h264_omx&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;b&lt;/span&gt;:&lt;span class="nv"&gt;v&lt;/span&gt; &lt;span class="mi"&gt;500&lt;/span&gt;&lt;span class="nv"&gt;k&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;bufsize&lt;/span&gt; &lt;span class="mi"&gt;500&lt;/span&gt;&lt;span class="nv"&gt;k&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;vsync&lt;/span&gt; &lt;span class="nv"&gt;cfr&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;g&lt;/span&gt; &lt;span class="mi"&gt;300&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;profile&lt;/span&gt;:&lt;span class="nv"&gt;v&lt;/span&gt;:&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="nv"&gt;main&lt;/span&gt;\
+  &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;bsf&lt;/span&gt;:&lt;span class="nv"&gt;v&lt;/span&gt; &lt;span class="nv"&gt;h264_mp4toannexb&lt;/span&gt; \
+  &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;flags&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nv"&gt;cgop&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="k"&gt;loop&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nv"&gt;global_header&lt;/span&gt; \
+  &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;ignore_unknown&lt;/span&gt; \
+  &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;f&lt;/span&gt; &lt;span class="nv"&gt;flv&lt;/span&gt; $&lt;span class="nv"&gt;RTMP_SERVER_URL&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;ちょうど良いオプションがなかなか見つからなかったのですが、いまとのころこのコマンドラインで良さそうな感じがしています&lt;/p&gt;
+&lt;h2&gt;nginx-rtmp-moduleの設定&lt;/h2&gt;
+&lt;p&gt;こちらのdocker imageをもとにしました&lt;br&gt;
+&lt;a href="https://hub.docker.com/r/tiangolo/nginx-rtmp/"&gt;https://hub.docker.com/r/tiangolo/nginx-rtmp/&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://github.com/tiangolo/nginx-rtmp-docker"&gt;https://github.com/tiangolo/nginx-rtmp-docker&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Dockerfile&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="s"&gt;tiangolo/nginx-rtmp&lt;/span&gt;
+
+&lt;span class="k"&gt;COPY&lt;/span&gt; nginx.conf /etc/nginx/nginx.conf
+
+&lt;span class="k"&gt;WORKDIR&lt;/span&gt;&lt;span class="s"&gt; /html/&lt;/span&gt;
+&lt;span class="k"&gt;COPY&lt;/span&gt; index.html /html/index.html
+&lt;span class="k"&gt;WORKDIR&lt;/span&gt;&lt;span class="s"&gt; /var/www/html/output&lt;/span&gt;
+
+&lt;span class="k"&gt;EXPOSE&lt;/span&gt;&lt;span class="s"&gt; 1935&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;nginx.conf&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# https://github.com/tiangolo/nginx-rtmp-docker/issues/18&lt;/span&gt;
+&lt;span class="n"&gt;worker_processes&lt;/span&gt; &lt;span class="n"&gt;auto&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;rtmp_auto_push&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;events&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;span class="n"&gt;rtmp&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;server&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;listen&lt;/span&gt; &lt;span class="mi"&gt;1935&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;listen&lt;/span&gt; &lt;span class="p"&gt;[::]:&lt;/span&gt;&lt;span class="mi"&gt;1935&lt;/span&gt; &lt;span class="n"&gt;ipv6only&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;    
+        &lt;span class="n"&gt;application&lt;/span&gt; &lt;span class="n"&gt;live&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;live&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="n"&gt;record&lt;/span&gt; &lt;span class="n"&gt;off&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="n"&gt;notify_method&lt;/span&gt; &lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="n"&gt;on_publish&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;nginx&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;stream&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;control&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;8000&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;publish_start_hook&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="n"&gt;on_publish_done&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;nginx&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;stream&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;control&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;8000&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;publish_end_hook&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="n"&gt;hls&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="n"&gt;hls_path&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="n"&gt;hls_fragment&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="n"&gt;hls_continuous&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="n"&gt;hls_cleanup&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;server_tokens&lt;/span&gt; &lt;span class="n"&gt;off&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;include&lt;/span&gt; &lt;span class="n"&gt;mime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;types&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;keepalive_timeout&lt;/span&gt; &lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;server&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;listen&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;      &lt;span class="c1"&gt;# HTTP IPv4&lt;/span&gt;
+        &lt;span class="n"&gt;listen&lt;/span&gt; &lt;span class="p"&gt;[::]:&lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;# HTTP IPv6&lt;/span&gt;
+        &lt;span class="n"&gt;location&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;proxy_pass&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;nginx&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;stream&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;control&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;8000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="n"&gt;location&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;add_header&lt;/span&gt; &lt;span class="n"&gt;Cache&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Control&lt;/span&gt; &lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;cache&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="n"&gt;add_header&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Access-Control-Allow-Origin&amp;#39;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;*&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;always&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="n"&gt;add_header&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Access-Control-Expose-Headers&amp;#39;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Content-Length&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="n"&gt;request_method&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;OPTIONS&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="n"&gt;add_header&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Access-Control-Allow-Origin&amp;#39;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;*&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="n"&gt;add_header&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Access-Control-Max-Age&amp;#39;&lt;/span&gt; &lt;span class="mi"&gt;1728000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="n"&gt;add_header&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Content-Type&amp;#39;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;text/plain charset=UTF-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="n"&gt;add_header&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Content-Length&amp;#39;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;204&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+            &lt;span class="n"&gt;types&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="n"&gt;application&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;vnd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;apple&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mpegurl&lt;/span&gt; &lt;span class="n"&gt;m3u8&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="n"&gt;video&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mp2t&lt;/span&gt; &lt;span class="n"&gt;ts&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+            &lt;span class="n"&gt;root&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;配信サーバーのdocker-composeファイル&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;3.9&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;services&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;nginx&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;proxy&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;nginxproxy&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nginx&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;proxy&lt;/span&gt;
+        &lt;span class="n"&gt;ports&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;80:80&amp;quot;&lt;/span&gt;
+        &lt;span class="n"&gt;expose&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;80&amp;quot;&lt;/span&gt;
+        &lt;span class="n"&gt;volumes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/var/run/docker.sock:/tmp/docker.sock:ro&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;nginx&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;rtmp&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;build&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;./&lt;/span&gt;&lt;span class="n"&gt;nginx&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;rtmp&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt;
+        &lt;span class="n"&gt;ports&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;1935:1935&amp;quot;&lt;/span&gt;
+        &lt;span class="n"&gt;environment&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;VIRTUAL_HOST&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;stream&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nkm3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;
+            &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;VIRTUAL_PORT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;
+        &lt;span class="n"&gt;container_name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;stream_delivery&lt;/span&gt;
+    &lt;span class="n"&gt;nginx&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;stream&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;control&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;build&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;./&lt;/span&gt;&lt;span class="n"&gt;nginx&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;stream&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;control&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;
+        &lt;span class="n"&gt;volumes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;./nginx-unit-stream-control-app/config/:/docker-entrypoint.d/&amp;quot;&lt;/span&gt;
+            &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;./nginx-unit-stream-control-app/log/unit.log:/var/log/unit.log&amp;quot;&lt;/span&gt;
+            &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;./nginx-unit-stream-control-app/state/:/var/lib/unit/&amp;quot;&lt;/span&gt;
+            &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;./nginx-unit-stream-control-app/webapp/:/www/&amp;quot;&lt;/span&gt;
+        &lt;span class="n"&gt;env_file&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;stream&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;control&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;env&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;docker-composeですべて立ち上がるようにしています&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HTTPリクエストは一旦nginx-proxyで受けます(VIRTUAL HOSTと今後のHTTPS対応をするためです)&lt;/li&gt;
+&lt;li&gt;indexページとHLSのフラグメントファイルはnginx-rtmp-moduleから配信されます&lt;/li&gt;
+&lt;li&gt;APIへのリクエストはnginx-unit-stream-control-appから配信されます&lt;ul&gt;
+&lt;li&gt;ユーザーからのリクエストはnginx-proxy→nginx-rtmp-module→nginx-unit-stream-control-appと2段階でproxyされます&lt;/li&gt;
+&lt;li&gt;配信開始、終了のwebhookリクエストはnginx-rtmp-moduleで発生するのでnginx-rtmp-moduleからnginx-unit-stream-control-appに直接リクエストされます&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;クラウド側のサーバーについて&lt;/h1&gt;
+&lt;p&gt;クラウド側のサーバーはOracle CloudがAlways freeで提供しているCompute Instance VM.Standard.E2.1.Microを使っています &lt;a href="https://cloud.oracle.com/"&gt;Oracle Cloud&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="note"></category></entry><entry><title>setup scikit-learn and tensorflow-macos with macports</title><link href="https://nkm3.org/setup_scikit-learn_and_tensorflow-macos_with_macports.html" rel="alternate"></link><published>2021-08-22T00:00:00+09:00</published><updated>2021-08-22T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-08-22:/setup_scikit-learn_and_tensorflow-macos_with_macports.html</id><summary type="html">&lt;p&gt;macports上のPython virtualenvにpip installしづらいscikit-learnやtensorflow-macosをインストールする流れ&lt;/p&gt;</summary><content type="html">&lt;h2&gt;macports上のPython virtualenvにpip installしづらいscikit-learnやtensorflow-macosをインストールする流れ&lt;/h2&gt;
 &lt;h3&gt;scikit-learn&lt;/h3&gt;
 &lt;p&gt;依存するライブラリとfortranをインストールする必要がある  &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;port install OpenBLAS boost171 gcc11 +gfortran
