@@ -5,7 +5,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://nkm3.org/</loc>
-<lastmod>2021-10-04T12:57:40-00:00</lastmod>
+<lastmod>2021-10-04T13:16:56-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.3</priority>
 </url>
@@ -20,6 +20,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://nkm3.org/bring_your_own_nature_with_raspberry_pi.html</loc>
 <lastmod>2021-10-04T00:00:00+09:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.6</priority>
+</url>
+
+<url>
+<loc>https://nkm3.org/pands-basics-memo-pt1.html</loc>
+<lastmod>2021-09-01T00:00:00+09:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.6</priority>
 </url>
@@ -55,6 +62,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://nkm3.org/calculate-effective-reproduction-number.html</loc>
 <lastmod>2021-08-15T00:00:00+09:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.6</priority>
+</url>
+
+<url>
+<loc>https://nkm3.org/flashcard-with-django-nuxtjs-vuetify-pt3.html</loc>
+<lastmod>2021-08-12T00:00:00+09:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.6</priority>
+</url>
+
+<url>
+<loc>https://nkm3.org/flashcard-with-django-nuxtjs-vuetify-pt2.html</loc>
+<lastmod>2021-08-11T00:00:00+09:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.6</priority>
 </url>

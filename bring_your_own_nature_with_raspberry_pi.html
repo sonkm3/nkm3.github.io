@@ -119,7 +119,7 @@ HLSは連続する映像、音声を短い映像、音声ファイルに分割(�
 <li><a href="https://github.com/video-dev/hls.js/">hls.js</a></li>
 </ul>
 <h1>ポイント</h1>
-<h2>FFmpegの設定</h2>
+<h2>FFmpegの実行</h2>
 <div class="highlight"><pre><span></span><code><span class="nv">ffmpeg</span> \
   <span class="o">-</span><span class="nv">y</span> \
   <span class="o">-</span><span class="nv">f</span> <span class="nv">alsa</span> <span class="o">-</span><span class="nv">ac</span> <span class="mh">$C</span><span class="nv">HANNELS</span> <span class="o">-</span><span class="nv">thread_queue_size</span> <span class="mi">16384</span> <span class="o">-</span><span class="nv">r</span> <span class="mi">15</span> <span class="o">-</span><span class="nv">re</span> <span class="o">-</span><span class="nv">t</span> <span class="mh">$D</span><span class="nv">URATION</span> <span class="o">-</span><span class="nv">i</span> <span class="mh">$A</span><span class="nv">UDIO_DEVICE</span>\
@@ -132,7 +132,11 @@ HLSは連続する映像、音声を短い映像、音声ファイルに分割(�
   <span class="o">-</span><span class="nv">f</span> <span class="nv">flv</span> $<span class="nv">RTMP_SERVER_URL</span>
 </code></pre></div>
 
-<p>ちょうど良いオプションがなかなか見つからなかったのですが、いまとのころこのコマンドラインで良さそうな感じがしています</p>
+<p>Raspberry Pi上で動作し、webカメラからの映像を配信サーバー($RTMP_SERVER_URL)に送信するコマンドです(実際はsystemdから実行されるシェルスクリプトの中で実行しています)  </p>
+<p>ちょうど良い設定がなかなかたどりつけなかったのですが、いまとのころこのコマンドラインオプションで良さそうな感じがしています<br>
+設置場所のwifi事情があまり良くないことや、ネットワークの利用量を抑えるため、動画のビットレートを比較的低くできるように設定しています  </p>
+<p><code>-c:v h264_omx</code> でRaspberry Piが持っているハードウェアのh264エンコーダーを使用するようにしています<br>
+今回は<code>Raspberry Pi 3 Model A+</code>を使っていますが、ハードウェアエンコーダーを使っているため<code>Raspberry Pi Zero WH</code>などでも比較的低い負荷でエンコードがおこなえると思います  </p>
 <h2>nginx-rtmp-moduleの設定</h2>
 <p>こちらのdocker imageをもとにしました<br>
 <a href="https://hub.docker.com/r/tiangolo/nginx-rtmp/">https://hub.docker.com/r/tiangolo/nginx-rtmp/</a><br>
@@ -203,6 +207,8 @@ HLSは連続する映像、音声を短い映像、音声ファイルに分割(�
 <span class="p">}</span>
 </code></pre></div>
 
+<p>前半の<code>rtmp {}</code>の箇所が<code>nginx-rtmp-module</code>に関わる設定になります<br>
+後半の<code>http {}</code>はプレイリストとフラグメントの配信をする設定と、APIサーバーへのproxyの設定がされています(詳しくはdocker-composeの箇所で説明します)  </p>
 <h2>配信サーバーのdocker-composeファイル</h2>
 <div class="highlight"><pre><span></span><code><span class="n">version</span><span class="p">:</span> <span class="s2">&quot;3.9&quot;</span>
 <span class="n">services</span><span class="p">:</span>
