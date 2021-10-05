@@ -75,7 +75,7 @@
 <p>映像配信の方法はいくつかありますが、今回はHLSという方式を使ってみました<br>
 HLSは連続する映像、音声を短い映像、音声ファイルに分割(フラグメント)し、そのリスト(プレイリスト)と合わせて扱いやすいHTTPで配信する方式です<br>
 ブラウザーはプレイリストをダウンロードしてから分割されたファイルを逐一ダウンロードする形になるため、遅延がフラグメントの長さより長い時間幅で発生します<br>
-配信を見ながらコメントをしたりするサービスの場合は遅延を減らすよう、他の方式も含めて検討すると思いますが、今回は「ただ雰囲気を楽しむ」だけなのであまり細かく追求していません</p>
+配信を見ながらコメントをしたりするサービスの場合は遅延を減らすよう、他の方式も含めて検討すると思いますが、今回は「ただ雰囲気を楽しむ」だけなのであまり追求していません</p>
 <h2>Raspberry Piとクラウドの役割分担</h2>
 <ul>
 <li>Raspberry Pi(FFmpeg)<ul>
@@ -132,10 +132,10 @@ HLSは連続する映像、音声を短い映像、音声ファイルに分割(�
   <span class="o">-</span><span class="nv">f</span> <span class="nv">flv</span> $<span class="nv">RTMP_SERVER_URL</span>
 </code></pre></div>
 
-<p>Raspberry Pi上で動作し、webカメラからの映像を配信サーバー($RTMP_SERVER_URL)に送信するコマンドです(実際はsystemdから実行されるシェルスクリプトの中で実行しています)  </p>
+<p>Raspberry Pi上で動作し、webカメラからの映像を配信サーバー(<code>$RTMP_SERVER_URL</code>)に送信するコマンドです(実際は<code>systemd</code>から実行されるシェルスクリプトの中で実行しています)  </p>
 <p>ちょうど良い設定がなかなかたどりつけなかったのですが、いまとのころこのコマンドラインオプションで良さそうな感じがしています<br>
 設置場所のwifi事情があまり良くないことや、ネットワークの利用量を抑えるため、動画のビットレートを比較的低くできるように設定しています  </p>
-<p><code>-c:v h264_omx</code> でRaspberry Piが持っているハードウェアのh264エンコーダーを使用するようにしています<br>
+<p><code>-c:v h264_omx</code> で<code>Raspberry Pi</code>が持っているハードウェアのh264エンコーダーを使用するようにしています<br>
 今回は<code>Raspberry Pi 3 Model A+</code>を使っていますが、ハードウェアエンコーダーを使っているため<code>Raspberry Pi Zero WH</code>などでも比較的低い負荷でエンコードがおこなえると思います  </p>
 <h2>nginx-rtmp-moduleの設定</h2>
 <p>こちらのdocker imageをもとにしました<br>
@@ -208,7 +208,7 @@ HLSは連続する映像、音声を短い映像、音声ファイルに分割(�
 </code></pre></div>
 
 <p>前半の<code>rtmp {}</code>の箇所が<code>nginx-rtmp-module</code>に関わる設定になります<br>
-後半の<code>http {}</code>はプレイリストとフラグメントの配信をする設定と、APIサーバーへのproxyの設定がされています(詳しくはdocker-composeの箇所で説明します)  </p>
+後半の<code>http {}</code>はプレイリストとフラグメントの配信をする設定と、APIサーバーへのproxyの設定がされています(詳しくは<code>docker-compose</code>の箇所で説明します)  </p>
 <h2>配信サーバーのdocker-composeファイル</h2>
 <div class="highlight"><pre><span></span><code><span class="n">version</span><span class="p">:</span> <span class="s2">&quot;3.9&quot;</span>
 <span class="n">services</span><span class="p">:</span>
@@ -239,18 +239,18 @@ HLSは連続する映像、音声を短い映像、音声ファイルに分割(�
             <span class="o">-</span> <span class="n">stream</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">app</span><span class="o">.</span><span class="n">env</span>
 </code></pre></div>
 
-<p>docker-composeですべて立ち上がるようにしています</p>
+<p><code>docker-compose up</code>ですべて立ち上がるようにしています</p>
 <ul>
-<li>HTTPリクエストは一旦nginx-proxyで受けます(VIRTUAL HOSTと今後のHTTPS対応をするためです)</li>
-<li>indexページとHLSのフラグメントファイルはnginx-rtmp-moduleから配信されます</li>
-<li>APIへのリクエストはnginx-unit-stream-control-appから配信されます<ul>
-<li>ユーザーからのリクエストはnginx-proxy→nginx-rtmp-module→nginx-unit-stream-control-appと2段階でproxyされます</li>
-<li>配信開始、終了のwebhookリクエストはnginx-rtmp-moduleで発生するのでnginx-rtmp-moduleからnginx-unit-stream-control-appに直接リクエストされます</li>
+<li>HTTPリクエストは一旦<code>nginx-proxy</code>で受けます(VIRTUAL HOSTと今後のHTTPS対応をするためです)</li>
+<li>indexページとHLSのフラグメントファイルは<code>nginx-rtmp-module</code>から配信されます</li>
+<li>APIへのリクエストは<code>nginx-unit-stream-control-app</code>から配信されます<ul>
+<li>ユーザーからのリクエストは<code>nginx-proxy</code>→<code>nginx-rtmp-module</code>→<code>nginx-unit-stream-control-app</code>と2段階でproxyされます</li>
+<li>配信開始、終了のwebhookリクエストは<code>nginx-rtmp-module</code>で発生するので<code>nginx-rtmp-module</code>から<code>nginx-unit-stream-control-app</code>に直接リクエストされます</li>
 </ul>
 </li>
 </ul>
 <h1>クラウド側のサーバーについて</h1>
-<p>クラウド側のサーバーはOracle CloudがAlways freeで提供しているCompute Instance VM.Standard.E2.1.Microを使っています <a href="https://cloud.oracle.com/">Oracle Cloud</a></p>
+<p>クラウド側のサーバーはOracle CloudがAlways freeで提供しているCompute Instance <code>VM.Standard.E2.1.Micro</code>を使っています <a href="https://cloud.oracle.com/">Oracle Cloud</a></p>
 <h1>終わりに</h1>
 <p>自然をなんとかと言って結局ただのライブ配信じゃないか、という話ではあるのですが、それはそれとさせてください<br>
 実はオープンソースのソフトウェアの組み合わせて結構作れてしまうということが雰囲気だけでもお伝えできたかなと思っています</p>

@@ -10,7 +10,7 @@
 &lt;p&gt;映像配信の方法はいくつかありますが、今回はHLSという方式を使ってみました&lt;br&gt;
 HLSは連続する映像、音声を短い映像、音声ファイルに分割(フラグメント)し、そのリスト(プレイリスト)と合わせて扱いやすいHTTPで配信する方式です&lt;br&gt;
 ブラウザーはプレイリストをダウンロードしてから分割されたファイルを逐一ダウンロードする形になるため、遅延がフラグメントの長さより長い時間幅で発生します&lt;br&gt;
-配信を見ながらコメントをしたりするサービスの場合は遅延を減らすよう、他の方式も含めて検討すると思いますが、今回は「ただ雰囲気を楽しむ」だけなのであまり細かく追求していません&lt;/p&gt;
+配信を見ながらコメントをしたりするサービスの場合は遅延を減らすよう、他の方式も含めて検討すると思いますが、今回は「ただ雰囲気を楽しむ」だけなのであまり追求していません&lt;/p&gt;
 &lt;h2&gt;Raspberry Piとクラウドの役割分担&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Raspberry Pi(FFmpeg)&lt;ul&gt;
@@ -67,10 +67,10 @@ HLSは連続する映像、音声を短い映像、音声ファイルに分割(�
   &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;f&lt;/span&gt; &lt;span class="nv"&gt;flv&lt;/span&gt; $&lt;span class="nv"&gt;RTMP_SERVER_URL&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Raspberry Pi上で動作し、webカメラからの映像を配信サーバー($RTMP_SERVER_URL)に送信するコマンドです(実際はsystemdから実行されるシェルスクリプトの中で実行しています)  &lt;/p&gt;
+&lt;p&gt;Raspberry Pi上で動作し、webカメラからの映像を配信サーバー(&lt;code&gt;$RTMP_SERVER_URL&lt;/code&gt;)に送信するコマンドです(実際は&lt;code&gt;systemd&lt;/code&gt;から実行されるシェルスクリプトの中で実行しています)  &lt;/p&gt;
 &lt;p&gt;ちょうど良い設定がなかなかたどりつけなかったのですが、いまとのころこのコマンドラインオプションで良さそうな感じがしています&lt;br&gt;
 設置場所のwifi事情があまり良くないことや、ネットワークの利用量を抑えるため、動画のビットレートを比較的低くできるように設定しています  &lt;/p&gt;
-&lt;p&gt;&lt;code&gt;-c:v h264_omx&lt;/code&gt; でRaspberry Piが持っているハードウェアのh264エンコーダーを使用するようにしています&lt;br&gt;
+&lt;p&gt;&lt;code&gt;-c:v h264_omx&lt;/code&gt; で&lt;code&gt;Raspberry Pi&lt;/code&gt;が持っているハードウェアのh264エンコーダーを使用するようにしています&lt;br&gt;
 今回は&lt;code&gt;Raspberry Pi 3 Model A+&lt;/code&gt;を使っていますが、ハードウェアエンコーダーを使っているため&lt;code&gt;Raspberry Pi Zero WH&lt;/code&gt;などでも比較的低い負荷でエンコードがおこなえると思います  &lt;/p&gt;
 &lt;h2&gt;nginx-rtmp-moduleの設定&lt;/h2&gt;
 &lt;p&gt;こちらのdocker imageをもとにしました&lt;br&gt;
@@ -143,7 +143,7 @@ HLSは連続する映像、音声を短い映像、音声ファイルに分割(�
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;前半の&lt;code&gt;rtmp {}&lt;/code&gt;の箇所が&lt;code&gt;nginx-rtmp-module&lt;/code&gt;に関わる設定になります&lt;br&gt;
-後半の&lt;code&gt;http {}&lt;/code&gt;はプレイリストとフラグメントの配信をする設定と、APIサーバーへのproxyの設定がされています(詳しくはdocker-composeの箇所で説明します)  &lt;/p&gt;
+後半の&lt;code&gt;http {}&lt;/code&gt;はプレイリストとフラグメントの配信をする設定と、APIサーバーへのproxyの設定がされています(詳しくは&lt;code&gt;docker-compose&lt;/code&gt;の箇所で説明します)  &lt;/p&gt;
 &lt;h2&gt;配信サーバーのdocker-composeファイル&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;3.9&amp;quot;&lt;/span&gt;
 &lt;span class="n"&gt;services&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -174,18 +174,18 @@ HLSは連続する映像、音声を短い映像、音声ファイルに分割(�
             &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;stream&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;control&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;env&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;docker-composeですべて立ち上がるようにしています&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;docker-compose up&lt;/code&gt;ですべて立ち上がるようにしています&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;HTTPリクエストは一旦nginx-proxyで受けます(VIRTUAL HOSTと今後のHTTPS対応をするためです)&lt;/li&gt;
-&lt;li&gt;indexページとHLSのフラグメントファイルはnginx-rtmp-moduleから配信されます&lt;/li&gt;
-&lt;li&gt;APIへのリクエストはnginx-unit-stream-control-appから配信されます&lt;ul&gt;
-&lt;li&gt;ユーザーからのリクエストはnginx-proxy→nginx-rtmp-module→nginx-unit-stream-control-appと2段階でproxyされます&lt;/li&gt;
-&lt;li&gt;配信開始、終了のwebhookリクエストはnginx-rtmp-moduleで発生するのでnginx-rtmp-moduleからnginx-unit-stream-control-appに直接リクエストされます&lt;/li&gt;
+&lt;li&gt;HTTPリクエストは一旦&lt;code&gt;nginx-proxy&lt;/code&gt;で受けます(VIRTUAL HOSTと今後のHTTPS対応をするためです)&lt;/li&gt;
+&lt;li&gt;indexページとHLSのフラグメントファイルは&lt;code&gt;nginx-rtmp-module&lt;/code&gt;から配信されます&lt;/li&gt;
+&lt;li&gt;APIへのリクエストは&lt;code&gt;nginx-unit-stream-control-app&lt;/code&gt;から配信されます&lt;ul&gt;
+&lt;li&gt;ユーザーからのリクエストは&lt;code&gt;nginx-proxy&lt;/code&gt;→&lt;code&gt;nginx-rtmp-module&lt;/code&gt;→&lt;code&gt;nginx-unit-stream-control-app&lt;/code&gt;と2段階でproxyされます&lt;/li&gt;
+&lt;li&gt;配信開始、終了のwebhookリクエストは&lt;code&gt;nginx-rtmp-module&lt;/code&gt;で発生するので&lt;code&gt;nginx-rtmp-module&lt;/code&gt;から&lt;code&gt;nginx-unit-stream-control-app&lt;/code&gt;に直接リクエストされます&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1&gt;クラウド側のサーバーについて&lt;/h1&gt;
-&lt;p&gt;クラウド側のサーバーはOracle CloudがAlways freeで提供しているCompute Instance VM.Standard.E2.1.Microを使っています &lt;a href="https://cloud.oracle.com/"&gt;Oracle Cloud&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;クラウド側のサーバーはOracle CloudがAlways freeで提供しているCompute Instance &lt;code&gt;VM.Standard.E2.1.Micro&lt;/code&gt;を使っています &lt;a href="https://cloud.oracle.com/"&gt;Oracle Cloud&lt;/a&gt;&lt;/p&gt;
 &lt;h1&gt;終わりに&lt;/h1&gt;
 &lt;p&gt;自然をなんとかと言って結局ただのライブ配信じゃないか、という話ではあるのですが、それはそれとさせてください&lt;br&gt;
 実はオープンソースのソフトウェアの組み合わせて結構作れてしまうということが雰囲気だけでもお伝えできたかなと思っています&lt;/p&gt;</content><category term="note"></category><category term="note"></category></entry><entry><title>pands basics memo part1</title><link href="https://nkm3.org/pands-basics-memo-pt1.html" rel="alternate"></link><published>2021-09-01T00:00:00+09:00</published><updated>2021-09-01T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-09-01:/pands-basics-memo-pt1.html</id><summary type="html">&lt;p&gt;東京都が出してるコロナのデータを扱ってみて覚えたpandasの基本的な使い方たちを忘れたくないのでメモしてみた part1&lt;/p&gt;</summary><content type="html">&lt;h2&gt;pandasの基本的な使い方たちを忘れないようにメモしてみる part1&lt;/h2&gt;
