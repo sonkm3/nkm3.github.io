@@ -20,7 +20,7 @@ Summary: Raspberry Piを使った自然の雰囲気を都会にいても楽し�
 映像配信の方法はいくつかありますが、今回はHLSという方式を使ってみました  
 HLSは連続する映像、音声を短い映像、音声ファイルに分割(フラグメント)し、そのリスト(プレイリスト)と合わせて扱いやすいHTTPで配信する方式です  
 ブラウザーはプレイリストをダウンロードしてから分割されたファイルを逐一ダウンロードする形になるため、遅延がフラグメントの長さより長い時間幅で発生します  
-配信を見ながらコメントをしたりするサービスの場合は遅延を減らすよう、他の方式も含めて検討すると思いますが、今回は「ただ雰囲気を楽しむ」だけなのであまり細かく追求していません
+配信を見ながらコメントをしたりするサービスの場合は遅延を減らすよう、他の方式も含めて検討すると思いますが、今回は「ただ雰囲気を楽しむ」だけなのであまり追求していません
 
 ## Raspberry Piとクラウドの役割分担
 
@@ -66,12 +66,12 @@ ffmpeg \
   -ignore_unknown \
   -f flv $RTMP_SERVER_URL
 ```
-Raspberry Pi上で動作し、webカメラからの映像を配信サーバー($RTMP_SERVER_URL)に送信するコマンドです(実際はsystemdから実行されるシェルスクリプトの中で実行しています)  
+Raspberry Pi上で動作し、webカメラからの映像を配信サーバー(`$RTMP_SERVER_URL`)に送信するコマンドです(実際は`systemd`から実行されるシェルスクリプトの中で実行しています)  
 
 ちょうど良い設定がなかなかたどりつけなかったのですが、いまとのころこのコマンドラインオプションで良さそうな感じがしています  
 設置場所のwifi事情があまり良くないことや、ネットワークの利用量を抑えるため、動画のビットレートを比較的低くできるように設定しています  
 
-`-c:v h264_omx` でRaspberry Piが持っているハードウェアのh264エンコーダーを使用するようにしています  
+`-c:v h264_omx` で`Raspberry Pi`が持っているハードウェアのh264エンコーダーを使用するようにしています  
 今回は`Raspberry Pi 3 Model A+`を使っていますが、ハードウェアエンコーダーを使っているため`Raspberry Pi Zero WH`などでも比較的低い負荷でエンコードがおこなえると思います  
 
 ## nginx-rtmp-moduleの設定
@@ -149,7 +149,7 @@ http {
 ```
 
 前半の`rtmp {}`の箇所が`nginx-rtmp-module`に関わる設定になります  
-後半の`http {}`はプレイリストとフラグメントの配信をする設定と、APIサーバーへのproxyの設定がされています(詳しくはdocker-composeの箇所で説明します)  
+後半の`http {}`はプレイリストとフラグメントの配信をする設定と、APIサーバーへのproxyの設定がされています(詳しくは`docker-compose`の箇所で説明します)  
 
 ## 配信サーバーのdocker-composeファイル
 ```
@@ -181,17 +181,17 @@ services:
         env_file:
             - stream-control-app.env
 ```
-docker-composeですべて立ち上がるようにしています
+`docker-compose up`ですべて立ち上がるようにしています
 
-- HTTPリクエストは一旦nginx-proxyで受けます(VIRTUAL HOSTと今後のHTTPS対応をするためです)
-- indexページとHLSのフラグメントファイルはnginx-rtmp-moduleから配信されます
-- APIへのリクエストはnginx-unit-stream-control-appから配信されます
-    - ユーザーからのリクエストはnginx-proxy→nginx-rtmp-module→nginx-unit-stream-control-appと2段階でproxyされます
-    - 配信開始、終了のwebhookリクエストはnginx-rtmp-moduleで発生するのでnginx-rtmp-moduleからnginx-unit-stream-control-appに直接リクエストされます
+- HTTPリクエストは一旦`nginx-proxy`で受けます(VIRTUAL HOSTと今後のHTTPS対応をするためです)
+- indexページとHLSのフラグメントファイルは`nginx-rtmp-module`から配信されます
+- APIへのリクエストは`nginx-unit-stream-control-app`から配信されます
+    - ユーザーからのリクエストは`nginx-proxy`→`nginx-rtmp-module`→`nginx-unit-stream-control-app`と2段階でproxyされます
+    - 配信開始、終了のwebhookリクエストは`nginx-rtmp-module`で発生するので`nginx-rtmp-module`から`nginx-unit-stream-control-app`に直接リクエストされます
 
 
 #　クラウド側のサーバーについて
-クラウド側のサーバーはOracle CloudがAlways freeで提供しているCompute Instance VM.Standard.E2.1.Microを使っています [Oracle Cloud](https://cloud.oracle.com/)
+クラウド側のサーバーはOracle CloudがAlways freeで提供しているCompute Instance `VM.Standard.E2.1.Micro`を使っています [Oracle Cloud](https://cloud.oracle.com/)
 
 # 終わりに
 自然をなんとかと言って結局ただのライブ配信じゃないか、という話ではあるのですが、それはそれとさせてください  
