@@ -1,12 +1,11 @@
 Title: pands basics memo part2
-Date: 2021-09-01 00:00
+Date: 2021-09-01 01:00
 Modified: 2021-09-01 00:00
 Category: note
 Tags: note
 Slug: pands-basics-memo-pt2
 Authors: sonkmr
 Summary: 東京都が出してるコロナのデータを扱って覚えたpandasの基本的な使い方たちを忘れたくないのでメモしてみた part2
-Status: draft
 
 ## pandasの基本的な使い方たちを忘れないようにメモしてみる part2
 データへの計算の方法について

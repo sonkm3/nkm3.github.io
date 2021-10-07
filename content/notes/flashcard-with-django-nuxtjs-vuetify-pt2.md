@@ -6,6 +6,7 @@ Tags: note, software
 Slug: flashcard-with-django-nuxtjs-vuetify-pt2
 Authors: sonkmr
 Summary: Making Flashcard app with Django REST framework, nuxtjs and Vuetify. part2
+Status: draft
 
 ## まだ書いてる途中だけどなんとなく公開
 ## これはなに
