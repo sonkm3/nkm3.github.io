@@ -10,6 +10,8 @@ Summary: macports上のPython virtualenvにpip installしづらいscikit-learn�
 ## macports上のPython virtualenvにpip installしづらいscikit-learnやtensorflow-macosをインストールする流れ
 
 ### scikit-learn
+#### 2021/12/17 以下の手順でscipyのインストールに失敗するようになったのでなんとかする方法を追記(発生するバージョンなどまでは調べきれていない)
+
 依存するライブラリとfortranをインストールする必要がある  
 
 ```
@@ -17,11 +19,38 @@ port install OpenBLAS boost171 gcc11 +gfortran
 ```
 
 fortranコンパイラ`port search fortran`で出てくるg95かなー？と思ったけどインストールできないしメンテもされていなくて詰んだかと思ったけど`port install gcc11 +gfortran`でいける  
-あとはpipでインストールする  
+
+
+#### scipyのインストールの準備(無理矢理な面もある手順)
+依存するモジュールのインストール
+```
+pip install bybind11 cython pythran
+```
+
+MacOSX.sdkが見つからなくてビルドに失敗するので事前にシンボリックリンクを張る
+```
+cd /Library/Developer/CommandLineTools/SDKs
+sudo ln -s MacOSX.sdk MacOSX11.sdk
+```
+
+#### scipyのインストール
+```
+OPENBLAS="/opt/local/lib/" CFLAGS="-falign-functions=8 ${CFLAGS}" pip install --no-use-pep517 scipy
+```
+
+必要なライブラリがlibgcc以下にあり、見つけてくれないのでシンボリックリンクを張る
+```
+sudo ln -s libgcc/libgfortran.5.dylib libgfortran.5.dylib
+sudo ln -s libgcc/libgcc_s.1.1.dylib libgcc_s.1.1.dylib
+```
+
+#### scikit-learnのインストール
 
 ```
 pip install scikit-learn
 ```
+
+シンボリックリンクを張らないで済む方法を今後探すつもり
 
 ### tensorflow-macos
 依存するライブラリ、ソフトウェアは以下のもの
