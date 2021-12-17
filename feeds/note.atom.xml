@@ -623,15 +623,36 @@ CacheControlを使うとリクエストデータをキャッシュすること�
 &lt;span class="mi"&gt;9&lt;/span&gt; &lt;span class="mi"&gt;2021&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;04&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;  &lt;span class="mi"&gt;10&lt;/span&gt;   &lt;span class="n"&gt;data10&lt;/span&gt;     &lt;span class="mi"&gt;10&lt;/span&gt;   &lt;span class="mi"&gt;11&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="note"></category><category term="note"></category></entry><entry><title>setup scikit-learn and tensorflow-macos with macports</title><link href="https://nkm3.org/setup_scikit-learn_and_tensorflow-macos_with_macports.html" rel="alternate"></link><published>2021-08-22T00:00:00+09:00</published><updated>2021-08-22T00:00:00+09:00</updated><author><name>sonkmr</name></author><id>tag:nkm3.org,2021-08-22:/setup_scikit-learn_and_tensorflow-macos_with_macports.html</id><summary type="html">&lt;p&gt;macports上のPython virtualenvにpip installしづらいscikit-learnやtensorflow-macosをインストールする流れ&lt;/p&gt;</summary><content type="html">&lt;h2&gt;macports上のPython virtualenvにpip installしづらいscikit-learnやtensorflow-macosをインストールする流れ&lt;/h2&gt;
 &lt;h3&gt;scikit-learn&lt;/h3&gt;
+&lt;h4&gt;2021/12/17 以下の手順でscipyのインストールに失敗するようになったのでなんとかする方法を追記(発生するバージョンなどまでは調べきれていない)&lt;/h4&gt;
 &lt;p&gt;依存するライブラリとfortranをインストールする必要がある  &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;port install OpenBLAS boost171 gcc11 +gfortran
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;fortranコンパイラ&lt;code&gt;port search fortran&lt;/code&gt;で出てくるg95かなー？と思ったけどインストールできないしメンテもされていなくて詰んだかと思ったけど&lt;code&gt;port install gcc11 +gfortran&lt;/code&gt;でいける&lt;br&gt;
-あとはpipでインストールする  &lt;/p&gt;
+&lt;p&gt;fortranコンパイラ&lt;code&gt;port search fortran&lt;/code&gt;で出てくるg95かなー？と思ったけどインストールできないしメンテもされていなくて詰んだかと思ったけど&lt;code&gt;port install gcc11 +gfortran&lt;/code&gt;でいける  &lt;/p&gt;
+&lt;h4&gt;scipyのインストールの準備(無理矢理な面もある手順)&lt;/h4&gt;
+&lt;p&gt;依存するモジュールのインストール&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip install bybind11 cython pythran
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;MacOSX.sdkが見つからなくてビルドに失敗するので事前にシンボリックリンクを張る&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;cd /Library/Developer/CommandLineTools/SDKs
+sudo ln -s MacOSX.sdk MacOSX11.sdk
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;scipyのインストール&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;OPENBLAS=&amp;quot;/opt/local/lib/&amp;quot; CFLAGS=&amp;quot;-falign-functions=8 &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;CFLAGS&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot; pip install --no-use-pep517 scipy
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;必要なライブラリがlibgcc以下にあり、見つけてくれないのでシンボリックリンクを張る&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo ln -s libgcc/libgfortran.5.dylib libgfortran.5.dylib
+sudo ln -s libgcc/libgcc_s.1.1.dylib libgcc_s.1.1.dylib
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;scikit-learnのインストール&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip install scikit-learn
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
+&lt;p&gt;シンボリックリンクを張らないで済む方法を今後探すつもり&lt;/p&gt;
 &lt;h3&gt;tensorflow-macos&lt;/h3&gt;
 &lt;p&gt;依存するライブラリ、ソフトウェアは以下のもの&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ports install pkgconfig clang-9.0 hdf5

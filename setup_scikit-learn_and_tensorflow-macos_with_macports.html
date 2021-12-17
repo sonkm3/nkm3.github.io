@@ -67,15 +67,36 @@
                     <section class="post-content">
                         <h2>macports上のPython virtualenvにpip installしづらいscikit-learnやtensorflow-macosをインストールする流れ</h2>
 <h3>scikit-learn</h3>
+<h4>2021/12/17 以下の手順でscipyのインストールに失敗するようになったのでなんとかする方法を追記(発生するバージョンなどまでは調べきれていない)</h4>
 <p>依存するライブラリとfortranをインストールする必要がある  </p>
 <div class="highlight"><pre><span></span><code>port install OpenBLAS boost171 gcc11 +gfortran
 </code></pre></div>
 
-<p>fortranコンパイラ<code>port search fortran</code>で出てくるg95かなー？と思ったけどインストールできないしメンテもされていなくて詰んだかと思ったけど<code>port install gcc11 +gfortran</code>でいける<br>
-あとはpipでインストールする  </p>
+<p>fortranコンパイラ<code>port search fortran</code>で出てくるg95かなー？と思ったけどインストールできないしメンテもされていなくて詰んだかと思ったけど<code>port install gcc11 +gfortran</code>でいける  </p>
+<h4>scipyのインストールの準備(無理矢理な面もある手順)</h4>
+<p>依存するモジュールのインストール</p>
+<div class="highlight"><pre><span></span><code>pip install bybind11 cython pythran
+</code></pre></div>
+
+<p>MacOSX.sdkが見つからなくてビルドに失敗するので事前にシンボリックリンクを張る</p>
+<div class="highlight"><pre><span></span><code>cd /Library/Developer/CommandLineTools/SDKs
+sudo ln -s MacOSX.sdk MacOSX11.sdk
+</code></pre></div>
+
+<h4>scipyのインストール</h4>
+<div class="highlight"><pre><span></span><code>OPENBLAS=&quot;/opt/local/lib/&quot; CFLAGS=&quot;-falign-functions=8 <span class="cp">${</span><span class="n">CFLAGS</span><span class="cp">}</span>&quot; pip install --no-use-pep517 scipy
+</code></pre></div>
+
+<p>必要なライブラリがlibgcc以下にあり、見つけてくれないのでシンボリックリンクを張る</p>
+<div class="highlight"><pre><span></span><code>sudo ln -s libgcc/libgfortran.5.dylib libgfortran.5.dylib
+sudo ln -s libgcc/libgcc_s.1.1.dylib libgcc_s.1.1.dylib
+</code></pre></div>
+
+<h4>scikit-learnのインストール</h4>
 <div class="highlight"><pre><span></span><code>pip install scikit-learn
 </code></pre></div>
 
+<p>シンボリックリンクを張らないで済む方法を今後探すつもり</p>
 <h3>tensorflow-macos</h3>
 <p>依存するライブラリ、ソフトウェアは以下のもの</p>
 <div class="highlight"><pre><span></span><code>ports install pkgconfig clang-9.0 hdf5
