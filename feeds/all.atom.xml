@@ -654,8 +654,10 @@ sudo ln -s libgcc/libgcc_s.1.1.dylib libgcc_s.1.1.dylib
 
 &lt;p&gt;シンボリックリンクを張らないで済む方法を今後探すつもり&lt;/p&gt;
 &lt;h3&gt;tensorflow-macos&lt;/h3&gt;
+&lt;h4&gt;2021/12/25 tensorflow-metalのrequirementsがmacOS 12になったのでmacOS 11環境では以下の手順でGPUを使えなくなった(CPUは使える模様)&lt;/h4&gt;
+&lt;p&gt;https://developer.apple.com/metal/tensorflow-plugin/&lt;/p&gt;
 &lt;p&gt;依存するライブラリ、ソフトウェアは以下のもの&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ports install pkgconfig clang-9.0 hdf5
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;port install pkgconfig clang-9.0 hdf5
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;pipでPythonモジュールをインストールする際にいくつか環境変数を設定する必要がある&lt;/p&gt;
