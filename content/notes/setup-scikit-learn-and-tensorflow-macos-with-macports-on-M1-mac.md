@@ -53,10 +53,14 @@ pip install scikit-learn
 シンボリックリンクを張らないで済む方法を今後探すつもり
 
 ### tensorflow-macos
+
+#### 2021/12/25 tensorflow-metalのrequirementsがmacOS 12になったのでmacOS 11環境では以下の手順でGPUを使えなくなった(CPUは使える模様)
+https://developer.apple.com/metal/tensorflow-plugin/
+
 依存するライブラリ、ソフトウェアは以下のもの
 
 ```
-ports install pkgconfig clang-9.0 hdf5
+port install pkgconfig clang-9.0 hdf5
 ```
 
 pipでPythonモジュールをインストールする際にいくつか環境変数を設定する必要がある
