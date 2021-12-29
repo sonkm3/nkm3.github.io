@@ -190,7 +190,7 @@ services:
     - 配信開始、終了のwebhookリクエストは`nginx-rtmp-module`で発生するので`nginx-rtmp-module`から`nginx-unit-stream-control-app`に直接リクエストされます
 
 
-#　クラウド側のサーバーについて
+# クラウド側のサーバーについて
 クラウド側のサーバーはOracle CloudがAlways freeで提供しているCompute Instance `VM.Standard.E2.1.Micro`を使っています [Oracle Cloud](https://cloud.oracle.com/)
 
 # 終わりに
