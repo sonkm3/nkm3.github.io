@@ -34,8 +34,9 @@ notebook==5.6.0
 packaging==21.0
 pandocfilters==1.4.3
 parso==0.8.2
-pelican==4.6.0
+pelican==4.8.0
 pelican-jupyter @ git+https://github.com/danielfrg/pelican-jupyter@d30b54c72e6b69055e4239942877eae84563bcbe
+pelican-sitemap==1.0.2
 pexpect==4.8.0
 pickleshare==0.7.5
 prometheus-client==0.11.0

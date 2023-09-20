@@ -1,0 +1,19 @@
+version: '3.1'
+volumes:
+  node_modules:
+services:
+  pelican:
+    container_name: pelican
+    working_dir: "/opt/work"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    volumes:
+      - ./:/opt/work
+    secrets:
+      - host_ssh_key
+
+secrets:
+  host_ssh_key:
+    file: ${HOME}/.ssh/id_ecdsa

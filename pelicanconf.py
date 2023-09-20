@@ -63,6 +63,7 @@ MARKDOWN = {
         'markdown.extensions.meta': {},
         # 'mdx_linkify.mdx_linkify': {},
         'plugins.embed_github:EmbedGithubExtension': {},
+        'sane_lists': {},
     },
     'output_format': 'html5',
 }
