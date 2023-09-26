@@ -1,11 +1,12 @@
 Title: PyCon Taiwan 2023
-Date: 2023-09-25 00:00
-Modified: 2023-09-25 00:00
+Date: 2023-09-26 00:00
+Modified: 2023-09-26 00:00
 Category: note
 Tags: note, travel, 2023
 Slug: pycontw2023
 Authors: sonkmr
 Summary: PyCon Taiwan 2023に行ってきました
+
 
 ## PyCon Taiwan 2023に行ってきました
 2019年に初めて行ったPyCon Taiwan、なんだか楽しかったので来年もまた行こうと思っていたらコロナ禍で現地参加はままならない状況に  
@@ -36,7 +37,7 @@ Pablo Galindo Salgadoさんのキーノート「The snake of Theseus」は中盤
 ![DSC01519.jpg]({static}/images/pycontw2023/DSC01519.jpg)  
 
 - 定番のパッケージマネージャーから新しいパッケージマネージャーまでそれぞれの長所短所などから紹介されていました  
-- PDMやHatchは初耳だったのでずいぶんと早耳ですね  
+- PDMやHatchは完全に初耳でパッケージマネージャーもまだまだ新しいものが出てくるものなんですね  
 - スライド [https://slides.p3ac0ck.net/pycontw2023/8](https://slides.p3ac0ck.net/pycontw2023/8)  
 
 ---
@@ -139,7 +140,8 @@ Pablo Galindo Salgadoさんのキーノート「The snake of Theseus」は中盤
 
 ### Streamlit meets WebAssembly - stlite
 
-- 現地で知り合った方whitphxさんのセッションで実はなにの話をするかまったく知らない状態で参加したのですが今回の僕的なトリとして大団円という感じでした  
+- 現地で知り合った方whitphxさんのセッション  
+- 実はどんなの話をするかまったく知らない状態で参加したのですが今回の僕的なトリとして大団円という感じでした  
 - まずStreamlitというサービスがありこれはPythonだけでデータサイエンスなどのwebアプリケーションを作ることができるとのことです(例えばデータの可視化のwebUIをPythonだけで開発、提供できる)  
 - フロントエンドのウィジットを操作するとサーバーに変更が送られ、結果をサーバー側で処理、生成してフロントエンドに返す、という仕組みで実現しているそうです  
 - このサーバー側での処理をWebAssembryを用いてブラウザ内でおこなおうというのが今回紹介されたstliteになります(PyodideというWebAssembry上で動くPython環境を使うことで実現されています)  
@@ -377,6 +379,10 @@ GoogleMaps頼りでバス停に向かい故宮博物館へ向かったところ�
 
 
 そこそこにお腹いっぱいだったもののおいしそうだったのでついつい牡蠣オムレツ、茹でた牡蠣などをつまんでしまい、そこからさらに豆花のお店で一椀食べ、0時近くになったのでホテル方面へ徒歩で帰ることになりました。  
+
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">想い出w<br><br>3〜4年ぶりくらいに台湾でエンカしたオタク(別件でたまたま台湾にきていたw)<a href="https://twitter.com/n_akg?ref_src=twsrc%5Etfw">@n_akg</a> <a href="https://twitter.com/snkm3?ref_src=twsrc%5Etfw">@snkm3</a> <a href="https://t.co/erMJrVhq6g">pic.twitter.com/erMJrVhq6g</a></p>&mdash; 🍛ハヤシ・キャンGP🪼🥩🦭✡️🐶🍵🐸🐹 (@supcream) <a href="https://twitter.com/supcream/status/1698652519898198488?ref_src=twsrc%5Etfw">September 4, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+いいしゃしん  
 
 順番は前後しますがこの翌日がPyCon TW 2023の初日(9/2)なので時系列的にはここからこのページの最初に戻ることになります  
 この後の夏休み的な観光というか大移動については別のページで改めて書きます  
