@@ -1,4 +1,4 @@
-Title: PyCon Taiwan 2023
+Title: PyCon Taiwan 2023に行ってきました
 Date: 2023-09-26 00:00
 Modified: 2023-09-26 00:00
 Category: note
@@ -382,6 +382,7 @@ GoogleMaps頼りでバス停に向かい故宮博物館へ向かったところ�
 
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">想い出w<br><br>3〜4年ぶりくらいに台湾でエンカしたオタク(別件でたまたま台湾にきていたw)<a href="https://twitter.com/n_akg?ref_src=twsrc%5Etfw">@n_akg</a> <a href="https://twitter.com/snkm3?ref_src=twsrc%5Etfw">@snkm3</a> <a href="https://t.co/erMJrVhq6g">pic.twitter.com/erMJrVhq6g</a></p>&mdash; 🍛ハヤシ・キャンGP🪼🥩🦭✡️🐶🍵🐸🐹 (@supcream) <a href="https://twitter.com/supcream/status/1698652519898198488?ref_src=twsrc%5Etfw">September 4, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
+遊び歩いた友達のTwitterに写真があがっていました(私はGoProで動画を撮っている)  
 いいしゃしん  
 
 順番は前後しますがこの翌日がPyCon TW 2023の初日(9/2)なので時系列的にはここからこのページの最初に戻ることになります  
