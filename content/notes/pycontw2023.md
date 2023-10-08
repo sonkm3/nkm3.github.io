@@ -204,12 +204,17 @@ Pablo Galindo Salgadoさんのキーノート「The snake of Theseus」は中盤
 EVA Air BR195便 20:40-23:20(それぞれ現地時間)  
 2月に台湾に行った時に初めて乗ったEVA Airがお値段も手頃で良かったので今回もEVA Airで行くことにしました
 
+![IMG_7515.jpg]({static}/images/pycontw2023/IMG_7515.jpg)
 安全ビデオのこのおじさんは誰なんだろう？？
 
-![IMG_7515.jpg]({static}/images/pycontw2023/IMG_7515.jpg)
+![IMG_7513.jpg]({static}/images/pycontw2023/IMG_7513.jpg)
+いろいろあって今回はいい席です(当然ですが自腹)  
 
-現地時間23時前にゲートに到着しました  
 ![IMG_7529.jpg]({static}/images/pycontw2023/IMG_7529.jpg)
+現地時間23時前にゲートに到着しました  
+
+![IMG_7528.jpg]({static}/images/pycontw2023/IMG_7528.jpg)
+隣のゲートには新興の航空会社Starluxの787が  
 
 ### 1日目(8/30)
 桃園空港への到着が夜遅くかつ合流する同僚が8/31午前に到着するため、この日は桃園空港内のCHO Stayというホテルに宿泊しました  
