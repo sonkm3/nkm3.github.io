@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*- #
-
 # This file is only used if you use `make publish` or
 # explicitly specify it as your config file.
 
@@ -20,7 +17,7 @@ DELETE_OUTPUT_DIRECTORY = True
 
 # Following items are often useful when publishing
 
-#DISQUS_SITENAME = ""
-#GOOGLE_ANALYTICS = ""
+# DISQUS_SITENAME = ""
+# GOOGLE_ANALYTICS = ""
 GOOGLE_ANALYTICS = 'UA-1928342-2'
 GOOGLE_SITE_VERIFICATION = 'DpqlLQbMCcABYeNKp2A06sMQTxLp3Cjn0E4JdR3wLGA'

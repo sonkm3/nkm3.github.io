@@ -20,21 +20,21 @@ Summary: PyCon Taiwan 2023に行ってきました
 南港展覧館駅で「あれー？シャトルバス来ないなー。間に合ったはずだけどなー。」とぼんやりと待ちながらシャトルバスについて調べてみると発着場所が前回とは違い南港駅になっていました  
 仕方ないので普通のマイクロバスで中央研究院前まで向うことにします  
 
-![20230902_101816.jpg]({static}/images/pycontw2023/20230902_101816.jpg)
+![20230902_101816.jpg](../images/pycontw2023/20230902_101816.jpg)
 
 そこそこの雨の中、中央研究院の敷地を迷い歩いて人文社会科学館にやっと到着  
-![20230902_103236.jpg]({static}/images/pycontw2023/20230902_103236.jpg)
+![20230902_103236.jpg](../images/pycontw2023/20230902_103236.jpg)
 
 ### 途中から聞くことになってしまったキーノート
 Pablo Galindo Salgadoさんのキーノート「The snake of Theseus」は中盤ぐらいまで進んでいたもののパーサーの変更やGILの廃止など「そんなことやってたんだ！」や「話には聞いていたけどすすんでいるんだ！」と途中からだったものの引き込まれるトピックが続き興味深かったです(とか言うものの若干早口でついていくのは大変でした)  
 
-![20230902_113725.jpg]({static}/images/pycontw2023/20230902_113725.jpg)
+![20230902_113725.jpg](../images/pycontw2023/20230902_113725.jpg)
 
 ## 1日目に聞いたセッション
 ### Comparison of Packaging Tools in 2023
 
 日本からのスピーカーPeacockさんのセッション  
-![DSC01519.jpg]({static}/images/pycontw2023/DSC01519.jpg)  
+![DSC01519.jpg](../images/pycontw2023/DSC01519.jpg)  
 
 - 定番のパッケージマネージャーから新しいパッケージマネージャーまでそれぞれの長所短所などから紹介されていました  
 - PDMやHatchは完全に初耳でパッケージマネージャーもまだまだ新しいものが出てくるものなんですね  
@@ -44,7 +44,7 @@ Pablo Galindo Salgadoさんのキーノート「The snake of Theseus」は中盤
 ### Asyncio Evolved: Enhanced Exception Handling with Python 3.11 TaskGroups
 
 こちらも日本からのスピーカーJunya Fukudaさんのセッション  
-![DSC01524.jpg]({static}/images/pycontw2023/DSC01524.jpg)  
+![DSC01524.jpg](../images/pycontw2023/DSC01524.jpg)  
 
 - asyncioのタスクグループでのエラーハンドリングについての紹介でした  
 - 実は結構シンプルにタスクグループ中の一つのタスクが例外やキャンセルされた時にタスクをグループとして扱ってどう動くようになったかとざっくり理解していたもののそもそものasyncioに慣れていないのでちょっと入りきらなかったです  
@@ -64,9 +64,9 @@ Pablo Galindo Salgadoさんのキーノート「The snake of Theseus」は中盤
 - Ubuntu Coreを使ってコンテナ化することでIoTでも管理が楽になる、PiWallというOSSを使うとほぼずれることもなくマルチディスプレイの表示ができるようになる、などちょっと特殊な事例のようにも思いつつ知らない技術や使い方を知ることができ、面白い発表でした  
 - 発表者のsosoryさんは台北でRaspberry Piのミートアップなども主催されているとのことでトーク終わりに自分が関わっている「Raspberry Piもくもく会」のことを紹介がてら話をしてきました  
 
-![DSC01526.jpg]({static}/images/pycontw2023/DSC01526.jpg)
+![DSC01526.jpg](../images/pycontw2023/DSC01526.jpg)
 
-![DSC01534.jpg]({static}/images/pycontw2023/DSC01534.jpg)
+![DSC01534.jpg](../images/pycontw2023/DSC01534.jpg)
 
 - ディスプレイ4面にはそれぞれ1台ずつRaspberry Piが接続されており、Ethernetでコンテンツ配信用Raspberry Piと接続されていますが、目で見る範囲では同期が取れてずれずに表示できていました  
 
@@ -75,7 +75,7 @@ Pablo Galindo Salgadoさんのキーノート「The snake of Theseus」は中盤
 ## 1日目のセッション以外のできごと
 
 ### ランチ
-![20230902_123833.jpg]({static}/images/pycontw2023/20230902_123833.jpg)
+![20230902_123833.jpg](../images/pycontw2023/20230902_123833.jpg)
 
 - PyLadiesのみなさんと合流しお弁当を手に入れたものの食べる場所が見つからずうろうろしていたところCOSCUPのスタッフのお兄さんがわざわざ探し回ってくれて、最終的にお弁当が捌けて余っていたお弁当配布テーブルを我々の食事用に用意してくれてすごく助かりました。  
 
@@ -100,9 +100,9 @@ Pablo Galindo Salgadoさんのキーノート「The snake of Theseus」は中盤
 - 多様性を意識して他の技術系コミュニティと連携したり、学校と連携したり、またワークライフバランスに気を配ったりと技術者である前に人間であることを意識して活動をしている感じがすごくいいなと感じました  
 - さらに持続可能なリーダーシップという点でボランティアスタッフのオンボーディングにもバディを組むことでより着実に馴染んでいけるようにしていたり(コーヒーを飲みに行ったりして話をするらしく、1on1のような雰囲気でした)といった工夫の紹介も興味深かったです  
 
-![20230903_103955.jpg]({static}/images/pycontw2023/20230903_103955.jpg)
+![20230903_103955.jpg](../images/pycontw2023/20230903_103955.jpg)
 
-![20230903_110830.jpg]({static}/images/pycontw2023/20230903_110830.jpg)
+![20230903_110830.jpg](../images/pycontw2023/20230903_110830.jpg)
 
 - スライド [https://drive.google.com/file/d/1RqcKKu4NiOyAXqeMq-Wd_vjMzkPvqM2a/view](https://drive.google.com/file/d/1RqcKKu4NiOyAXqeMq-Wd_vjMzkPvqM2a/view)
 
@@ -114,17 +114,17 @@ Pablo Galindo Salgadoさんのキーノート「The snake of Theseus」は中盤
 - プログラミングの授業があるコースで習うのはHTMLとJavaScriptを使ったカリキュラムだけで実務ではなかなか役に立たなかったところを、大人になってエンジニアになった自分が変えていったという事例の紹介でした  
 - やっていることがかっこよく、また与えた変化の大きさにも驚かされ(古くなりすぎたカリキュラムだからこそ最新のものに置き換えられたのかもしれませんが)、とにかく良い話が聞けて来た甲斐があったと思えた時間でした  
 
-![20230903_115520.jpg]({static}/images/pycontw2023/20230903_115520.jpg)
+![20230903_115520.jpg](../images/pycontw2023/20230903_115520.jpg)
 
-![20230903_115654.jpg]({static}/images/pycontw2023/20230903_115654.jpg)
+![20230903_115654.jpg](../images/pycontw2023/20230903_115654.jpg)
 
-![20230903_120447.jpg]({static}/images/pycontw2023/20230903_120447.jpg)
+![20230903_120447.jpg](../images/pycontw2023/20230903_120447.jpg)
 
 ---
 
 ### 2日目のランチ
 
-![20230903_121820.jpg]({static}/images/pycontw2023/20230903_121820.jpg)
+![20230903_121820.jpg](../images/pycontw2023/20230903_121820.jpg)
 
 - 2日目もPyLadiesのみなさんと合流し空いているテーブルを探してうろうろしていたら折り畳み椅子を見つけられたのでなんとか座って食べることができました  
 
@@ -158,7 +158,7 @@ Pablo Galindo Salgadoさんのキーノート「The snake of Theseus」は中盤
 
 - セッションが一通り終わった後はOpen Spacesとして会議場横の通路にテーブルが出され、グループになって作業したり議論したりできるようになっていました  
 
-![20230903_150254.jpg]({static}/images/pycontw2023/20230903_150254.jpg)
+![20230903_150254.jpg](../images/pycontw2023/20230903_150254.jpg)
 
 - 台湾のグループが多かったステージに向かって左側のOpen Spaces会場
 
@@ -169,11 +169,11 @@ Pablo Galindo Salgadoさんのキーノート「The snake of Theseus」は中盤
 ---
 ## 会場をあとに
 
-![20230903_151259.jpg]({static}/images/pycontw2023/20230903_151259.jpg)
+![20230903_151259.jpg](../images/pycontw2023/20230903_151259.jpg)
 
 - 寄せ書き！  
 
-![20230903_164730.jpg]({static}/images/pycontw2023/20230903_164730.jpg)
+![20230903_164730.jpg](../images/pycontw2023/20230903_164730.jpg)
 
 - 南港展覧館では半導体の展示会をやっていました  
 
@@ -181,19 +181,19 @@ Pablo Galindo Salgadoさんのキーノート「The snake of Theseus」は中盤
 - 1ヶ月前から予約を取らないといけないという人気のお店でクラゲの前菜から始まり、イカの唐辛子炒めやクレープのような薄い皮で包む豚肉の辛み炒め、そして看板料理の12時間煮込んだ鶏の鍋から中華風スペアリブ、そしてナマコ料理まで食べきれない程の種類と量で大満足でした(余った料理は台湾のメンバーがお持ち帰りしていて、無駄にならない良いシステムでした)  
 - その後、また近くにあるクラフトビールのお店へビールを飲みに向かったのでここまで毎日飲みに行っています 
 
-![20230903_191348.jpg]({static}/images/pycontw2023/20230903_191348.jpg)
+![20230903_191348.jpg](../images/pycontw2023/20230903_191348.jpg)
 
-![20230903_192013.jpg]({static}/images/pycontw2023/20230903_192013.jpg)
+![20230903_192013.jpg](../images/pycontw2023/20230903_192013.jpg)
 
-![20230903_194958.jpg]({static}/images/pycontw2023/20230903_194958.jpg)
+![20230903_194958.jpg](../images/pycontw2023/20230903_194958.jpg)
 
-![20230903_193605.jpg]({static}/images/pycontw2023/20230903_193605.jpg)
+![20230903_193605.jpg](../images/pycontw2023/20230903_193605.jpg)
 
-![20230903_201434.jpg]({static}/images/pycontw2023/20230903_201434.jpg)
+![20230903_201434.jpg](../images/pycontw2023/20230903_201434.jpg)
 
 中華料理屋さんは「[驥園川菜餐庁](https://maps.app.goo.gl/TepsPpbWLJt75HNm7)」
 
-![20230903_214744.jpg]({static}/images/pycontw2023/20230903_214744.jpg)
+![20230903_214744.jpg](../images/pycontw2023/20230903_214744.jpg)
 「[臺虎](https://maps.app.goo.gl/vB4VL12oANETKrTE6)」というクラフトビール屋さん
 
 
@@ -204,16 +204,16 @@ Pablo Galindo Salgadoさんのキーノート「The snake of Theseus」は中盤
 EVA Air BR195便 20:40-23:20(それぞれ現地時間)  
 2月に台湾に行った時に初めて乗ったEVA Airがお値段も手頃で良かったので今回もEVA Airで行くことにしました
 
-![IMG_7515.jpg]({static}/images/pycontw2023/IMG_7515.jpg)
+![IMG_7515.jpg](../images/pycontw2023/IMG_7515.jpg)
 安全ビデオのこのおじさんは誰なんだろう？？
 
-![IMG_7513.jpg]({static}/images/pycontw2023/IMG_7513.jpg)
+![IMG_7513.jpg](../images/pycontw2023/IMG_7513.jpg)
 いろいろあって今回はいい席です(当然ですが自腹)  
 
-![IMG_7529.jpg]({static}/images/pycontw2023/IMG_7529.jpg)
+![IMG_7529.jpg](../images/pycontw2023/IMG_7529.jpg)
 現地時間23時前にゲートに到着しました  
 
-![IMG_7528.jpg]({static}/images/pycontw2023/IMG_7528.jpg)
+![IMG_7528.jpg](../images/pycontw2023/IMG_7528.jpg)
 隣のゲートには新興の航空会社Starluxの787が  
 
 ### 1日目(8/30)
@@ -222,11 +222,11 @@ EVA Air BR195便 20:40-23:20(それぞれ現地時間)
 
 同じフロアにはフードコートとコンビニがあり(夜なのでコンビニしかやっていませんでしたが)何かと便利な感じです  
 
-![20230914_195531.jpg]({static}/images/pycontw2023/20230914_195531.jpg)
+![20230914_195531.jpg](../images/pycontw2023/20230914_195531.jpg)
 
 チェックインすると茶葉をもらえるのが台湾らしくて良い感じです  
 
-![20230831_081317.jpg]({static}/images/pycontw2023/20230831_081317.jpg)
+![20230831_081317.jpg](../images/pycontw2023/20230831_081317.jpg)
 
 2段ベッドというか2段カプセルなカプセルホテルなので室内は立てないぐらいの高さ  
 今回泊まったのは上段だったので梯子で上がる必要があるものの、この梯子がちょっと上がりにくいぐらいが難点かなと思いました  
@@ -238,7 +238,7 @@ EVA Air BR195便 20:40-23:20(それぞれ現地時間)
 #### 市内へ
 CHO Stayをチェックアウトし、朝食(コンビニで軽く買い、まだオープンしていないフードコートのテーブルで)やeSIM購入を済ませて同僚の入国を待ちます  
 
-![20230831_094928.jpg]({static}/images/pycontw2023/20230831_094928.jpg)
+![20230831_094928.jpg](../images/pycontw2023/20230831_094928.jpg)
 
 同僚と合流し桃園空港MRTで台北駅へ  
 宿泊先は値段もかなりお手頃だったので台北駅の南側のチェアマンホテルにしました  
@@ -250,33 +250,33 @@ CHO Stayをチェックアウトし、朝食(コンビニで軽く買い、ま�
 一階に共有のスペースがあり無料のコーヒーやお茶が提供されていて、買ってきた食べ物も食べられるようになっているので西門からテイクアウトしてきてゆっくり食べたりできます  
 明るくきれいなスペースなのでありがたく使っていました  
 
-![GX010098−1.jpg]({static}/images/pycontw2023/GX010098−1.jpg)
+![GX010098−1.jpg](../images/pycontw2023/GX010098−1.jpg)
 
-![GX010059-2.jpg]({static}/images/pycontw2023/GX010059-2.jpg)
+![GX010059-2.jpg](../images/pycontw2023/GX010059-2.jpg)
 
-![GX010059-1.jpg]({static}/images/pycontw2023/GX010059-1.jpg)
+![GX010059-1.jpg](../images/pycontw2023/GX010059-1.jpg)
 
-![20230904_073619.jpg]({static}/images/pycontw2023/20230904_073619.jpg)
+![20230904_073619.jpg](../images/pycontw2023/20230904_073619.jpg)
 
 窓付きシングルルームで予約したところ、窓付きダブルルームにしてくれたらしくちょっと嬉しかったです
 部屋自体はスーツケースを開く場所がベッドの上しかなかったので正直ちょっと狭いかなという感じでしたが、そこ以外は概ね快適です(そう言えばテレビが映ったり映らなかったりとちょっと不安定だったのが残念だったかも)  
 とはいえ、窓。。確かにあるけど。。  
 
-![20230904_075437.jpg]({static}/images/pycontw2023/20230904_075437.jpg)
+![20230904_075437.jpg](../images/pycontw2023/20230904_075437.jpg)
 
 窓からの景色
 
-![GX010073-1.jpg]({static}/images/pycontw2023/GX010073-1.jpg)
+![GX010073-1.jpg](../images/pycontw2023/GX010073-1.jpg)
 
 枕元のコンセントが充実しているのはありがたい
 
-![20230904_002120.jpg]({static}/images/pycontw2023/20230904_002120.jpg)
+![20230904_002120.jpg](../images/pycontw2023/20230904_002120.jpg)
 
 #### さて観光について  
 どこ行きたい？なにしたい？と桃園空港MRTで話していたところ、やはりというか鼎泰豊、九份、夜市、故宮博物館、台北101あたりが挙がったので行きづらいところから順番に行くことにしました  
 と言うことまずは鼎泰豊 復興店へ。  
 
-![20230831_134441.jpg]({static}/images/pycontw2023/20230831_134441.jpg)
+![20230831_134441.jpg](../images/pycontw2023/20230831_134441.jpg)
 
 蟹味噌の小籠包が最高においしいので(日本でも食べられるけど)これだけは毎回頼みます  
 
@@ -286,31 +286,31 @@ CHO Stayをチェックアウトし、朝食(コンビニで軽く買い、ま�
 「時間決めてくれたら待ってるから同じ値段で台北まで送るよ？」とオファーされたものの流石に帰りはバスで帰れるだろうとやんわりと辞退するうちに標高も高くなり海が見え始めあっという間に九份の入り口に到着しました。  
 九份自体は何回か行っているのでどうもこうもと言う感じなものの天気もそれなりで海もよく見えてここの景色はいつ見てもいいものです。  
 
-![DSC01351.jpg]({static}/images/pycontw2023/DSC01351.jpg)
+![DSC01351.jpg](../images/pycontw2023/DSC01351.jpg)
 
-![DSC01359.jpg]({static}/images/pycontw2023/DSC01359.jpg)
+![DSC01359.jpg](../images/pycontw2023/DSC01359.jpg)
 
-![DSC01348.jpg]({static}/images/pycontw2023/DSC01348.jpg)
+![DSC01348.jpg](../images/pycontw2023/DSC01348.jpg)
 
 帰りは本数にも余裕のあるバスに乗って帰ることに。バス自体はそんなに混んでないものの運転と道路がなかなかに荒めで「これはなかなか新鮮」(いま道路関係の仕事をしています)と話しているうちに台北市内に入りました  
 ちょうど夕方ぐらいで饒河街観光夜市ちかくを通ると言うことで松山駅で下車し、饒河街観光夜市へ向かいます  
 時間が早かったので入り口の有名な胡椒餅屋さんも行列がなく食べてみることにしました  
 なかなかの熱さで猫舌にはつらいもののすごくおいしく行列するわけだと納得 
 
-![GX010052-1.jpg]({static}/images/pycontw2023/GX010052-1.jpg)
+![GX010052-1.jpg](../images/pycontw2023/GX010052-1.jpg)
 
-![GX010053-1.jpg]({static}/images/pycontw2023/GX010053-1.jpg)
+![GX010053-1.jpg](../images/pycontw2023/GX010053-1.jpg)
 
-![GX010056-1.jpg]({static}/images/pycontw2023/GX010056-1.jpg)
+![GX010056-1.jpg](../images/pycontw2023/GX010056-1.jpg)
 
-![GX010058-1.jpg]({static}/images/pycontw2023/GX010058-1.jpg)
+![GX010058-1.jpg](../images/pycontw2023/GX010058-1.jpg)
 
 
 このあとぶらぶら歩きMRTを乗り継ぐ形で西門まで戻り、鴨肉料理を食べてからホテルに戻ります
 
-![GX010061−1.jpg]({static}/images/pycontw2023/GX010061−1.jpg)
+![GX010061−1.jpg](../images/pycontw2023/GX010061−1.jpg)
 
-![GX010062-1.jpg]({static}/images/pycontw2023/GX010062-1.jpg)
+![GX010062-1.jpg](../images/pycontw2023/GX010062-1.jpg)
 
 鴨料理屋さんは「[鴨肉扁土鵝専売店](https://maps.app.goo.gl/aMdfDzosuye17GQA9)」
 
@@ -324,71 +324,71 @@ GoogleMaps頼りでバス停に向かい故宮博物館へ向かったところ�
 故宮博物館近くへ行くバスで隣に乗っていた女性が日本語を勉強中の方で「日本人ですか！？」と  
 「バスの乗り換えは難しいですよ」「この路線初めて乗りました」と旅行者じゃなくてもバス移動は難しいっぽい話を聞かせてもらいました  
 
-![DSC01472.jpg]({static}/images/pycontw2023/DSC01472.jpg)
+![DSC01472.jpg](../images/pycontw2023/DSC01472.jpg)
 
-![DSC01374.jpg]({static}/images/pycontw2023/DSC01374.jpg)
+![DSC01374.jpg](../images/pycontw2023/DSC01374.jpg)
 
-![DSC01376.jpg]({static}/images/pycontw2023/DSC01376.jpg)
+![DSC01376.jpg](../images/pycontw2023/DSC01376.jpg)
 
-![DSC01379.jpg]({static}/images/pycontw2023/DSC01379.jpg)
+![DSC01379.jpg](../images/pycontw2023/DSC01379.jpg)
 
-![DSC01380.jpg]({static}/images/pycontw2023/DSC01380.jpg)
+![DSC01380.jpg](../images/pycontw2023/DSC01380.jpg)
 
-![DSC01397.jpg]({static}/images/pycontw2023/DSC01397.jpg)
+![DSC01397.jpg](../images/pycontw2023/DSC01397.jpg)
 
-![DSC01391.jpg]({static}/images/pycontw2023/DSC01391.jpg)
+![DSC01391.jpg](../images/pycontw2023/DSC01391.jpg)
 
-![DSC01393.jpg]({static}/images/pycontw2023/DSC01393.jpg)
+![DSC01393.jpg](../images/pycontw2023/DSC01393.jpg)
 
-![DSC01394.jpg]({static}/images/pycontw2023/DSC01394.jpg)
+![DSC01394.jpg](../images/pycontw2023/DSC01394.jpg)
 
-![DSC01456.jpg]({static}/images/pycontw2023/DSC01456.jpg)
+![DSC01456.jpg](../images/pycontw2023/DSC01456.jpg)
 
-![DSC01457.jpg]({static}/images/pycontw2023/DSC01457.jpg)
+![DSC01457.jpg](../images/pycontw2023/DSC01457.jpg)
 
 
 その後、バスで士林駅に出て、淡水線で台北101まで乗り換えなしで  
 天気が良くなかったので外には出られなかったものの台北101の展望台からの景色を普通に堪能して降りてくるとハイブランドばかりのショッピングモールに  
 内側にある円状の一般エリアから外円のブランド店へ10メートルぐらいの橋があり「これは城だな。。」とすごいを通り越して面白い作りだったのが印象に残っています  
 
-![DSC01479.jpg]({static}/images/pycontw2023/DSC01479.jpg)
+![DSC01479.jpg](../images/pycontw2023/DSC01479.jpg)
 
 その後、ちょっと早いものの師大夜市へ  
 こちらは早すぎたのかうろうろ歩き回ってもあまり店がやっておらず、残念な結果に  
 台電大楼駅近くの24時間やっているという麺線店(チェーンらしい)で軽く食べてホテルに戻る前に西門へ向かうことにしました  
 
-![20230901_184536.jpg]({static}/images/pycontw2023/20230901_184536.jpg)
+![20230901_184536.jpg](../images/pycontw2023/20230901_184536.jpg)
 
-![20230901_202057.jpg]({static}/images/pycontw2023/20230901_202057.jpg)
+![20230901_202057.jpg](../images/pycontw2023/20230901_202057.jpg)
 
 
 西門をぶらぶらし、鶏排を買ってホテル一階の共有スペースで食べながらTwitterを見ているとライブを見に台北に来ていた知人たちが近くの夜市で遊んでいたので合流することに  
 寧夏夜市の近くの円環まで北門と西門町の間あたりのバス停から5停留所ぐらいなのでバスに乗って移動しました  
 
-![DSC01513.jpg]({static}/images/pycontw2023/DSC01513.jpg)
+![DSC01513.jpg](../images/pycontw2023/DSC01513.jpg)
 
-![20230901_212410.jpg]({static}/images/pycontw2023/20230901_212410.jpg)
+![20230901_212410.jpg](../images/pycontw2023/20230901_212410.jpg)
 
-![20230901_212905.jpg]({static}/images/pycontw2023/20230901_212905.jpg)
+![20230901_212905.jpg](../images/pycontw2023/20230901_212905.jpg)
 
-![20230901_212418.jpg]({static}/images/pycontw2023/20230901_212418.jpg)
+![20230901_212418.jpg](../images/pycontw2023/20230901_212418.jpg)
 
-![20230901_212646.jpg]({static}/images/pycontw2023/20230901_212646.jpg)
+![20230901_212646.jpg](../images/pycontw2023/20230901_212646.jpg)
 
-![20230901_220942.jpg]({static}/images/pycontw2023/20230901_220942.jpg)
+![20230901_220942.jpg](../images/pycontw2023/20230901_220942.jpg)
 
-![20230901_221929.jpg]({static}/images/pycontw2023/20230901_221929.jpg)
+![20230901_221929.jpg](../images/pycontw2023/20230901_221929.jpg)
 
-![20230901_222139.jpg]({static}/images/pycontw2023/20230901_222139.jpg)
+![20230901_222139.jpg](../images/pycontw2023/20230901_222139.jpg)
 
-![20230901_222707.jpg]({static}/images/pycontw2023/20230901_222707.jpg)
+![20230901_222707.jpg](../images/pycontw2023/20230901_222707.jpg)
 
-![DSC01515.jpg]({static}/images/pycontw2023/DSC01515.jpg)
+![DSC01515.jpg](../images/pycontw2023/DSC01515.jpg)
 
 
 そこそこにお腹いっぱいだったもののおいしそうだったのでついつい牡蠣オムレツ、茹でた牡蠣などをつまんでしまい、そこからさらに豆花のお店で一椀食べ、0時近くになったのでホテル方面へ徒歩で帰ることになりました。  
 
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">想い出w<br><br>3〜4年ぶりくらいに台湾でエンカしたオタク(別件でたまたま台湾にきていたw)<a href="https://twitter.com/n_akg?ref_src=twsrc%5Etfw">@n_akg</a> <a href="https://twitter.com/snkm3?ref_src=twsrc%5Etfw">@snkm3</a> <a href="https://t.co/erMJrVhq6g">pic.twitter.com/erMJrVhq6g</a></p>&mdash; 🍛ハヤシ・キャンGP🪼🥩🦭✡️🐶🍵🐸🐹 (@supcream) <a href="https://twitter.com/supcream/status/1698652519898198488?ref_src=twsrc%5Etfw">September 4, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">想い出w<br><br>3〜4年ぶりくらいに台湾でエンカしたオタク(別件でたまたま台湾にきていたw)<a href="https://twitter.com/n_akg?ref_src=twsrc%5Etfw">@n_akg</a> <a href="https://twitter.com/snkm3?ref_src=twsrc%5Etfw">@snkm3</a> <a href="https://t.co/erMJrVhq6g">pic.twitter.com/erMJrVhq6g</a></p>&mdash; 🍛ハヤシ・キャンGP🪼🥩🦭✡️ (@supcream) <a href="https://twitter.com/supcream/status/1698652519898198488?ref_src=twsrc%5Etfw">September 4, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 遊び歩いた友達のTwitterに写真があがっていました(私はGoProで動画を撮っている)  
 いいしゃしん  

@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*- #
-
-import datetime
-
 AUTHOR = 'sonkmr'
 SITENAME = 'nkm3'
 SITEURL = 'https://nkm3.org'
@@ -20,10 +15,6 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
-DEFAULT_DATE_FORMAT = ('%Y-%m-%d')
-CURRENT_YEAR = datetime.datetime.now().year
-
-
 # Blogroll
 LINKS = (('Pelican', 'https://getpelican.com/'),
          ('Python.org', 'https://www.python.org/'),
@@ -36,8 +27,6 @@ SOCIAL = (('You can add links in your config file', '#'),
 
 DEFAULT_PAGINATION = 20
 
-# Uncomment following line if you want document-relative URLs when developing
-RELATIVE_URLS = True
 
 THEME = 'themes/pelican-cait'
 
@@ -45,8 +34,6 @@ USE_CUSTOM_MENU = True
 CUSTOM_MENUITEMS = (
     ('About', '/pages/about.html'),
 )
-
-
 
 DISPLAY_PAGES_ON_MENU = False
 
@@ -97,3 +84,6 @@ SITEMAP = {
         "pages": "daily"
     }
 }
+
+# Uncomment following line if you want document-relative URLs when developing
+# RELATIVE_URLS = True
