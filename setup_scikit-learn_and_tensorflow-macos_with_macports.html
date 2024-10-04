@@ -59,7 +59,7 @@
                 <article class="post-entry">
                     <header class="entry-header">
                         <time class="post-time" datetime="2021-08-22T00:00:00+09:00" pubdate>
-                            2021-08-22
+                            Sun 22 August 2021
                         </time>
                         <a href="https://nkm3.org/setup_scikit-learn_and_tensorflow-macos_with_macports.html" rel="bookmark"><h1>setup scikit-learn and tensorflow-macos with macports</h1></a>
                     </header>
@@ -84,7 +84,7 @@ sudo ln -s MacOSX.sdk MacOSX11.sdk
 </code></pre></div>
 
 <h4>scipyのインストール</h4>
-<div class="highlight"><pre><span></span><code>OPENBLAS=&quot;/opt/local/lib/&quot; CFLAGS=&quot;-falign-functions=8 <span class="cp">${</span><span class="n">CFLAGS</span><span class="cp">}</span>&quot; pip install --no-use-pep517 scipy
+<div class="highlight"><pre><span></span><code>OPENBLAS=&quot;/opt/local/lib/&quot;<span class="w"> </span>CFLAGS=&quot;-falign-functions=8<span class="w"> </span><span class="cp">${</span><span class="n">CFLAGS</span><span class="cp">}</span>&quot;<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-use-pep517<span class="w"> </span>scipy
 </code></pre></div>
 
 <p>必要なライブラリがlibgcc以下にあり、見つけてくれないのでシンボリックリンクを張る</p>
@@ -106,16 +106,16 @@ sudo ln -s libgcc/libgcc_s.1.1.dylib libgcc_s.1.1.dylib
 
 <p>pipでPythonモジュールをインストールする際にいくつか環境変数を設定する必要がある</p>
 <p>grpcioのインストール</p>
-<div class="highlight"><pre><span></span><code><span class="k">export</span> <span class="n">GRPC_PYTHON_BUILD_SYSTEM_OPENSSL</span><span class="o">=</span><span class="mi">1</span>
-<span class="k">export</span> <span class="n">GRPC_PYTHON_BUILD_SYSTEM_ZLIB</span><span class="o">=</span><span class="mi">1</span>
-<span class="k">export</span> <span class="n">LDFLAGS</span><span class="o">=</span><span class="s2">&quot;-L/opt/local/lib&quot;</span>   
-<span class="k">export</span> <span class="n">CPPFLAGS</span><span class="o">=</span><span class="s2">&quot;-I/opt/local/include&quot;</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">grpcio</span>
+<div class="highlight"><pre><span></span><code><span class="k">export</span><span class="w"> </span><span class="n">GRPC_PYTHON_BUILD_SYSTEM_OPENSSL</span><span class="o">=</span><span class="mi">1</span>
+<span class="k">export</span><span class="w"> </span><span class="n">GRPC_PYTHON_BUILD_SYSTEM_ZLIB</span><span class="o">=</span><span class="mi">1</span>
+<span class="k">export</span><span class="w"> </span><span class="n">LDFLAGS</span><span class="o">=</span><span class="s2">&quot;-L/opt/local/lib&quot;</span><span class="w">   </span>
+<span class="k">export</span><span class="w"> </span><span class="n">CPPFLAGS</span><span class="o">=</span><span class="s2">&quot;-I/opt/local/include&quot;</span>
+<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">grpcio</span>
 </code></pre></div>
 
 <p>h5pyのインストール</p>
-<div class="highlight"><pre><span></span><code><span class="k">export</span> <span class="n">HDF5_DIR</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">local</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">h5py</span>
+<div class="highlight"><pre><span></span><code><span class="k">export</span><span class="w"> </span><span class="n">HDF5_DIR</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">local</span>
+<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">h5py</span>
 </code></pre></div>
 
 <p>これで<code>tensorflow-macos</code>のインストールができるようになる</p>

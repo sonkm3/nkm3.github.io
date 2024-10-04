@@ -58,7 +58,7 @@
                 <article class="post-entry">
                     <header class="entry-header">
                         <time class="post-time" datetime="2021-10-04T00:00:00+09:00" pubdate>
-                            2021-10-04
+                            Mon 04 October 2021
                         </time>
                         <a href="https://nkm3.org/bring_your_own_nature_with_raspberry_pi.html" rel="bookmark"><h1>Raspberry Piで自然を手元に持ってくる方法の紹介</h1></a>
                     </header>
@@ -120,16 +120,16 @@ HLSは連続する映像、音声を短い映像、音声ファイルに分割(�
 </ul>
 <h1>ポイント</h1>
 <h2>FFmpegの実行</h2>
-<div class="highlight"><pre><span></span><code><span class="nv">ffmpeg</span> \
-  <span class="o">-</span><span class="nv">y</span> \
-  <span class="o">-</span><span class="nv">f</span> <span class="nv">alsa</span> <span class="o">-</span><span class="nv">ac</span> <span class="mh">$C</span><span class="nv">HANNELS</span> <span class="o">-</span><span class="nv">thread_queue_size</span> <span class="mi">16384</span> <span class="o">-</span><span class="nv">r</span> <span class="mi">15</span> <span class="o">-</span><span class="nv">re</span> <span class="o">-</span><span class="nv">t</span> <span class="mh">$D</span><span class="nv">URATION</span> <span class="o">-</span><span class="nv">i</span> <span class="mh">$A</span><span class="nv">UDIO_DEVICE</span>\
-  <span class="o">-</span><span class="nv">f</span> <span class="nv">v4l2</span> <span class="o">-</span><span class="nv">thread_queue_size</span> <span class="mi">16384</span> <span class="o">-</span><span class="nv">s</span> <span class="mi">640</span><span class="nv">x360</span> <span class="o">-</span><span class="nv">r</span> <span class="mi">15</span> <span class="o">-</span><span class="nv">t</span> <span class="mh">$D</span><span class="nv">URATION</span> <span class="o">-</span><span class="nv">i</span> $<span class="nv">VIDEO_DEVICE</span> \
-  <span class="o">-</span><span class="nv">c</span>:<span class="nv">a</span> <span class="nv">aac</span> <span class="o">-</span><span class="nv">b</span>:<span class="nv">a</span> <span class="mi">128</span><span class="nv">k</span> <span class="o">-</span><span class="nv">ar</span> $<span class="nv">SAMPLING_RATE</span> <span class="o">-</span><span class="nv">bufsize</span> <span class="mi">128</span><span class="nv">k</span> \
-  <span class="o">-</span><span class="nv">c</span>:<span class="nv">v</span> <span class="nv">h264_omx</span> <span class="o">-</span><span class="nv">b</span>:<span class="nv">v</span> <span class="mi">500</span><span class="nv">k</span> <span class="o">-</span><span class="nv">bufsize</span> <span class="mi">500</span><span class="nv">k</span> <span class="o">-</span><span class="nv">vsync</span> <span class="nv">cfr</span> <span class="o">-</span><span class="nv">g</span> <span class="mi">300</span> <span class="o">-</span><span class="nv">profile</span>:<span class="nv">v</span>:<span class="mi">1</span> <span class="nv">main</span>\
-  <span class="o">-</span><span class="nv">bsf</span>:<span class="nv">v</span> <span class="nv">h264_mp4toannexb</span> \
-  <span class="o">-</span><span class="nv">flags</span> <span class="o">+</span><span class="nv">cgop</span><span class="o">+</span><span class="k">loop</span><span class="o">+</span><span class="nv">global_header</span> \
-  <span class="o">-</span><span class="nv">ignore_unknown</span> \
-  <span class="o">-</span><span class="nv">f</span> <span class="nv">flv</span> $<span class="nv">RTMP_SERVER_URL</span>
+<div class="highlight"><pre><span></span><code>ffmpeg \
+  -y \
+  -f alsa -ac $CHANNELS -thread_queue_size 16384 -r 15 -re -t $DURATION -i $AUDIO_DEVICE\
+  -f v4l2 -thread_queue_size 16384 -s 640x360 -r 15 -t $DURATION -i $VIDEO_DEVICE \
+  -c:a aac -b:a 128k -ar $SAMPLING_RATE -bufsize 128k \
+  -c:v h264_omx -b:v 500k -bufsize 500k -vsync cfr -g 300 -profile:v:1 main\
+  -bsf:v h264_mp4toannexb \
+  -flags +cgop+loop+global_header \
+  -ignore_unknown \
+  -f flv $RTMP_SERVER_URL
 </code></pre></div>
 
 <p>Raspberry Pi上で動作し、webカメラからの映像を配信サーバー(<code>$RTMP_SERVER_URL</code>)に送信するコマンドです(実際は<code>systemd</code>から実行されるシェルスクリプトの中で実行しています)  </p>
@@ -142,101 +142,101 @@ HLSは連続する映像、音声を短い映像、音声ファイルに分割(�
 <a href="https://hub.docker.com/r/tiangolo/nginx-rtmp/">https://hub.docker.com/r/tiangolo/nginx-rtmp/</a><br>
 <a href="https://github.com/tiangolo/nginx-rtmp-docker">https://github.com/tiangolo/nginx-rtmp-docker</a></p>
 <h3>Dockerfile</h3>
-<div class="highlight"><pre><span></span><code><span class="k">FROM</span> <span class="s">tiangolo/nginx-rtmp</span>
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">tiangolo/nginx-rtmp</span>
 
-<span class="k">COPY</span> nginx.conf /etc/nginx/nginx.conf
+<span class="k">COPY</span><span class="w"> </span>nginx.conf<span class="w"> </span>/etc/nginx/nginx.conf
 
-<span class="k">WORKDIR</span><span class="s"> /html/</span>
-<span class="k">COPY</span> index.html /html/index.html
-<span class="k">WORKDIR</span><span class="s"> /var/www/html/output</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/html/</span>
+<span class="k">COPY</span><span class="w"> </span>index.html<span class="w"> </span>/html/index.html
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/var/www/html/output</span>
 
-<span class="k">EXPOSE</span><span class="s"> 1935</span>
+<span class="k">EXPOSE</span><span class="w"> </span><span class="s">1935</span>
 </code></pre></div>
 
 <h3>nginx.conf</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># https://github.com/tiangolo/nginx-rtmp-docker/issues/18</span>
-<span class="n">worker_processes</span> <span class="n">auto</span><span class="p">;</span>
-<span class="n">rtmp_auto_push</span> <span class="n">on</span><span class="p">;</span>
-<span class="n">events</span> <span class="p">{}</span>
-<span class="n">rtmp</span> <span class="p">{</span>
-    <span class="n">server</span> <span class="p">{</span>
-        <span class="n">listen</span> <span class="mi">1935</span><span class="p">;</span>
-        <span class="n">listen</span> <span class="p">[::]:</span><span class="mi">1935</span> <span class="n">ipv6only</span><span class="o">=</span><span class="n">on</span><span class="p">;</span>    
-        <span class="n">application</span> <span class="n">live</span> <span class="p">{</span>
-            <span class="n">live</span> <span class="n">on</span><span class="p">;</span>
-            <span class="n">record</span> <span class="n">off</span><span class="p">;</span>
-            <span class="n">notify_method</span> <span class="n">get</span><span class="p">;</span>
-            <span class="n">on_publish</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">nginx</span><span class="o">-</span><span class="n">unit</span><span class="o">-</span><span class="n">stream</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">app</span><span class="p">:</span><span class="mi">8000</span><span class="o">/</span><span class="n">publish_start_hook</span><span class="p">;</span>
-            <span class="n">on_publish_done</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">nginx</span><span class="o">-</span><span class="n">unit</span><span class="o">-</span><span class="n">stream</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">app</span><span class="p">:</span><span class="mi">8000</span><span class="o">/</span><span class="n">publish_end_hook</span><span class="p">;</span>
-            <span class="n">hls</span> <span class="n">on</span><span class="p">;</span>
-            <span class="n">hls_path</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">output</span><span class="p">;</span>
-            <span class="n">hls_fragment</span> <span class="mi">1</span><span class="n">s</span><span class="p">;</span>
-            <span class="n">hls_continuous</span> <span class="n">on</span><span class="p">;</span>
-            <span class="n">hls_cleanup</span> <span class="n">on</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+<span class="n">worker_processes</span><span class="w"> </span><span class="n">auto</span><span class="p">;</span>
+<span class="n">rtmp_auto_push</span><span class="w"> </span><span class="n">on</span><span class="p">;</span>
+<span class="n">events</span><span class="w"> </span><span class="p">{}</span>
+<span class="n">rtmp</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">listen</span><span class="w"> </span><span class="mi">1935</span><span class="p">;</span>
+<span class="w">        </span><span class="n">listen</span><span class="w"> </span><span class="p">[::]:</span><span class="mi">1935</span><span class="w"> </span><span class="n">ipv6only</span><span class="o">=</span><span class="n">on</span><span class="p">;</span><span class="w">    </span>
+<span class="w">        </span><span class="n">application</span><span class="w"> </span><span class="n">live</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">live</span><span class="w"> </span><span class="n">on</span><span class="p">;</span>
+<span class="w">            </span><span class="n">record</span><span class="w"> </span><span class="n">off</span><span class="p">;</span>
+<span class="w">            </span><span class="n">notify_method</span><span class="w"> </span><span class="n">get</span><span class="p">;</span>
+<span class="w">            </span><span class="n">on_publish</span><span class="w"> </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">nginx</span><span class="o">-</span><span class="n">unit</span><span class="o">-</span><span class="n">stream</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">app</span><span class="p">:</span><span class="mi">8000</span><span class="o">/</span><span class="n">publish_start_hook</span><span class="p">;</span>
+<span class="w">            </span><span class="n">on_publish_done</span><span class="w"> </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">nginx</span><span class="o">-</span><span class="n">unit</span><span class="o">-</span><span class="n">stream</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">app</span><span class="p">:</span><span class="mi">8000</span><span class="o">/</span><span class="n">publish_end_hook</span><span class="p">;</span>
+<span class="w">            </span><span class="n">hls</span><span class="w"> </span><span class="n">on</span><span class="p">;</span>
+<span class="w">            </span><span class="n">hls_path</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">output</span><span class="p">;</span>
+<span class="w">            </span><span class="n">hls_fragment</span><span class="w"> </span><span class="mi">1</span><span class="n">s</span><span class="p">;</span>
+<span class="w">            </span><span class="n">hls_continuous</span><span class="w"> </span><span class="n">on</span><span class="p">;</span>
+<span class="w">            </span><span class="n">hls_cleanup</span><span class="w"> </span><span class="n">on</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
-<span class="n">http</span> <span class="p">{</span>
-    <span class="n">server_tokens</span> <span class="n">off</span><span class="p">;</span>
-    <span class="n">include</span> <span class="n">mime</span><span class="o">.</span><span class="n">types</span><span class="p">;</span>
-    <span class="n">keepalive_timeout</span> <span class="mi">65</span><span class="p">;</span>
-    <span class="n">server</span> <span class="p">{</span>
-        <span class="n">listen</span> <span class="mi">80</span><span class="p">;</span>      <span class="c1"># HTTP IPv4</span>
-        <span class="n">listen</span> <span class="p">[::]:</span><span class="mi">80</span><span class="p">;</span> <span class="c1"># HTTP IPv6</span>
-        <span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
-            <span class="n">proxy_pass</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">nginx</span><span class="o">-</span><span class="n">unit</span><span class="o">-</span><span class="n">stream</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">app</span><span class="p">:</span><span class="mi">8000</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="n">location</span> <span class="o">/</span><span class="n">output</span> <span class="p">{</span>
-            <span class="n">add_header</span> <span class="n">Cache</span><span class="o">-</span><span class="n">Control</span> <span class="n">no</span><span class="o">-</span><span class="n">cache</span><span class="p">;</span>
-            <span class="n">add_header</span> <span class="s1">&#39;Access-Control-Allow-Origin&#39;</span> <span class="s1">&#39;*&#39;</span> <span class="n">always</span><span class="p">;</span>
-            <span class="n">add_header</span> <span class="s1">&#39;Access-Control-Expose-Headers&#39;</span> <span class="s1">&#39;Content-Length&#39;</span><span class="p">;</span>
-            <span class="k">if</span> <span class="p">(</span><span class="o">$</span><span class="n">request_method</span> <span class="o">=</span> <span class="s1">&#39;OPTIONS&#39;</span><span class="p">)</span> <span class="p">{</span>
-                <span class="n">add_header</span> <span class="s1">&#39;Access-Control-Allow-Origin&#39;</span> <span class="s1">&#39;*&#39;</span><span class="p">;</span>
-                <span class="n">add_header</span> <span class="s1">&#39;Access-Control-Max-Age&#39;</span> <span class="mi">1728000</span><span class="p">;</span>
-                <span class="n">add_header</span> <span class="s1">&#39;Content-Type&#39;</span> <span class="s1">&#39;text/plain charset=UTF-8&#39;</span><span class="p">;</span>
-                <span class="n">add_header</span> <span class="s1">&#39;Content-Length&#39;</span> <span class="mi">0</span><span class="p">;</span>
-                <span class="k">return</span> <span class="mi">204</span><span class="p">;</span>
-            <span class="p">}</span>
-            <span class="n">types</span> <span class="p">{</span>
-                <span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">apple</span><span class="o">.</span><span class="n">mpegurl</span> <span class="n">m3u8</span><span class="p">;</span>
-                <span class="n">video</span><span class="o">/</span><span class="n">mp2t</span> <span class="n">ts</span><span class="p">;</span>
-            <span class="p">}</span>
-            <span class="n">root</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+<span class="n">http</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">server_tokens</span><span class="w"> </span><span class="n">off</span><span class="p">;</span>
+<span class="w">    </span><span class="n">include</span><span class="w"> </span><span class="n">mime</span><span class="o">.</span><span class="n">types</span><span class="p">;</span>
+<span class="w">    </span><span class="n">keepalive_timeout</span><span class="w"> </span><span class="mi">65</span><span class="p">;</span>
+<span class="w">    </span><span class="n">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">listen</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span><span class="w">      </span><span class="c1"># HTTP IPv4</span>
+<span class="w">        </span><span class="n">listen</span><span class="w"> </span><span class="p">[::]:</span><span class="mi">80</span><span class="p">;</span><span class="w"> </span><span class="c1"># HTTP IPv6</span>
+<span class="w">        </span><span class="n">location</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">proxy_pass</span><span class="w"> </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">nginx</span><span class="o">-</span><span class="n">unit</span><span class="o">-</span><span class="n">stream</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">app</span><span class="p">:</span><span class="mi">8000</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">location</span><span class="w"> </span><span class="o">/</span><span class="n">output</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">add_header</span><span class="w"> </span><span class="n">Cache</span><span class="o">-</span><span class="n">Control</span><span class="w"> </span><span class="n">no</span><span class="o">-</span><span class="n">cache</span><span class="p">;</span>
+<span class="w">            </span><span class="n">add_header</span><span class="w"> </span><span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="w"> </span><span class="n">always</span><span class="p">;</span>
+<span class="w">            </span><span class="n">add_header</span><span class="w"> </span><span class="s1">&#39;Access-Control-Expose-Headers&#39;</span><span class="w"> </span><span class="s1">&#39;Content-Length&#39;</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">$</span><span class="n">request_method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;OPTIONS&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">add_header</span><span class="w"> </span><span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="p">;</span>
+<span class="w">                </span><span class="n">add_header</span><span class="w"> </span><span class="s1">&#39;Access-Control-Max-Age&#39;</span><span class="w"> </span><span class="mi">1728000</span><span class="p">;</span>
+<span class="w">                </span><span class="n">add_header</span><span class="w"> </span><span class="s1">&#39;Content-Type&#39;</span><span class="w"> </span><span class="s1">&#39;text/plain charset=UTF-8&#39;</span><span class="p">;</span>
+<span class="w">                </span><span class="n">add_header</span><span class="w"> </span><span class="s1">&#39;Content-Length&#39;</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="mi">204</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">types</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">apple</span><span class="o">.</span><span class="n">mpegurl</span><span class="w"> </span><span class="n">m3u8</span><span class="p">;</span>
+<span class="w">                </span><span class="n">video</span><span class="o">/</span><span class="n">mp2t</span><span class="w"> </span><span class="n">ts</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">root</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <p>前半の<code>rtmp {}</code>の箇所が<code>nginx-rtmp-module</code>に関わる設定になります<br>
 後半の<code>http {}</code>はプレイリストとフラグメントの配信をする設定と、APIサーバーへのproxyの設定がされています(詳しくは<code>docker-compose</code>の箇所で説明します)  </p>
 <h2>配信サーバーのdocker-composeファイル</h2>
-<div class="highlight"><pre><span></span><code><span class="n">version</span><span class="p">:</span> <span class="s2">&quot;3.9&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="n">version</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3.9&quot;</span>
 <span class="n">services</span><span class="p">:</span>
-    <span class="n">nginx</span><span class="o">-</span><span class="n">proxy</span><span class="p">:</span>
-        <span class="n">image</span><span class="p">:</span> <span class="n">nginxproxy</span><span class="o">/</span><span class="n">nginx</span><span class="o">-</span><span class="n">proxy</span>
-        <span class="n">ports</span><span class="p">:</span>
-            <span class="o">-</span> <span class="s2">&quot;80:80&quot;</span>
-        <span class="n">expose</span><span class="p">:</span>
-            <span class="o">-</span> <span class="s2">&quot;80&quot;</span>
-        <span class="n">volumes</span><span class="p">:</span>
-            <span class="o">-</span> <span class="s2">&quot;/var/run/docker.sock:/tmp/docker.sock:ro&quot;</span>
-    <span class="n">nginx</span><span class="o">-</span><span class="n">rtmp</span><span class="o">-</span><span class="n">module</span><span class="p">:</span>
-        <span class="n">build</span><span class="p">:</span> <span class="o">./</span><span class="n">nginx</span><span class="o">-</span><span class="n">rtmp</span><span class="o">-</span><span class="n">module</span>
-        <span class="n">ports</span><span class="p">:</span>
-            <span class="o">-</span> <span class="s2">&quot;1935:1935&quot;</span>
-        <span class="n">environment</span><span class="p">:</span>
-            <span class="o">-</span> <span class="n">VIRTUAL_HOST</span><span class="o">=</span><span class="n">stream</span><span class="o">.</span><span class="n">nkm3</span><span class="o">.</span><span class="n">org</span>
-            <span class="o">-</span> <span class="n">VIRTUAL_PORT</span><span class="o">=</span><span class="mi">80</span>
-        <span class="n">container_name</span><span class="p">:</span> <span class="n">stream_delivery</span>
-    <span class="n">nginx</span><span class="o">-</span><span class="n">unit</span><span class="o">-</span><span class="n">stream</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">app</span><span class="p">:</span>
-        <span class="n">build</span><span class="p">:</span> <span class="o">./</span><span class="n">nginx</span><span class="o">-</span><span class="n">unit</span><span class="o">-</span><span class="n">stream</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">app</span>
-        <span class="n">volumes</span><span class="p">:</span>
-            <span class="o">-</span> <span class="s2">&quot;./nginx-unit-stream-control-app/config/:/docker-entrypoint.d/&quot;</span>
-            <span class="o">-</span> <span class="s2">&quot;./nginx-unit-stream-control-app/log/unit.log:/var/log/unit.log&quot;</span>
-            <span class="o">-</span> <span class="s2">&quot;./nginx-unit-stream-control-app/state/:/var/lib/unit/&quot;</span>
-            <span class="o">-</span> <span class="s2">&quot;./nginx-unit-stream-control-app/webapp/:/www/&quot;</span>
-        <span class="n">env_file</span><span class="p">:</span>
-            <span class="o">-</span> <span class="n">stream</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">app</span><span class="o">.</span><span class="n">env</span>
+<span class="w">    </span><span class="n">nginx</span><span class="o">-</span><span class="n">proxy</span><span class="p">:</span>
+<span class="w">        </span><span class="n">image</span><span class="p">:</span><span class="w"> </span><span class="n">nginxproxy</span><span class="o">/</span><span class="n">nginx</span><span class="o">-</span><span class="n">proxy</span>
+<span class="w">        </span><span class="n">ports</span><span class="p">:</span>
+<span class="w">            </span><span class="o">-</span><span class="w"> </span><span class="s2">&quot;80:80&quot;</span>
+<span class="w">        </span><span class="n">expose</span><span class="p">:</span>
+<span class="w">            </span><span class="o">-</span><span class="w"> </span><span class="s2">&quot;80&quot;</span>
+<span class="w">        </span><span class="n">volumes</span><span class="p">:</span>
+<span class="w">            </span><span class="o">-</span><span class="w"> </span><span class="s2">&quot;/var/run/docker.sock:/tmp/docker.sock:ro&quot;</span>
+<span class="w">    </span><span class="n">nginx</span><span class="o">-</span><span class="n">rtmp</span><span class="o">-</span><span class="n">module</span><span class="p">:</span>
+<span class="w">        </span><span class="n">build</span><span class="p">:</span><span class="w"> </span><span class="o">./</span><span class="n">nginx</span><span class="o">-</span><span class="n">rtmp</span><span class="o">-</span><span class="n">module</span>
+<span class="w">        </span><span class="n">ports</span><span class="p">:</span>
+<span class="w">            </span><span class="o">-</span><span class="w"> </span><span class="s2">&quot;1935:1935&quot;</span>
+<span class="w">        </span><span class="n">environment</span><span class="p">:</span>
+<span class="w">            </span><span class="o">-</span><span class="w"> </span><span class="n">VIRTUAL_HOST</span><span class="o">=</span><span class="n">stream</span><span class="o">.</span><span class="n">nkm3</span><span class="o">.</span><span class="n">org</span>
+<span class="w">            </span><span class="o">-</span><span class="w"> </span><span class="n">VIRTUAL_PORT</span><span class="o">=</span><span class="mi">80</span>
+<span class="w">        </span><span class="n">container_name</span><span class="p">:</span><span class="w"> </span><span class="n">stream_delivery</span>
+<span class="w">    </span><span class="n">nginx</span><span class="o">-</span><span class="n">unit</span><span class="o">-</span><span class="n">stream</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">app</span><span class="p">:</span>
+<span class="w">        </span><span class="n">build</span><span class="p">:</span><span class="w"> </span><span class="o">./</span><span class="n">nginx</span><span class="o">-</span><span class="n">unit</span><span class="o">-</span><span class="n">stream</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">app</span>
+<span class="w">        </span><span class="n">volumes</span><span class="p">:</span>
+<span class="w">            </span><span class="o">-</span><span class="w"> </span><span class="s2">&quot;./nginx-unit-stream-control-app/config/:/docker-entrypoint.d/&quot;</span>
+<span class="w">            </span><span class="o">-</span><span class="w"> </span><span class="s2">&quot;./nginx-unit-stream-control-app/log/unit.log:/var/log/unit.log&quot;</span>
+<span class="w">            </span><span class="o">-</span><span class="w"> </span><span class="s2">&quot;./nginx-unit-stream-control-app/state/:/var/lib/unit/&quot;</span>
+<span class="w">            </span><span class="o">-</span><span class="w"> </span><span class="s2">&quot;./nginx-unit-stream-control-app/webapp/:/www/&quot;</span>
+<span class="w">        </span><span class="n">env_file</span><span class="p">:</span>
+<span class="w">            </span><span class="o">-</span><span class="w"> </span><span class="n">stream</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">app</span><span class="o">.</span><span class="n">env</span>
 </code></pre></div>
 
 <p><code>docker-compose up</code>ですべて立ち上がるようにしています</p>
